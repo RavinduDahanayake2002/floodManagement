@@ -376,3 +376,336 @@ h6 {
 .value-row.active {
     color: var(--text-main);
 }
+
+/* Additional Utilities */
+.grid {
+    display: grid;
+}
+
+.grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.space-y-2 > * + * {
+    margin-top: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.w-screen {
+    width: 100vw;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.backdrop-blur {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.transition-colors {
+    transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+}
+
+.text-primary {
+    color: var(--accent-purple);
+}
+
+.text-secondary {
+    color: var(--text-muted);
+}
+
+.text-red-400 {
+    color: #f87171;
+}
+
+.text-blue-400 {
+    color: #60a5fa;
+}
+
+.text-green-400 {
+    color: #34d399;
+}
+
+.text-gray-200 {
+    color: #e5e7eb;
+}
+
+.text-gray-300 {
+    color: #d1d5db;
+}
+
+.text-gray-400 {
+    color: #9ca3af;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.bg-gray-800 {
+    background-color: #1f2937;
+}
+
+.bg-gray-900 {
+    background-color: #111827;
+}
+
+.border-gray-700 {
+    border-color: #374151;
+}
+
+.border-gray-800 {
+    border-color: #1f2937;
+}
+
+.rounded {
+    border-radius: 0.25rem;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-mono {
+    font-family: ui-monospace, SFMono-Regular, 'Cascadia Code', monospace;
+}
+
+.text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+.text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+.text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.list-disc {
+    list-style-type: disc;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.tracking-wider {
+    letter-spacing: 0.05em;
+}
+
+.p-2 {
+    padding: 0.5rem;
+}
+
+.p-4 {
+    padding: 1rem;
+}
+
+.p-6 {
+    padding: 1.5rem;
+}
+
+.pl-4 {
+    padding-left: 1rem;
+}
+
+.mb-1 {
+    margin-bottom: 0.25rem;
+}
+
+.mb-3 {
+    margin-bottom: 0.75rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
+
+.gap-3 {
+    gap: 0.75rem;
+}
+
+.gap-4 {
+    gap: 1rem;
+}
+
+.gap-5 {
+    gap: 1.25rem;
+}
+
+.gap-6 {
+    gap: 1.5rem;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-1 {
+    flex: 1 1 0%;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.border {
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* Page entrance animation */
+.page-enter {
+    animation: pageEnter 0.3s ease-out;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Spinner */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.border-purple-500 {
+    border-color: #8b5cf6;
+}
+
+.border-t-transparent {
+    border-top-color: transparent;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white !important;
+        color: #111827 !important;
+        font-size: 12pt;
+    }
+
+    .bg-gray-900,
+    .bg-gray-800 {
+        background-color: white !important;
+    }
+
+    .text-gray-200,
+    .text-gray-300,
+    .text-gray-400,
+    .text-secondary {
+        color: #374151 !important;
+    }
+
+    .text-2xl {
+        color: #111827 !important;
+    }
+
+    .app-panel {
+        border: 1px solid #d1d5db !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    .border-gray-700,
+    .border-gray-800 {
+        border-color: #d1d5db !important;
+    }
+
+    a[href^="tel:"] {
+        text-decoration: none;
+        color: #111827 !important;
+    }
+
+    .action-buttons,
+    .app-btn-ghost,
+    .no-print {
+        display: none !important;
+    }
+}

@@ -1,0 +1,211 @@
+@using FloodApp.Services
+@using FloodApp.Models
+@inject WeatherService WeatherService
+
+<div class="forecast-widget">
+    <h3 class="widget-title">7-Day Forecast</h3>
+    
+    @if (IsLoading)
+    {
+        <div class="forecast-loading">
+            <div class="spinner border-2 border-purple-500 border-t-transparent rounded-full w-6 h-6 animate-spin"></div>
+        </div>
+    }
+    else if (Forecasts.Count == 0)
+    {
+        <div class="forecast-error">
+            Unable to load forecast data.
+        </div>
+    }
+    else
+    {
+        <div class="forecast-scroll">
+            @foreach (var day in Forecasts)
+            {
+                <div class="forecast-card @(day.Precipitation > 20 ? "heavy-rain" : (day.Precipitation > 5 ? "moderate-rain" : ""))">
+                    <span class="forecast-day">@day.Date.ToString("ddd")</span>
+                    <span class="forecast-date">@day.Date.ToString("MMM d")</span>
+                    <span class="forecast-icon">@day.WeatherIcon</span>
+                    <span class="forecast-desc">@day.WeatherDescription</span>
+                    <div class="forecast-temps">
+                        <span class="temp-high">@day.TempMax.ToString("F0")°</span>
+                        <span class="temp-low">@day.TempMin.ToString("F0")°</span>
+                    </div>
+                    <div class="forecast-precip @(day.Precipitation > 20 ? "precip-heavy" : (day.Precipitation > 5 ? "precip-moderate" : "precip-light"))">
+                        <span class="precip-icon">💧</span>
+                        <span>@day.Precipitation.ToString("F1") mm</span>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public LatLng? Location { get; set; }
+
+    private List<DailyForecast> Forecasts = new();
+    private bool IsLoading = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Location != null)
+        {
+            IsLoading = true;
+            StateHasChanged();
+            Forecasts = await WeatherService.GetForecastAsync(Location.Lat, Location.Lng);
+            IsLoading = false;
+        }
+    }
+}
+
+<style>
+    .forecast-widget {
+        width: 100%;
+    }
+
+    .widget-title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-secondary, #9ca3af);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .forecast-loading {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .forecast-error {
+        font-size: 0.75rem;
+        color: #f87171;
+        padding: 0.5rem;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 0.5rem;
+    }
+
+    .forecast-scroll {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+    }
+
+    .forecast-scroll::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .forecast-scroll::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .forecast-scroll::-webkit-scrollbar-thumb {
+        background: rgba(139, 92, 246, 0.3);
+        border-radius: 2px;
+    }
+
+    .forecast-card {
+        min-width: 100px;
+        background: rgba(31, 41, 55, 0.8);
+        border: 1px solid rgba(55, 65, 81, 0.8);
+        border-radius: 0.75rem;
+        padding: 0.75rem 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        transition: all 0.2s;
+        flex-shrink: 0;
+    }
+
+    .forecast-card:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .forecast-card.heavy-rain {
+        border-color: rgba(239, 68, 68, 0.5);
+        background: rgba(239, 68, 68, 0.08);
+    }
+
+    .forecast-card.moderate-rain {
+        border-color: rgba(245, 158, 11, 0.4);
+        background: rgba(245, 158, 11, 0.05);
+    }
+
+    .forecast-day {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .forecast-date {
+        font-size: 0.625rem;
+        color: var(--text-secondary, #9ca3af);
+    }
+
+    .forecast-icon {
+        font-size: 1.5rem;
+        margin: 0.25rem 0;
+    }
+
+    .forecast-desc {
+        font-size: 0.6rem;
+        color: var(--text-secondary, #9ca3af);
+        text-align: center;
+        line-height: 1.2;
+        min-height: 1.5em;
+    }
+
+    .forecast-temps {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .temp-high {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: white;
+    }
+
+    .temp-low {
+        font-size: 0.75rem;
+        color: #6b7280;
+    }
+
+    .forecast-precip {
+        font-size: 0.625rem;
+        display: flex;
+        align-items: center;
+        gap: 0.125rem;
+        padding: 0.125rem 0.375rem;
+        border-radius: 1rem;
+    }
+
+    .precip-icon {
+        font-size: 0.625rem;
+    }
+
+    .precip-light {
+        color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    .precip-moderate {
+        color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+    }
+
+    .precip-heavy {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.15);
+        font-weight: 600;
+    }
+</style>
