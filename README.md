@@ -49,18 +49,22 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
 
 ### Installation & Run
 
-1. **Navigate to project directory**:
+1. **Clone the repository** (if you haven't already):
    ```powershell
-   cd floodApp
+   git clone <repository-url>
    ```
 
-2. **Build the application**:
+2. **Navigate to the project directory**:
+   ```powershell
+   cd floodManagement
+   ```
+
+3. **Restore Dependencies**:
    ```powershell
    dotnet restore
-   dotnet build
    ```
 
-3. **Run the server**:
+4. **Run the server**:
    ```powershell
    dotnet run --urls "http://localhost:5200"
    ```
@@ -71,9 +75,8 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
    dotnet run --urls "http://0.0.0.0:5200"
    ```
    *Access via your machine's IP address (e.g., http://192.168.1.50:5200)*
-   ```
 
-4. **Access the App**:
+5. **Access the App**:
    Open **[http://localhost:5200](http://localhost:5200)** in your browser.
 
 ---
