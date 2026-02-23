@@ -9,6 +9,9 @@
 <div id="risk-map" class="h-full w-full"></div>
 
 @code {
+    [Parameter]
+    public List<Shelter> Shelters { get; set; } = new();
+
     private IJSObjectReference? _mapModule;
     private IJSObjectReference? _mapInstance;
 
@@ -28,6 +31,13 @@
             
             // Add Marker
             await _mapModule.InvokeVoidAsync("addMarker", _mapInstance, AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
+            
+            // Add Shelters
+            foreach (var s in Shelters)
+            {
+                var popupText = $"<div style='color:black;'><b>{s.Name}</b><br>{s.Type} - {s.DistanceKm:F1}km away</div>";
+                await _mapModule.InvokeVoidAsync("addShelterMarker", _mapInstance, s.Lat, s.Lng, popupText);
+            }
         }
     }
 }

@@ -8,14 +8,17 @@
 @inject NavigationManager Nav
 @inject AppState AppState
 @inject RiskService RiskService
+@inject WeatherService WeatherService
+@inject ShelterService ShelterService
+@inject IJSRuntime JS
 @layout FloodApp.Components.Layout.MainLayout
 
-<div class="h-screen w-full bg-gray-900 grid" style="grid-template-columns: 400px 1fr;">
+<div class="h-screen w-full bg-gray-900 grid" style="grid-template-columns: 420px 1fr;">
     
     <!-- Left Panel: Analysis & Info -->
-    <div class="h-full bg-gray-900 border-r border-gray-800 p-6 flex flex-col gap-6 overflow-y-auto z-10 shadow-xl">
+    <div class="h-full risk-sidebar p-6 flex flex-col gap-5 overflow-y-auto z-10 shadow-xl" id="risk-report">
         
-        <div class="flex items-center gap-2 mb-2">
+        <div class="flex items-center gap-2 mb-1">
             <AppButton Variant="AppButton.ButtonVariant.Ghost" 
                        Color="AppButton.ButtonColor.Neutral"
                        OnClick="@GoBack">
@@ -29,7 +32,8 @@
         {
             <div class="flex-1 flex flex-col items-center justify-center gap-4">
                 <div class="spinner border-4 border-purple-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
-                <p>Calculating Risk...</p>
+                <p>Analyzing Risk...</p>
+                <p class="text-xs text-secondary">Calculating risk, checking weather conditions...</p>
             </div>
         }
         else if (AppState.SelectedLatLng == null)
@@ -40,8 +44,38 @@
         }
         else
         {
+            <!-- Risk Summary Card -->
             <RiskSummaryCard Result="@AppState.CurrentRisk" />
             
+            <!-- Weather Escalation Badge -->
+            @if (AppState.CurrentRisk.WasEscalated && !string.IsNullOrEmpty(AppState.CurrentRisk.EscalationReason))
+            {
+                <div class="escalation-badge">
+                    <span class="escalation-icon">⚠️</span>
+                    <span class="escalation-text">@AppState.CurrentRisk.EscalationReason</span>
+                </div>
+            }
+
+            <!-- Nearest Safe Zone (for High/Medium) -->
+            @if (AppState.CurrentRisk.Level != RiskLevel.Low && NearestSafeZone != null)
+            {
+                <Panel>
+                    <h3 class="text-sm font-bold text-secondary mb-2">🛡️ Nearest Safe Zone</h3>
+                    <div class="safe-zone-info">
+                        <div class="safe-zone-name">
+                            <span class="safe-dot"></span>
+                            <span>@NearestSafeZone.Value.ZoneName</span>
+                        </div>
+                        <div class="safe-zone-distance">
+                            <span class="distance-value">@NearestSafeZone.Value.DistanceKm.ToString("F1") km</span>
+                            <span class="distance-label">away</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2">Consider evacuating towards this low-risk area if conditions worsen.</p>
+                </Panel>
+            }
+            
+            <!-- Recommendations -->
             <Panel>
                 <h3 class="text-sm font-bold text-secondary mb-2">Recommendations</h3>
                 <ul class="text-sm list-disc pl-4 space-y-2 text-gray-300">
@@ -50,11 +84,13 @@
                         <li>Evacuate to higher ground immediately if water rises.</li>
                         <li>Keep emergency kit ready.</li>
                         <li>Follow official DMC alerts.</li>
+                        <li>Avoid crossing flooded roads and bridges.</li>
                     }
                     else if (AppState.CurrentRisk.Level == RiskLevel.Medium)
                     {
-                        <li>Monitor rain levels.</li>
+                        <li>Monitor rain levels closely.</li>
                         <li>Prepare for potential evacuation.</li>
+                        <li>Secure important documents and valuables.</li>
                     }
                     else
                     {
@@ -64,9 +100,48 @@
                 </ul>
             </Panel>
 
+            <!-- Nearby Shelters -->
+            @if (NearbyShelters != null && NearbyShelters.Any())
+            {
+                <Panel>
+                    <h3 class="text-sm font-bold text-secondary mb-2">🏥 Nearby Emergency Centers</h3>
+                    <div class="space-y-3 mt-3">
+                        @foreach (var shelter in NearbyShelters)
+                        {
+                            <div class="p-3 bg-gray-800 rounded border border-gray-700">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="font-bold text-gray-200 text-sm">@shelter.Name</span>
+                                    <span class="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded">@shelter.DistanceKm.ToString("F1") km</span>
+                                </div>
+                                <div class="text-xs text-gray-400 mb-2">Type: @shelter.Type.ToString()</div>
+                                
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-xs text-secondary flex items-center gap-1">
+                                        📞 <a href="tel:@shelter.ContactNumber" class="text-primary hover:underline">@shelter.ContactNumber</a>
+                                    </span>
+                                    <span class="text-xs @(shelter.IsFull ? "text-red-400" : "text-green-400")">
+                                        @(shelter.IsFull ? "FULL" : $"Cap: {shelter.CurrentOccupancy}/{shelter.Capacity}")
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </Panel>
+            }
+
             <!-- Weather Widget (Live) -->
             <Panel>
                 <WeatherWidget Location="@AppState.SelectedLatLng" />
+            </Panel>
+
+            <!-- 7-Day Forecast -->
+            <Panel>
+                <ForecastWidget Location="@AppState.SelectedLatLng" />
+            </Panel>
+
+            <!-- Rainfall Trend Chart -->
+            <Panel>
+                <RainfallChart Location="@AppState.SelectedLatLng" />
             </Panel>
 
             <!-- Emergency Contacts -->
@@ -97,10 +172,24 @@
                 </div>
             </Panel>
 
-            <div class="mt-auto">
-                 <AppButton Class="w-full" 
-                            Variant="AppButton.ButtonVariant.Outline"
-                            OnClick="@NewCheck">
+            <!-- Action Buttons -->
+            <div class="action-buttons mt-auto">
+                <AppButton Class="w-full" 
+                           Variant="AppButton.ButtonVariant.Filled"
+                           Color="AppButton.ButtonColor.Danger"
+                           OnClick="@ReportDamage">
+                    🚨 Report Damage / Claim
+                </AppButton>
+                <AppButton Class="w-full" 
+                           Variant="AppButton.ButtonVariant.Outline"
+                           Color="AppButton.ButtonColor.Primary"
+                           OnClick="@PrintReport">
+                    📄 Download Report
+                </AppButton>
+                <AppButton Class="w-full" 
+                           Variant="AppButton.ButtonVariant.Outline"
+                           Color="AppButton.ButtonColor.Neutral"
+                           OnClick="@NewCheck">
                     Check Another Location
                 </AppButton>
             </div>
@@ -111,7 +200,7 @@
     <div class="h-full relative bg-black overflow-hidden">
         @if (AppState.SelectedLatLng != null)
         {
-             <RiskMapView />
+             <RiskMapView Shelters="@NearbyShelters" />
              
              <!-- Risk Legend Overlay -->
              <div class="absolute bottom-4 right-4 bg-gray-900/90 backdrop-blur p-4 rounded-lg border border-gray-700 z-[1000]">
@@ -143,14 +232,33 @@
 
 @code {
     private bool IsCalculating = true;
+    private (string ZoneName, double DistanceKm)? NearestSafeZone;
+    private List<Shelter> NearbyShelters = new();
+    private IJSObjectReference? _reportModule;
 
     protected override async Task OnInitializedAsync()
     {
         if (AppState.SelectedLatLng != null)
         {
-            // Calculate Risk
-            var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng);
+            // Fetch nearby shelters
+            NearbyShelters = await ShelterService.GetNearbySheltersAsync(AppState.SelectedLatLng, 15.0, 3);
+
+            // 1. Fetch current weather first
+            var weather = await WeatherService.GetCurrentWeatherAsync(
+                AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
+            
+            double currentRainfall = weather?.Rain ?? 0;
+            
+            // 2. Calculate Risk with weather awareness
+            var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng, currentRainfall);
             AppState.SetRiskResult(result);
+            
+            // 3. Find nearest safe zone for High/Medium risk
+            if (result.Level != RiskLevel.Low)
+            {
+                NearestSafeZone = await RiskService.FindNearestSafeZoneAsync(AppState.SelectedLatLng);
+            }
+            
             IsCalculating = false;
         }
         else
@@ -166,8 +274,144 @@
 
     private void NewCheck()
     {
-        // Reset state? Or just go back. 
-        // Requirements say "New Check" button.
         Nav.NavigateTo("/location");
     }
+
+    private async Task PrintReport()
+    {
+        _reportModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./js/report.js");
+        await _reportModule.InvokeVoidAsync("printReport");
+    }
+
+    private void ReportDamage()
+    {
+        Nav.NavigateTo("/report-damage");
+    }
 }
+
+<style>
+    .risk-sidebar {
+        background: rgba(15, 23, 42, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        scrollbar-width: thin;
+        scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+    }
+
+    .risk-sidebar::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .risk-sidebar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .risk-sidebar::-webkit-scrollbar-thumb {
+        background: rgba(139, 92, 246, 0.3);
+        border-radius: 2px;
+    }
+
+    .escalation-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 0.875rem;
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 0.5rem;
+        animation: fadeSlideIn 0.5s ease-out;
+    }
+
+    .escalation-icon {
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+
+    .escalation-text {
+        font-size: 0.75rem;
+        color: #fbbf24;
+        font-weight: 500;
+    }
+
+    .safe-zone-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background: rgba(16, 185, 129, 0.08);
+        border: 1px solid rgba(16, 185, 129, 0.2);
+        border-radius: 0.5rem;
+    }
+
+    .safe-zone-name {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        color: #d1d5db;
+        font-weight: 500;
+    }
+
+    .safe-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #10b981;
+        animation: safePulse 2s infinite;
+    }
+
+    @@keyframes safePulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+        50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    }
+
+    .safe-zone-distance {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .distance-value {
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: #10b981;
+    }
+
+    .distance-label {
+        font-size: 0.625rem;
+        color: #6b7280;
+        text-transform: uppercase;
+    }
+
+    .action-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    @@keyframes fadeSlideIn {
+        from { opacity: 0; transform: translateY(-8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Print styles */
+    @@media print {
+        .risk-panel {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        .action-buttons,
+        .app-btn-ghost {
+            display: none !important;
+        }
+        body {
+            background: white !important;
+            color: black !important;
+        }
+        .app-panel {
+            border: 1px solid #ccc !important;
+            break-inside: avoid;
+        }
+    }
+</style>

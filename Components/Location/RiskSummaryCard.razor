@@ -4,7 +4,7 @@
 <Panel Class="@($"border-l-4 {BorderColorClass}")">
     <div class="flex flex-col gap-2">
         <div class="flex items-center gap-3">
-             <div class="w-3 h-3 rounded-full" style="background-color: @Result.ColorCode"></div>
+             <div class="w-3 h-3 rounded-full @PulseClass" style="background-color: @Result.ColorCode; box-shadow: 0 0 10px @Result.ColorCode;"></div>
              <h2 class="text-2xl font-bold" style="color: @Result.ColorCode">@Result.Level Risk</h2>
         </div>
         
@@ -32,5 +32,10 @@
         RiskLevel.Medium => "border-yellow-500",
         RiskLevel.Low => "border-green-500",
         _ => "border-gray-500"
+    };
+
+    private string PulseClass => Result.Level switch {
+        RiskLevel.High or RiskLevel.Medium => "animate-pulse",
+        _ => ""
     };
 }

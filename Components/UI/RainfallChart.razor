@@ -1,0 +1,251 @@
+@using FloodApp.Services
+@using FloodApp.Models
+@inject WeatherService WeatherService
+
+<div class="rainfall-chart">
+    <h3 class="chart-title">Rainfall Trend (Past 7 Days)</h3>
+    
+    @if (IsLoading)
+    {
+        <div class="chart-loading">
+            <div class="spinner border-2 border-purple-500 border-t-transparent rounded-full w-6 h-6 animate-spin"></div>
+        </div>
+    }
+    else if (History.Count == 0)
+    {
+        <div class="chart-error">
+            Unable to load rainfall history.
+        </div>
+    }
+    else
+    {
+        <div class="chart-container">
+            <div class="chart-bars">
+                @foreach (var day in History)
+                {
+                    var barHeight = MaxPrecip > 0 ? (day.Precipitation / MaxPrecip * 100) : 0;
+                    var barClass = day.Precipitation > 20 ? "bar-heavy" : (day.Precipitation > 5 ? "bar-moderate" : "bar-light");
+                    
+                    <div class="chart-bar-group">
+                        <span class="bar-value">@day.Precipitation.ToString("F1")</span>
+                        <div class="bar-track">
+                            <div class="bar-fill @barClass" style="height: @(Math.Max(barHeight, 3))%"></div>
+                        </div>
+                        <span class="bar-label">@day.Date.ToString("ddd")</span>
+                        <span class="bar-date">@day.Date.ToString("d/M")</span>
+                    </div>
+                }
+            </div>
+            
+            <div class="chart-legend">
+                <div class="legend-item">
+                    <span class="legend-dot legend-dot-light"></span>
+                    <span>&lt; 5mm</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot legend-dot-moderate"></span>
+                    <span>5-20mm</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-dot legend-dot-heavy"></span>
+                    <span>&gt; 20mm</span>
+                </div>
+            </div>
+            
+            <div class="chart-summary">
+                <div class="summary-item">
+                    <span class="summary-label">Total</span>
+                    <span class="summary-value">@TotalPrecip.ToString("F1") mm</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Avg/Day</span>
+                    <span class="summary-value">@(History.Count > 0 ? (TotalPrecip / History.Count).ToString("F1") : "0.0") mm</span>
+                </div>
+                <div class="summary-item">
+                    <span class="summary-label">Peak</span>
+                    <span class="summary-value">@MaxPrecip.ToString("F1") mm</span>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public LatLng? Location { get; set; }
+
+    private List<RainfallDay> History = new();
+    private bool IsLoading = false;
+    private double MaxPrecip => History.Count > 0 ? History.Max(r => r.Precipitation) : 0;
+    private double TotalPrecip => History.Sum(r => r.Precipitation);
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Location != null)
+        {
+            IsLoading = true;
+            StateHasChanged();
+            History = await WeatherService.GetRainfallHistoryAsync(Location.Lat, Location.Lng);
+            IsLoading = false;
+        }
+    }
+}
+
+<style>
+    .rainfall-chart {
+        width: 100%;
+    }
+
+    .chart-title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--text-secondary, #9ca3af);
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .chart-loading {
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .chart-error {
+        font-size: 0.75rem;
+        color: #f87171;
+        padding: 0.5rem;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 0.5rem;
+    }
+
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .chart-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 0.375rem;
+        height: 140px;
+        padding: 0.5rem 0;
+    }
+
+    .chart-bar-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        height: 100%;
+    }
+
+    .bar-value {
+        font-size: 0.6rem;
+        color: #9ca3af;
+        font-weight: 500;
+    }
+
+    .bar-track {
+        flex: 1;
+        width: 100%;
+        max-width: 28px;
+        background: rgba(55, 65, 81, 0.4);
+        border-radius: 4px 4px 0 0;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+
+    .bar-fill {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        transition: height 1s ease-out;
+        min-height: 2px;
+    }
+
+    .bar-light {
+        background: linear-gradient(to top, #059669, #10b981);
+    }
+
+    .bar-moderate {
+        background: linear-gradient(to top, #d97706, #f59e0b);
+    }
+
+    .bar-heavy {
+        background: linear-gradient(to top, #dc2626, #ef4444);
+        animation: pulse-bar 2s infinite;
+    }
+
+    @@keyframes pulse-bar {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.7; }
+    }
+
+    .bar-label {
+        font-size: 0.625rem;
+        font-weight: 600;
+        color: #d1d5db;
+        text-transform: uppercase;
+    }
+
+    .bar-date {
+        font-size: 0.5rem;
+        color: #6b7280;
+    }
+
+    .chart-legend {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        padding-top: 0.25rem;
+    }
+
+    .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.625rem;
+        color: #9ca3af;
+    }
+
+    .legend-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+    }
+
+    .legend-dot-light { background: #10b981; }
+    .legend-dot-moderate { background: #f59e0b; }
+    .legend-dot-heavy { background: #ef4444; }
+
+    .chart-summary {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem 0.75rem;
+        background: rgba(31, 41, 55, 0.6);
+        border-radius: 0.5rem;
+        border: 1px solid rgba(55, 65, 81, 0.5);
+    }
+
+    .summary-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.125rem;
+    }
+
+    .summary-label {
+        font-size: 0.625rem;
+        color: #6b7280;
+        text-transform: uppercase;
+    }
+
+    .summary-value {
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: #e5e7eb;
+    }
+</style>

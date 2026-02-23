@@ -25,7 +25,10 @@
                 Enter Dashboard
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
-            <p class="tap-hint">Tap to continue</p>
+            <button class="btn-secondary mt-3" @onclick="ReportDamage">
+                🚨 Report Damage / Claim
+            </button>
+            <p class="tap-hint mt-2">Tap to continue</p>
         </div>
     </div>
 </div>
@@ -34,6 +37,11 @@
     private void EnterDashboard()
     {
         Nav.NavigateTo("/location");
+    }
+
+    private void ReportDamage()
+    {
+        Nav.NavigateTo("/report-damage");
     }
 }
 
@@ -261,6 +269,31 @@
     .btn-primary:focus-visible {
         box-shadow: 0 0 0 4px rgba(45, 212, 191, 0.3);
     }
+
+    .btn-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0.75rem 1.75rem;
+        border-radius: 9999px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .mt-3 { margin-top: 0.75rem; }
+    .mt-2 { margin-top: 0.5rem; }
 
     .icon-arrow {
         transition: transform 0.3s ease;
