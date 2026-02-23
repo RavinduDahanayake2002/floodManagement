@@ -12,10 +12,20 @@
 
 <style>
     .app-panel {
-        background-color: rgba(255, 255, 255, 0.03);
-        border: 2px dashed var(--accent);
-        border-radius: 0.75rem;
+        background: rgba(30, 41, 59, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
         padding: 1.5rem;
         position: relative;
+        box-shadow: 0 10px 30px -10px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    
+    .app-panel:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px -10px rgba(0,0,0,0.4);
+        border-color: rgba(255, 255, 255, 0.15);
     }
 </style>
