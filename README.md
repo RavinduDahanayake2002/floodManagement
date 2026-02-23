@@ -1,30 +1,34 @@
 # SLIC Flood Management System
 
-An intelligent flood risk assessment application for **Sri Lanka Insurance Corporation (SLIC)**, built with **.NET 8 Blazor**. This system helps users assess flood risks for specific locations across Sri Lanka using real-time weather data and geospatial analytics.
+An intelligent flood risk assessment application for **Sri Lanka Insurance Corporation (SLIC)**, built with **.NET 8 Blazor**. This system helps users assess flood risks for specific locations across Sri Lanka, report property damage for insurance claims, and locate emergency shelters using real-time weather data and geospatial analytics.
 
 ## 🚀 Key Features
 
 ### 🌟 Interactive Splash Screen
 - **Minimalist Design**: Sleek dark theme (`#111827`) matching the application branding.
 - **SLIC Branding**: Official "SLIC General" logo integration.
-- **Easy Access**: Simple "click-to-enter" functionality.
 
 ### 🌍 Location Intelligence
 - **Cascading Selection**: Select Province -> District -> Town hierarchy.
 - **Smart Navigation**: Map automatically zooms and pans to the selected region.
-- **Detailed Data**: Covers all 9 provinces and 25 districts of Sri Lanka.
 
 ### 🛡️ Risk Assessment
 - **Advanced Analytics**: Uses "Point-in-Polygon" algorithms to determine flood risk.
 - **Visual Mapping**: Interactive Leaflet map with colored risk overlays.
-- **Risk Levels**: 
-  - 🔴 **High** (Evacuation required)
-  - 🟡 **Medium** (Monitor situation)
-  - 🟢 **Low** (Safe)
+- **Risk Levels**: High, Medium, Low.
+
+### 📝 Insurance Claims & Damage Reporting
+- **Report Damage**: Seamlessly report flood damage for properties directly to SLIC.
+- **Evidence Collection**: Attach photographic evidence for fast claims processing.
+
+### 🏥 Emergency Shelter Directory
+- **Shelter Locator**: Find the nearest emergency shelters based on your location.
+- **Live Occupancy**: Displays shelter capacity and real-time occupancy.
+- **Map Integration**: Shelters are visually marked on the interactive Leaflet map.
 
 ### 🌦️ Real-Time Weather
 - **Live Integration**: Connects to [Open-Meteo API](https://open-meteo.com/).
-- **Current Conditions**: Displays Temperature (°C), Rainfall (mm), and Wind Speed (km/h) for the specific selected coordinates.
+- **Current Conditions**: Displays Temperature (°C), Rainfall (mm), and Weather forecasts.
 
 ---
 
