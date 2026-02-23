@@ -12,6 +12,7 @@ builder.Services.AddSingleton<LocationService>();
 builder.Services.AddScoped<AppState>();
 builder.Services.AddSingleton<GeoJsonService>();
 builder.Services.AddSingleton<RiskService>();
+builder.Services.AddSingleton<ShelterService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<WeatherService>();
 

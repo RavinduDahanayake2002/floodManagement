@@ -9,6 +9,7 @@
 @inject AppState AppState
 @inject RiskService RiskService
 @inject WeatherService WeatherService
+@inject ShelterService ShelterService
 @inject IJSRuntime JS
 @layout FloodApp.Components.Layout.MainLayout
 
@@ -99,6 +100,35 @@
                 </ul>
             </Panel>
 
+            <!-- Nearby Shelters -->
+            @if (NearbyShelters != null && NearbyShelters.Any())
+            {
+                <Panel>
+                    <h3 class="text-sm font-bold text-secondary mb-2">🏥 Nearby Emergency Centers</h3>
+                    <div class="space-y-3 mt-3">
+                        @foreach (var shelter in NearbyShelters)
+                        {
+                            <div class="p-3 bg-gray-800 rounded border border-gray-700">
+                                <div class="flex justify-between items-start mb-1">
+                                    <span class="font-bold text-gray-200 text-sm">@shelter.Name</span>
+                                    <span class="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded">@shelter.DistanceKm.ToString("F1") km</span>
+                                </div>
+                                <div class="text-xs text-gray-400 mb-2">Type: @shelter.Type.ToString()</div>
+                                
+                                <div class="flex items-center justify-between mt-2">
+                                    <span class="text-xs text-secondary flex items-center gap-1">
+                                        📞 <a href="tel:@shelter.ContactNumber" class="text-primary hover:underline">@shelter.ContactNumber</a>
+                                    </span>
+                                    <span class="text-xs @(shelter.IsFull ? "text-red-400" : "text-green-400")">
+                                        @(shelter.IsFull ? "FULL" : $"Cap: {shelter.CurrentOccupancy}/{shelter.Capacity}")
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </Panel>
+            }
+
             <!-- Weather Widget (Live) -->
             <Panel>
                 <WeatherWidget Location="@AppState.SelectedLatLng" />
@@ -145,6 +175,12 @@
             <!-- Action Buttons -->
             <div class="action-buttons mt-auto">
                 <AppButton Class="w-full" 
+                           Variant="AppButton.ButtonVariant.Filled"
+                           Color="AppButton.ButtonColor.Danger"
+                           OnClick="@ReportDamage">
+                    🚨 Report Damage / Claim
+                </AppButton>
+                <AppButton Class="w-full" 
                            Variant="AppButton.ButtonVariant.Outline"
                            Color="AppButton.ButtonColor.Primary"
                            OnClick="@PrintReport">
@@ -164,7 +200,7 @@
     <div class="h-full relative bg-black overflow-hidden">
         @if (AppState.SelectedLatLng != null)
         {
-             <RiskMapView />
+             <RiskMapView Shelters="@NearbyShelters" />
              
              <!-- Risk Legend Overlay -->
              <div class="absolute bottom-4 right-4 bg-gray-900/90 backdrop-blur p-4 rounded-lg border border-gray-700 z-[1000]">
@@ -197,12 +233,16 @@
 @code {
     private bool IsCalculating = true;
     private (string ZoneName, double DistanceKm)? NearestSafeZone;
+    private List<Shelter> NearbyShelters = new();
     private IJSObjectReference? _reportModule;
 
     protected override async Task OnInitializedAsync()
     {
         if (AppState.SelectedLatLng != null)
         {
+            // Fetch nearby shelters
+            NearbyShelters = await ShelterService.GetNearbySheltersAsync(AppState.SelectedLatLng, 15.0, 3);
+
             // 1. Fetch current weather first
             var weather = await WeatherService.GetCurrentWeatherAsync(
                 AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
@@ -241,6 +281,11 @@
     {
         _reportModule ??= await JS.InvokeAsync<IJSObjectReference>("import", "./js/report.js");
         await _reportModule.InvokeVoidAsync("printReport");
+    }
+
+    private void ReportDamage()
+    {
+        Nav.NavigateTo("/report-damage");
     }
 }
 

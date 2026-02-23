@@ -1,0 +1,291 @@
+@page "/report-damage"
+@using FloodApp.Models
+@using FloodApp.Components.UI
+@using System.ComponentModel.DataAnnotations
+@inject NavigationManager Nav
+
+<div class="report-wrapper">
+    <div class="report-container glass-panel">
+        <div class="header">
+            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
+                       Color="AppButton.ButtonColor.Neutral"
+                       OnClick="@GoBack"
+                       Class="back-btn">
+                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                Back
+            </AppButton>
+            <h2>Report Property Damage</h2>
+            <p class="text-secondary">Submit details and photos of flood damage for your insurance claim.</p>
+        </div>
+
+        @if (isSubmitted)
+        {
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <h3>Report Submitted Successfully!</h3>
+                <p>Your damage report (Ref: @reportModel.Id.Substring(0, 8).ToUpper()) has been received.</p>
+                <p>An SLIC agent will contact you shortly at @reportModel.ContactNumber.</p>
+                <AppButton OnClick="@GoHome" Class="mt-4">Return to Dashboard</AppButton>
+            </div>
+        }
+        else
+        {
+            <EditForm Model="@reportModel" OnValidSubmit="HandleValidSubmit" class="report-form">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <InputText id="fullName" @bind-Value="reportModel.FullName" class="form-control" placeholder="e.g. John Doe" />
+                    <ValidationMessage For="@(() => reportModel.FullName)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number</label>
+                    <InputText id="contactNumber" @bind-Value="reportModel.ContactNumber" class="form-control" placeholder="e.g. 0771234567" />
+                    <ValidationMessage For="@(() => reportModel.ContactNumber)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Property Address</label>
+                    <InputTextArea id="address" @bind-Value="reportModel.Address" class="form-control" rows="2" placeholder="Enter full address of the damaged property" />
+                    <ValidationMessage For="@(() => reportModel.Address)" />
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Damage Description</label>
+                    <InputTextArea id="description" @bind-Value="reportModel.Description" class="form-control" rows="4" placeholder="Describe the extent of the flood damage..." />
+                    <ValidationMessage For="@(() => reportModel.Description)" />
+                </div>
+
+                <div class="form-group">
+                    <label>Photographic Evidence</label>
+                    <div class="photo-upload-area">
+                        <Icon SvgContent='<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4m14-7l-5-5-5 5m5-5v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                        <span>Click or drag photos to upload</span>
+                        <small class="text-secondary">(Max 5MB per image. JPG, PNG only)</small>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <AppButton Variant="AppButton.ButtonVariant.Outline" 
+                               Color="AppButton.ButtonColor.Neutral"
+                               OnClick="@GoBack" type="button">
+                        Cancel
+                    </AppButton>
+                    <AppButton Color="AppButton.ButtonColor.Primary" type="submit" IsLoading="@isSubmitting">
+                        Submit Claim Request
+                    </AppButton>
+                </div>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    private DamageReport reportModel = new();
+    private bool isSubmitting = false;
+    private bool isSubmitted = false;
+
+    private async Task HandleValidSubmit()
+    {
+        isSubmitting = true;
+        
+        // Simulate API call delay
+        await Task.Delay(1500);
+        
+        isSubmitting = false;
+        isSubmitted = true;
+    }
+
+    private void GoBack()
+    {
+        Nav.NavigateTo("/risk");
+    }
+
+    private void GoHome()
+    {
+        Nav.NavigateTo("/location");
+    }
+}
+
+<style>
+    .report-wrapper {
+        min-height: 100vh;
+        background-color: var(--color-navy, #0f172a);
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 2rem 1rem;
+        background-image: radial-gradient(circle at 50% 0%, rgba(17, 94, 89, 0.2) 0%, transparent 50%);
+    }
+
+    .report-container {
+        width: 100%;
+        max-width: 600px;
+        background: rgba(30, 41, 59, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .header {
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+    }
+
+    .back-btn {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0.5rem;
+    }
+
+    .header h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #f8fafc;
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .report-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #e2e8f0;
+    }
+
+    .form-control {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        color: #f8fafc;
+        font-family: inherit;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+        box-sizing: border-box;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #2dd4bf;
+        box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+    }
+    
+    .form-control::placeholder {
+        color: #64748b;
+    }
+
+    .validation-message {
+        color: #ef4444;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
+    .photo-upload-area {
+        border: 2px dashed rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: rgba(15, 23, 42, 0.3);
+    }
+
+    .photo-upload-area:hover {
+        border-color: #2dd4bf;
+        background: rgba(15, 23, 42, 0.6);
+        color: #cbd5e1;
+    }
+    
+    .photo-upload-area svg {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 0.5rem;
+        color: #cbd5e1;
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .success-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 1rem;
+        animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        background: #10b981;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5);
+    }
+
+    .success-message h3 {
+        color: #f8fafc;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .success-message p {
+        color: #cbd5e1;
+        margin-bottom: 0.5rem;
+    }
+
+    .text-secondary {
+        color: #94a3b8;
+    }
+
+    .mt-4 { margin-top: 1rem; }
+
+    @@keyframes scaleIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+    
+    @@media (max-width: 640px) {
+        .report-wrapper { padding: 1rem 0.5rem; }
+        .report-container { border-radius: 12px; padding: 1.5rem; }
+        .form-actions { flex-direction: column-reverse; }
+        .form-actions button { width: 100%; }
+        .back-btn { top: -10px; }
+    }
+</style>

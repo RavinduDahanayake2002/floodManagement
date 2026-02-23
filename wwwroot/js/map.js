@@ -54,3 +54,20 @@ export function addMarker(map, lat, lng) {
     }
     window.currentMarker = L.marker([lat, lng]).addTo(map);
 }
+
+export function addShelterMarker(map, lat, lng, popupContent) {
+    if (!window.shelterMarkers) window.shelterMarkers = [];
+    
+    const shelterIcon = L.divIcon({
+        className: 'custom-div-icon',
+        html: "<div style='background-color:#3B82F6;width:24px;height:24px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.5);'><span style='font-size:12px;'>🏥</span></div>",
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+    });
+
+    const marker = L.marker([lat, lng], { icon: shelterIcon }).addTo(map);
+    if (popupContent) {
+        marker.bindPopup(popupContent);
+    }
+    window.shelterMarkers.push(marker);
+}
