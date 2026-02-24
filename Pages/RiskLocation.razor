@@ -10,6 +10,8 @@
 @inject RiskService RiskService
 @inject WeatherService WeatherService
 @inject ShelterService ShelterService
+@inject HistoricalDataService HistoricalData
+@inject AIFloodPredictor AIPredictor
 @inject IJSRuntime JS
 @layout FloodApp.Components.Layout.MainLayout
 
@@ -44,8 +46,21 @@
         }
         else
         {
-            <!-- Risk Summary Card -->
-            <RiskSummaryCard Result="@AppState.CurrentRisk" />
+            <!-- AI Generation Report (Gemini) -->
+            <Panel>
+                <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
+                    <span class="text-xl">✨</span>
+                    <h3 class="text-md font-bold text-white">AI General Risk Assessment</h3>
+                </div>
+                @if (!string.IsNullOrEmpty(_aiReportMarkdown))
+                {
+                    <pre class="text-sm text-gray-200 whitespace-pre-wrap font-sans">@_aiReportMarkdown</pre>
+                }
+                else
+                {
+                    <p class="text-sm text-yellow-400">Failed to generate AI Risk Report.</p>
+                }
+            </Panel>
             
             <!-- Weather Escalation Badge -->
             @if (AppState.CurrentRisk.WasEscalated && !string.IsNullOrEmpty(AppState.CurrentRisk.EscalationReason))
@@ -232,6 +247,7 @@
 
 @code {
     private bool IsCalculating = true;
+    private string? _aiReportMarkdown;
     private (string ZoneName, double DistanceKm)? NearestSafeZone;
     private List<Shelter> NearbyShelters = new();
     private IJSObjectReference? _reportModule;
@@ -249,11 +265,29 @@
             
             double currentRainfall = weather?.Rain ?? 0;
             
-            // 2. Calculate Risk with weather awareness
+            // 2. Determine Location Name for AI Context
+            string locName = AppState.SelectedLocationName ?? "Unknown";
+            string province = ""; // Optional, Gemini handles it well with just District name if well known 
+            
+            // Get Historical Severity
+            var histData = HistoricalData.GetHistoricalRisk(province, locName, locName);
+
+            // 3. Get Gemini Prediction
+            _aiReportMarkdown = await AIPredictor.PredictRiskAsync(
+                province, locName, locName, currentRainfall, histData);
+
+            // 4. Overwrite Legacy UI state based on Gemini assessment
             var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng, currentRainfall);
+            
+            if (!string.IsNullOrEmpty(_aiReportMarkdown))
+            {
+                if (_aiReportMarkdown.Contains("HIGH")) result.Level = RiskLevel.High;
+                else if (_aiReportMarkdown.Contains("MEDIUM")) result.Level = RiskLevel.Medium;
+                else result.Level = RiskLevel.Low;
+            }
             AppState.SetRiskResult(result);
             
-            // 3. Find nearest safe zone for High/Medium risk
+            // 5. Find nearest safe zone for High/Medium risk
             if (result.Level != RiskLevel.Low)
             {
                 NearestSafeZone = await RiskService.FindNearestSafeZoneAsync(AppState.SelectedLatLng);
