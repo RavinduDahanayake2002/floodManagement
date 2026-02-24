@@ -8,8 +8,8 @@ public class AIFloodPredictor
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _config;
-    // API Key from appsettings.json or user input.
-    private const string ApiKey = "AIzaSyAm0fpp6AENXQwuMpVvRGmslQ_aqmdXjF8"; 
+    // Claude API Key
+    private const string ApiKey = "YOUR_CLAUDE_API_KEY"; 
 
     public AIFloodPredictor(HttpClient httpClient, IConfiguration config)
     {
@@ -26,19 +26,50 @@ public class AIFloodPredictor
     {
         try
         {
-            // 1. Prepare ML Request Model (Regression on Affected)
+            var systemPrompt = @"You are the SLIC Flood Risk Assistant.
+Analyze the provided location, current rainfall, and historical context to determine the flood risk.
+Your response MUST start with '🛡️ SLIC FLOOD RISK REPORT' and include:
+1. An overall risk level: MUST contain the exact word 'HIGH', 'MEDIUM', or 'LOW'.
+2. Expected damages and affected people based on historical severity.
+3. Recommended actions.
+If the rainfall is high (> 50mm) or historical events are numerous, prioritize assessing the risk as HIGH.";
+
+            var userPrompt = $@"
+Location Details:
+- Province: {province}
+- District: {district}
+- Division: {division}
+
+Current Weather:
+- Rainfall: {currentRainfall:F1} mm
+
+Historical Risk Context for this Division:
+- Total Past Flood Events: {historicalData.EventCount}
+- Average People Affected: {historicalData.AvgAffected:F1}
+- Severity Score: {historicalData.SeverityScore:F2}
+
+Please provide the risk assessment.";
+
             var requestBody = new
             {
-                division = division,
-                month = DateTime.Now.Month
+                model = "claude-3-haiku-20240307",
+                max_tokens = 1000,
+                system = systemPrompt,
+                messages = new[]
+                {
+                    new { role = "user", content = userPrompt }
+                }
             };
 
             string jsonBody = JsonSerializer.Serialize(requestBody);
             var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 
-            // 2. Query Local Python ML API (FastAPI)
-            string url = "http://127.0.0.1:8000/predict";
-            var response = await _httpClient.PostAsync(url, content);
+            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.anthropic.com/v1/messages");
+            request.Headers.Add("x-api-key", ApiKey);
+            request.Headers.Add("anthropic-version", "2023-06-01");
+            request.Content = content;
+
+            var response = await _httpClient.SendAsync(request);
 
             if (response.IsSuccessStatusCode)
             {
@@ -46,38 +77,19 @@ public class AIFloodPredictor
                 using var document = JsonDocument.Parse(responseString);
                 var root = document.RootElement;
                 
-                int predictedAffected = root.GetProperty("predicted_affected").GetInt32();
-                string riskLevel = root.GetProperty("risk_level").GetString() ?? "LOW";
-                
-                string emoji = riskLevel == "HIGH" ? "🔴" : (riskLevel == "MEDIUM" ? "🟡" : "🟢");
-                
-                // 3. Format as Markdown so RiskLocation.razor requires 0 changes!
-                string markdown = $@"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🧠 SLIC CUSTOM ML PREDICTION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📍 Target Division : {division.ToUpper()}
-📅 Current Month   : {DateTime.Now.ToString("MMMM")}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📊 **AI Risk Level** : {emoji} {riskLevel}
-🎯 Predicted Impact: {predictedAffected:N0} People Affected
-
-📜 Historical Context:
-- Processed {historicalData.EventCount} past events in {division}.
-- Average Historical Affected: {historicalData.AvgAffected:F1}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️ RECOMMENDATION: 
-{(riskLevel == "HIGH" ? "Immediate Evacuation. Trigger Claims Preparation Pipeline." : "Monitor Weather Conditions. Typical Risk.")}";
-
-                return markdown;
+                // Extract Claude's text reply
+                var responseText = root.GetProperty("content")[0].GetProperty("text").GetString();
+                return responseText ?? "Failed to parse Claude response.";
             }
             
-            Console.WriteLine($"Python ML API Request failed: {response.StatusCode}");
-            return "Error calling Custom ML prediction service. Is FastAPI running?";
+            var errorBody = await response.Content.ReadAsStringAsync();
+            Console.WriteLine($"Claude API Request failed: {response.StatusCode} - {errorBody}");
+            return $"Error calling Claude API: {response.StatusCode}\nPlease configure your actual API key.";
         }
         catch(Exception ex)
         {
-            Console.WriteLine($"Error querying Local ML API: {ex.Message}");
-            return $"Error connecting to Local ML backend: {ex.Message}";
+            Console.WriteLine($"Error querying Claude API: {ex.Message}");
+            return $"Error connecting to Claude API: {ex.Message}";
         }
     }
 }

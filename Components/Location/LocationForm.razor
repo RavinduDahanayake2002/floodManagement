@@ -31,13 +31,6 @@
                    SelectedValue="@AppState.SelectedDivisionId"
                    SelectedValueChanged="@OnDivisionChanged" />
 
-        <!-- Town -->
-        <AppSelect Label="Town" 
-                   Placeholder="Select Town"
-                   Items="@Towns.Select(t => new AppSelect.SelectOption { Text = t.Name, Value = t.Id })"
-                   SelectedValue="@AppState.SelectedTownId"
-                   SelectedValueChanged="@OnTownChanged" />
-
         <div class="flex flex-col gap-3 mt-4">
             <AppButton Color="AppButton.ButtonColor.Primary" 
                        Disabled="@(!CanProceed)"
@@ -68,7 +61,7 @@
         ? LocationService.GetTowns(AppState.SelectedDivisionId.Value) 
         : new();
 
-    private bool CanProceed => AppState.SelectedTownId.HasValue;
+    private bool CanProceed => AppState.SelectedDivisionId.HasValue;
 
     protected override void OnInitialized()
     {
@@ -107,7 +100,7 @@
         if (value is int id)
         {
             var div = Divisions.FirstOrDefault(x => x.Id == id);
-            AppState.SetDivision(id, div?.Coords);
+            AppState.SetDivision(id, div?.Coords, div?.Name);
         }
         else
             AppState.SetDivision(null);

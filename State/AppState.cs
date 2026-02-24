@@ -49,15 +49,19 @@ public class AppState
         NotifyStateChanged();
     }
 
-    public void SetDivision(int? divisionId, LatLng? coords = null)
+    public void SetDivision(int? divisionId, LatLng? coords = null, string? divisionName = null)
     {
         SelectedDivisionId = divisionId;
         SelectedTownId = null;
         
         if (coords != null)
         {
+            SelectedLatLng = coords;
             MapCenter = coords;
             MapZoom = 12;
+        }
+        if (divisionName != null) {
+            SelectedLocationName = divisionName;
         }
 
         NotifyStateChanged();
