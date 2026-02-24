@@ -48,3 +48,4 @@ D:\My_PaidProjects\slic-flood-management\obj\Debug\net8.0\refint\FloodApp.dll
 D:\My_PaidProjects\slic-flood-management\obj\Debug\net8.0\FloodApp.pdb
 D:\My_PaidProjects\slic-flood-management\obj\Debug\net8.0\FloodApp.genruntimeconfig.cache
 D:\My_PaidProjects\slic-flood-management\obj\Debug\net8.0\ref\FloodApp.dll
+D:\My_PaidProjects\slic-flood-management\obj\Debug\net8.0\FloodApp.csproj.AssemblyReference.cache
