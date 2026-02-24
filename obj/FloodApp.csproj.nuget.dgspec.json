@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\My_PaidProjects\\floodManagement\\FloodApp.csproj": {}
+    "D:\\My_PaidProjects\\slic-flood-management\\FloodApp.csproj": {}
   },
   "projects": {
-    "D:\\My_PaidProjects\\floodManagement\\FloodApp.csproj": {
+    "D:\\My_PaidProjects\\slic-flood-management\\FloodApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\My_PaidProjects\\floodManagement\\FloodApp.csproj",
+        "projectUniqueName": "D:\\My_PaidProjects\\slic-flood-management\\FloodApp.csproj",
         "projectName": "FloodApp",
-        "projectPath": "D:\\My_PaidProjects\\floodManagement\\FloodApp.csproj",
+        "projectPath": "D:\\My_PaidProjects\\slic-flood-management\\FloodApp.csproj",
         "packagesPath": "C:\\Users\\manod\\.nuget\\packages\\",
-        "outputPath": "D:\\My_PaidProjects\\floodManagement\\obj\\",
+        "outputPath": "D:\\My_PaidProjects\\slic-flood-management\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\manod\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -9,99 +9,99 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = FloodApp
 build_property.RootNamespace = FloodApp
-build_property.ProjectDir = D:\My_PaidProjects\floodManagement\
+build_property.ProjectDir = D:\My_PaidProjects\slic-flood-management\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\My_PaidProjects\floodManagement
+build_property.MSBuildProjectDirectory = D:\My_PaidProjects\slic-flood-management
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/My_PaidProjects/floodManagement/Components/App.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Layout/MainLayout.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Location/LocationForm.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Location/LocationForm.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2NhdGlvblxMb2NhdGlvbkZvcm0ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Location/RiskSummaryCard.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Location/RiskSummaryCard.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMb2NhdGlvblxSaXNrU3VtbWFyeUNhcmQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Map.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Map.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNYXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Maps/MapPicker.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Maps/MapPicker.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNYXBzXE1hcFBpY2tlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Maps/RiskMapView.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Maps/RiskMapView.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNYXBzXFJpc2tNYXBWaWV3LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Maps/SriLankaRiskMap.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Maps/SriLankaRiskMap.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xNYXBzXFNyaUxhbmthUmlza01hcC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/Routes.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/AppButton.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/AppButton.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxBcHBCdXR0b24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/AppSelect.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/AppSelect.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxBcHBTZWxlY3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/ForecastWidget.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/ForecastWidget.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxGb3JlY2FzdFdpZGdldC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/Icon.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/Icon.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxJY29uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/Panel.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/Panel.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxQYW5lbC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/RainfallChart.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/RainfallChart.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxSYWluZmFsbENoYXJ0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Components/UI/WeatherWidget.razor]
+[D:/My_PaidProjects/slic-flood-management/Components/UI/WeatherWidget.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVSVxXZWF0aGVyV2lkZ2V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Pages/ChooseOnMap.razor]
+[D:/My_PaidProjects/slic-flood-management/Pages/ChooseOnMap.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2hvb3NlT25NYXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Pages/Landing.razor]
+[D:/My_PaidProjects/slic-flood-management/Pages/Landing.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTGFuZGluZy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Pages/LocationSelection.razor]
+[D:/My_PaidProjects/slic-flood-management/Pages/LocationSelection.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9jYXRpb25TZWxlY3Rpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Pages/ReportDamage.razor]
+[D:/My_PaidProjects/slic-flood-management/Pages/ReportDamage.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwb3J0RGFtYWdlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/Pages/RiskLocation.razor]
+[D:/My_PaidProjects/slic-flood-management/Pages/RiskLocation.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmlza0xvY2F0aW9uLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/My_PaidProjects/floodManagement/_Imports.razor]
+[D:/My_PaidProjects/slic-flood-management/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

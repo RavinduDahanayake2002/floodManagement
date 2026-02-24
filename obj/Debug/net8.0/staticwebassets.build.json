@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vzfwScN91/JJsrkMShOEocRoDHqKbUByKIfLe1KW1fU=",
+  "Hash": "AVzwxUqa6w3m6gh/zVdEL9VFu8dv7ge7nI8zeeFtb6E=",
   "Source": "FloodApp",
   "BasePath": "_content/FloodApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "FloodApp\\wwwroot",
       "Source": "FloodApp",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\app.css",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\app.css",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -36,10 +36,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\css\\app.css",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\css\\app.css",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "css/app.css",
       "AssetKind": "All",
@@ -55,10 +55,10 @@
       "OriginalItemSpec": "wwwroot\\css\\app.css"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\data\\risk_zones.geojson",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\data\\risk_zones.geojson",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "data/risk_zones.geojson",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\data\\risk_zones.geojson"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\js\\map.js",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\map.js",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "js/map.js",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\js\\map.js"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\js\\report.js",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\report.js",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "js/report.js",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\js\\report.js"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\landing-bg.png",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\landing-bg.png",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "landing-bg.png",
       "AssetKind": "All",
@@ -131,10 +131,10 @@
       "OriginalItemSpec": "wwwroot\\landing-bg.png"
     },
     {
-      "Identity": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\slic-logo.png",
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\slic-logo.png",
       "SourceId": "FloodApp",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
       "BasePath": "_content/FloodApp",
       "RelativePath": "slic-logo.png",
       "AssetKind": "All",

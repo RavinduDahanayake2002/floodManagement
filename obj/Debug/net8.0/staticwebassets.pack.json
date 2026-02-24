@@ -1,31 +1,31 @@
 {
   "Files": [
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\app.css",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\css\\app.css",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\data\\risk_zones.geojson",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\data\\risk_zones.geojson",
       "PackagePath": "staticwebassets\\data\\risk_zones.geojson"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\js\\map.js",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\map.js",
       "PackagePath": "staticwebassets\\js\\map.js"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\js\\report.js",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\report.js",
       "PackagePath": "staticwebassets\\js\\report.js"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\landing-bg.png",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\landing-bg.png",
       "PackagePath": "staticwebassets\\landing-bg.png"
     },
     {
-      "Id": "D:\\My_PaidProjects\\floodManagement\\wwwroot\\slic-logo.png",
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\slic-logo.png",
       "PackagePath": "staticwebassets\\slic-logo.png"
     },
     {
