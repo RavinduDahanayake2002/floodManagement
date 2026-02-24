@@ -16,6 +16,8 @@ builder.Services.AddSingleton<RiskService>();
 builder.Services.AddSingleton<ShelterService>();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<WeatherService>();
+builder.Services.AddSingleton<HistoricalDataService>();
+builder.Services.AddScoped<AIFloodPredictor>();
 
 
 var app = builder.Build();
