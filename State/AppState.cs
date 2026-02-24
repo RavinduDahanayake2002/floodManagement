@@ -8,6 +8,7 @@ public class AppState
     public int? SelectedDistrictId { get; private set; }
     public int? SelectedTownId { get; private set; }
     public LatLng? SelectedLatLng { get; private set; }
+    public string? SelectedLocationName { get; private set; }
     
     public LatLng? MapCenter { get; private set; }
     public int MapZoom { get; private set; } = 8;
@@ -57,9 +58,10 @@ public class AppState
         NotifyStateChanged();
     }
     
-    public void SetExplicitLocation(LatLng latLng)
+    public void SetExplicitLocation(LatLng latLng, string? locationName = null)
     {
         SelectedLatLng = latLng;
+        SelectedLocationName = locationName;
         // Reset hierarchy if picking freely on map? Or keep context? 
         // User spec says "Choose on map" stores SelectedLatLng.
         NotifyStateChanged();
