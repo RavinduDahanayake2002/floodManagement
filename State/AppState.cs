@@ -46,7 +46,7 @@ public class AppState
         NotifyStateChanged();
     }
 
-    public void SetTown(int? townId, LatLng? coords)
+    public void SetTown(int? townId, LatLng? coords, string? townName = null)
     {
         SelectedTownId = townId;
         if (coords != null)
@@ -54,6 +54,9 @@ public class AppState
             SelectedLatLng = coords;
             MapCenter = coords;
             MapZoom = 14;
+        }
+        if (townName != null) {
+            SelectedLocationName = townName;
         }
         NotifyStateChanged();
     }

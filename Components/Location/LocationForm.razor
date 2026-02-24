@@ -97,11 +97,11 @@
         if (value is int id)
         {
             var town = LocationService.GetTown(id);
-            AppState.SetTown(id, town?.Coords);
+            AppState.SetTown(id, town?.Coords, town?.Name);
         }
         else
         {
-            AppState.SetTown(null, null);
+            AppState.SetTown(null, null, null);
         }
     }
 
