@@ -23,4 +23,7 @@ public class DamageReport
     public DateTime ReportedAt { get; set; } = DateTime.UtcNow;
     
     public string Status { get; set; } = "Pending";
+    
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
 }

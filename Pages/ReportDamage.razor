@@ -1,8 +1,10 @@
 @page "/report-damage"
 @using FloodApp.Models
+@using FloodApp.Services
 @using FloodApp.Components.UI
 @using System.ComponentModel.DataAnnotations
 @inject NavigationManager Nav
+@inject AdminService AdminService
 
 <div class="report-wrapper">
     <div class="report-container glass-panel">
@@ -90,8 +92,11 @@
     {
         isSubmitting = true;
         
-        // Simulate API call delay
-        await Task.Delay(1500);
+        // Save to AdminService
+        AdminService.AddClaim(reportModel);
+        
+        // Simulate API call delay for UI feedback
+        await Task.Delay(1000);
         
         isSubmitting = false;
         isSubmitted = true;

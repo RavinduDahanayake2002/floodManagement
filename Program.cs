@@ -9,6 +9,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddSingleton<LocationService>();
+builder.Services.AddSingleton<AdminService>();
 builder.Services.AddScoped<AppState>();
 builder.Services.AddSingleton<GeoJsonService>();
 builder.Services.AddSingleton<RiskService>();

@@ -1,0 +1,562 @@
+@page "/admin"
+@using FloodApp.Models
+@using FloodApp.Services
+@using FloodApp.Components.UI
+@inject AdminService AdminService
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+
+<div class="admin-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="slic-logo.png" alt="SLIC" class="sidebar-logo" />
+            <h3>Admin Space</h3>
+        </div>
+        <nav class="sidebar-nav">
+            <button class="nav-item active">
+                <Icon SvgContent='<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="9 22 9 12 15 12 15 22" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline>' />
+                Dashboard
+            </button>
+            <button class="nav-item" @onclick="GoHome">
+                <Icon SvgContent='<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path><polyline points="16 17 21 12 16 7" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></polyline><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></line>' />
+                Exit Admin
+            </button>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-header">
+            <h2>Dashboard Overview</h2>
+            <div class="user-profile">
+                <div class="avatar">AD</div>
+                <span>Admin User</span>
+            </div>
+        </header>
+
+        <div class="content-body">
+            <!-- Widgets Row -->
+            <div class="widgets-grid">
+                <div class="widget-card glass-panel">
+                    <div class="widget-icon primary"><Icon SvgContent='<rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke="currentColor" fill="none" stroke-width="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" stroke="currentColor" fill="none" stroke-width="2"></path>' /></div>
+                    <div class="widget-info">
+                        <h4>Total Claims</h4>
+                        <span class="value">@Claims.Count</span>
+                    </div>
+                </div>
+                
+                <div class="widget-card glass-panel">
+                    <div class="widget-icon warning"><Icon SvgContent='<circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"></circle><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2"></line>' /></div>
+                    <div class="widget-info">
+                        <h4>Pending</h4>
+                        <span class="value">@Summary.GetValueOrDefault("Pending", 0)</span>
+                    </div>
+                </div>
+
+                <div class="widget-card glass-panel">
+                    <div class="widget-icon success"><Icon SvgContent='<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" fill="none" stroke-width="2"></path><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" fill="none" stroke-width="2"></polyline>' /></div>
+                    <div class="widget-info">
+                        <h4>Processed / Approved</h4>
+                        <span class="value">@(Summary.GetValueOrDefault("Processed", 0) + Summary.GetValueOrDefault("Approved", 0))</span>
+                    </div>
+                </div>
+                
+                <div class="widget-card glass-panel">
+                    <div class="widget-icon danger"><Icon SvgContent='<circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"></circle><line x1="15" y1="9" x2="9" y2="15" stroke="currentColor" stroke-width="2"></line><line x1="9" y1="9" x2="15" y2="15" stroke="currentColor" stroke-width="2"></line>' /></div>
+                    <div class="widget-info">
+                        <h4>Rejected</h4>
+                        <span class="value">@Summary.GetValueOrDefault("Rejected", 0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts & Maps Row -->
+            <div class="charts-row">
+                <div class="panel map-panel glass-panel">
+                    <h3>Claims Heatmap</h3>
+                    <p class="text-secondary text-sm">Density of reported damages across registered areas.</p>
+                    <div id="admin-map" class="map-container"></div>
+                </div>
+                
+                <div class="stats-col">
+                    <div class="panel map-panel glass-panel">
+                        <h3>Claims Analytics</h3>
+                        <p class="text-secondary text-sm">Distribution of Claims by Status</p>
+                        <div class="chart-container" style="height: 200px;">
+                            <canvas id="statusChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="panel glass-panel mt-3 forecast-panel">
+                        <div class="panel-header" style="margin-bottom: 0.5rem;">
+                            <h3 style="display: flex; align-items: center; gap: 0.5rem;">
+                                <Icon SvgContent='<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                                Claim Volume Forecast
+                            </h3>
+                        </div>
+                        <p class="text-secondary text-sm">AI Prediction based on Open-Meteo severe weather alerts.</p>
+                        
+                        <div class="forecast-alert @(_forecastLevel.ToLower()) mt-2">
+                            <div class="forecast-icon">
+                                @if(_forecastLevel == "High") {
+                                    <Icon SvgContent='<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" fill="none" stroke-width="2"></path><line x1="12" y1="9" x2="12" y2="13" stroke="currentColor" stroke-width="2"></line><line x1="12" y1="17" x2="12.01" y2="17" stroke="currentColor" stroke-width="2"></line>' />
+                                } else if(_forecastLevel == "Medium") {
+                                    <Icon SvgContent='<circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="2"></circle><line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2"></line><line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2"></line>' />
+                                } else {
+                                    <Icon SvgContent='<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" fill="none" stroke-width="2"></path><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" fill="none" stroke-width="2"></polyline>' />
+                                }
+                            </div>
+                            <div class="forecast-body">
+                                <strong>@_forecastLevel Risk of Surge</strong>
+                                <span>Expected +@_forecastVolume% claims in next 48h.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Table Row -->
+            <div class="panel glass-panel table-panel">
+                <div class="panel-header">
+                    <h3>Recent Damage Reports</h3>
+                    <div class="actions">
+                        <AppButton Variant="AppButton.ButtonVariant.Outline" Size="AppButton.ButtonSize.Small" OnClick="ExportCsv">
+                           <Icon SvgContent='<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" fill="none" stroke-width="2"></path><polyline points="7 10 12 15 17 10" stroke="currentColor" fill="none" stroke-width="2"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>' />
+                           Export CSV
+                        </AppButton>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="claims-table">
+                        <thead>
+                            <tr>
+                                <th>Ref ID</th>
+                                <th>Date/Time</th>
+                                <th>Customer Name</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var claim in Claims)
+                            {
+                                <tr>
+                                    <td><span class="tag code">@claim.Id.Substring(0,8).ToUpper()</span></td>
+                                    <td>@claim.ReportedAt.ToLocalTime().ToString("MMM dd, HH:mm")</td>
+                                    <td>@claim.FullName</td>
+                                    <td>@claim.Address</td>
+                                    <td>
+                                        <span class="badge @claim.Status.ToLower()">@claim.Status</span>
+                                    </td>
+                                    <td>
+                                        <select class="form-select" @onchange="@(e => UpdateStatus(claim.Id, e.Value?.ToString() ?? ""))">
+                                            <option value="" disabled selected>Update</option>
+                                            <option value="Pending">Pending</option>
+                                            <option value="Approved">Approved</option>
+                                            <option value="Processed">Processed</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@code {
+    private List<DamageReport> Claims = new();
+    private Dictionary<string, int> Summary = new();
+    private string _forecastLevel = "Medium";
+    private int _forecastVolume = 15;
+
+    protected override void OnInitialized()
+    {
+        RefreshData();
+        CalculateForecast();
+    }
+
+    private void CalculateForecast()
+    {
+        // Simple mock logic: if we have more than 3 pending claims, forecast is high surge.
+        int pending = Summary.GetValueOrDefault("Pending", 0);
+        if (pending > 3)
+        {
+            _forecastLevel = "High";
+            _forecastVolume = 45;
+        }
+        else if (pending > 1)
+        {
+            _forecastLevel = "Medium";
+            _forecastVolume = 15;
+        }
+        else
+        {
+            _forecastLevel = "Low";
+            _forecastVolume = 5;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await RenderVisualizations();
+        }
+    }
+
+    private async Task RenderVisualizations()
+    {
+        // 1. Prepare Heatmap Data
+        var heatPoints = Claims.Where(c => c.Latitude != 0 && c.Longitude != 0)
+                               .Select(c => new double[] { c.Latitude, c.Longitude, 1.0 })
+                               .ToArray();
+                               
+        await JS.InvokeVoidAsync("adminDashboard.initMapAndHeatmap", "admin-map", heatPoints);
+
+        // 2. Prepare Chart Data
+        var labels = Summary.Keys.ToArray();
+        var data = Summary.Values.ToArray();
+        
+        await JS.InvokeVoidAsync("adminDashboard.initStatusChart", "statusChart", labels, data);
+    }
+
+    private void RefreshData()
+    {
+        Claims = AdminService.GetAllClaims();
+        Summary = AdminService.GetClaimsStatusSummary();
+    }
+
+    private void UpdateStatus(string id, string newStatus)
+    {
+        if(!string.IsNullOrEmpty(newStatus))
+        {
+            AdminService.UpdateClaimStatus(id, newStatus);
+            RefreshData();
+        }
+    }
+
+    private void GoHome()
+    {
+        Nav.NavigateTo("/");
+    }
+
+    private async Task ExportCsv()
+    {
+        var csv = new System.Text.StringBuilder();
+        csv.AppendLine("Ref ID,Date/Time,Customer Name,Address,Contact Number,Description,Status,Latitude,Longitude");
+        
+        foreach(var claim in Claims)
+        {
+            csv.AppendLine($"\"{claim.Id}\",\"{claim.ReportedAt:yyyy-MM-dd HH:mm:ss}\",\"{claim.FullName.Replace("\"", "\"\"")}\",\"{claim.Address.Replace("\"", "\"\"")}\",\"{claim.ContactNumber}\",\"{claim.Description.Replace("\"", "\"\"")}\",\"{claim.Status}\",\"{claim.Latitude}\",\"{claim.Longitude}\"");
+        }
+
+        var fileName = $"slic-claims-export-{DateTime.UtcNow:yyyyMMdd}.csv";
+        await JS.InvokeVoidAsync("adminDashboard.downloadData", fileName, "text/csv;charset=utf-8;", csv.ToString());
+    }
+}
+
+<style>
+    :root {
+        --color-navy: #0f172a;
+        --color-navy-light: #1e293b;
+        --color-teal: #14b8a6;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .admin-wrapper {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        background-color: var(--color-navy);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Sidebar */
+    .sidebar {
+        width: 260px;
+        background-color: rgba(15, 23, 42, 0.95);
+        border-right: 1px solid var(--border-color);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-header {
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-logo {
+        width: 40px;
+        height: 40px;
+        background: white;
+        border-radius: 8px;
+        padding: 4px;
+    }
+
+    .sidebar-header h3 { margin: 0; font-size: 1.1rem; }
+
+    .sidebar-nav {
+        padding: 1rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .nav-item {
+        background: transparent;
+        color: var(--text-secondary);
+        border: none;
+        padding: 0.75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-align: left;
+    }
+
+    .nav-item:hover {
+        color: white;
+        background: rgba(255,255,255,0.05);
+    }
+
+    .nav-item.active {
+        color: var(--color-teal);
+        background: rgba(20, 184, 166, 0.1);
+        border-right: 3px solid var(--color-teal);
+    }
+
+    /* Main Content */
+    .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .top-header {
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2rem;
+        border-bottom: 1px solid var(--border-color);
+        background: rgba(15, 23, 42, 0.9);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .top-header h2 { margin: 0; font-size: 1.25rem; }
+
+    .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--color-teal);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 0.85rem;
+        color: var(--color-navy);
+    }
+
+    .content-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    /* Widgets */
+    .widgets-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .widget-card {
+        padding: 1.5rem;
+        border-radius: 16px;
+        background: var(--color-navy-light);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid var(--border-color);
+    }
+
+    .widget-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .widget-icon.primary { background: rgba(56, 189, 248, 0.1); color: #38bdf8; }
+    .widget-icon.warning { background: rgba(250, 204, 21, 0.1); color: #facc15; }
+    .widget-icon.success { background: rgba(52, 211, 153, 0.1); color: #34d399; }
+    .widget-icon.danger { background: rgba(248, 113, 113, 0.1); color: #f87171; }
+
+    .widget-info h4 { margin: 0; font-size: 0.85rem; color: var(--text-secondary); font-weight: 500;}
+    .widget-info .value { font-size: 1.75rem; font-weight: 700; color: white; display: block; margin-top: 0.25rem; }
+
+    /* Panels & Layout */
+    .panel {
+        background: var(--color-navy-light);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 1.5rem;
+    }
+
+    .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .panel-header h3 { margin: 0; font-size: 1.1rem; }
+
+    .charts-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+
+    .map-container, .chart-container {
+        width: 100%;
+        height: 300px;
+        margin-top: 1rem;
+        border-radius: 12px;
+        background: rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+    .text-sm { font-size: 0.85rem; }
+    .text-secondary { color: var(--text-secondary); margin: 0; }
+
+    /* Table */
+    .table-responsive { overflow-x: auto; }
+    
+    .claims-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+    }
+
+    .claims-table th, .claims-table td {
+        padding: 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .claims-table th {
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .claims-table td {
+        font-size: 0.95rem;
+    }
+
+    .tag.code {
+        font-family: monospace;
+        background: rgba(255,255,255,0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: #e2e8f0;
+    }
+
+    .badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .badge.pending { background: rgba(250, 204, 21, 0.2); color: #fde047; border: 1px solid rgba(250, 204, 21, 0.5); }
+    .badge.approved { background: rgba(56, 189, 248, 0.2); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.5); }
+    .badge.processed { background: rgba(52, 211, 153, 0.2); color: #6ee7b7; border: 1px solid rgba(52, 211, 153, 0.5); }
+    .badge.rejected { background: rgba(248, 113, 113, 0.2); color: #fca5a5; border: 1px solid rgba(248, 113, 113, 0.5); }
+
+    .form-select {
+        background: rgba(15, 23, 42, 0.8);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 0.4rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        outline: none;
+    }
+    
+    .form-select:focus { border-color: var(--color-teal); }
+
+    /* Forecast Widget */
+    .forecast-panel {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .forecast-alert {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 12px;
+        background: rgba(0,0,0,0.2);
+        border-left: 4px solid transparent;
+    }
+
+    .forecast-alert.high { border-left-color: #f87171; background: rgba(248, 113, 113, 0.1); }
+    .forecast-alert.high .forecast-icon { color: #f87171; }
+    
+    .forecast-alert.medium { border-left-color: #facc15; background: rgba(250, 204, 21, 0.1); }
+    .forecast-alert.medium .forecast-icon { color: #facc15; }
+    
+    .forecast-alert.low { border-left-color: #34d399; background: rgba(52, 211, 153, 0.1); }
+    .forecast-alert.low .forecast-icon { color: #34d399; }
+
+    .forecast-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255,255,255,0.05);
+        border-radius: 50%;
+    }
+
+    .forecast-body {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .forecast-body strong { font-size: 0.95rem; color: white; }
+    .forecast-body span { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem; }
+    
+</style>
