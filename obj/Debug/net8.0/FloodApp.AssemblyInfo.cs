@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FloodApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+425719f538c7ccd4e3bd31a65ccc6edb3850416e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2e9f635bcf48c45aa42b68b8be6ba26e4106bbe6")]
 [assembly: System.Reflection.AssemblyProductAttribute("FloodApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FloodApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

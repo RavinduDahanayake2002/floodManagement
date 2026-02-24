@@ -2,7 +2,7 @@
 @using FloodApp.Models
 @using FloodApp.Services
 @using FloodApp.Components.UI
-@inject AdminService AdminService
+@inject AdminService adminService
 @inject NavigationManager Nav
 @inject IJSRuntime JS
 
@@ -228,15 +228,15 @@
 
     private void RefreshData()
     {
-        Claims = AdminService.GetAllClaims();
-        Summary = AdminService.GetClaimsStatusSummary();
+        Claims = adminService.GetAllClaims();
+        Summary = adminService.GetClaimsStatusSummary();
     }
 
     private void UpdateStatus(string id, string newStatus)
     {
         if(!string.IsNullOrEmpty(newStatus))
         {
-            AdminService.UpdateClaimStatus(id, newStatus);
+            adminService.UpdateClaimStatus(id, newStatus);
             RefreshData();
         }
     }
