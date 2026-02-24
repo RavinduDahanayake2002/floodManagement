@@ -19,10 +19,18 @@ public class District
     public List<Town> Towns { get; set; } = new();
 }
 
-public class Town
+public class Division
 {
     public int Id { get; set; }
     public string Name { get; set; } = "";
     public int DistrictId { get; set; }
+    public LatLng Coords { get; set; } = new(0, 0);
+}
+
+public class Town
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = "";
+    public int DivisionId { get; set; }
     public LatLng Coords { get; set; } = new(0, 0);
 }

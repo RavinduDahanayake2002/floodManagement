@@ -24,6 +24,13 @@
                    SelectedValue="@AppState.SelectedDistrictId"
                    SelectedValueChanged="@OnDistrictChanged" />
 
+        <!-- Division -->
+        <AppSelect Label="Division" 
+                   Placeholder="Select Division"
+                   Items="@Divisions.Select(div => new AppSelect.SelectOption { Text = div.Name, Value = div.Id })"
+                   SelectedValue="@AppState.SelectedDivisionId"
+                   SelectedValueChanged="@OnDivisionChanged" />
+
         <!-- Town -->
         <AppSelect Label="Town" 
                    Placeholder="Select Town"
@@ -54,8 +61,11 @@
     private List<District> Districts => AppState.SelectedProvinceId.HasValue 
         ? LocationService.GetDistricts(AppState.SelectedProvinceId.Value) 
         : new();
-    private List<Town> Towns => AppState.SelectedDistrictId.HasValue 
-        ? LocationService.GetTowns(AppState.SelectedDistrictId.Value) 
+    private List<Division> Divisions => AppState.SelectedDistrictId.HasValue 
+        ? LocationService.GetDivisions(AppState.SelectedDistrictId.Value) 
+        : new();
+    private List<Town> Towns => AppState.SelectedDivisionId.HasValue 
+        ? LocationService.GetTowns(AppState.SelectedDivisionId.Value) 
         : new();
 
     private bool CanProceed => AppState.SelectedTownId.HasValue;
@@ -90,6 +100,17 @@
         }
         else
             AppState.SetDistrict(null);
+    }
+
+    private void OnDivisionChanged(object? value)
+    {
+        if (value is int id)
+        {
+            var div = Divisions.FirstOrDefault(x => x.Id == id);
+            AppState.SetDivision(id, div?.Coords);
+        }
+        else
+            AppState.SetDivision(null);
     }
 
     private void OnTownChanged(object? value)

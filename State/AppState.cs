@@ -6,6 +6,7 @@ public class AppState
 {
     public int? SelectedProvinceId { get; private set; }
     public int? SelectedDistrictId { get; private set; }
+    public int? SelectedDivisionId { get; private set; }
     public int? SelectedTownId { get; private set; }
     public LatLng? SelectedLatLng { get; private set; }
     public string? SelectedLocationName { get; private set; }
@@ -21,6 +22,7 @@ public class AppState
     {
         SelectedProvinceId = provinceId;
         SelectedDistrictId = null;
+        SelectedDivisionId = null;
         SelectedTownId = null;
         
         if (coords != null)
@@ -35,12 +37,27 @@ public class AppState
     public void SetDistrict(int? districtId, LatLng? coords = null)
     {
         SelectedDistrictId = districtId;
+        SelectedDivisionId = null;
         SelectedTownId = null;
         
         if (coords != null)
         {
             MapCenter = coords;
             MapZoom = 11;
+        }
+
+        NotifyStateChanged();
+    }
+
+    public void SetDivision(int? divisionId, LatLng? coords = null)
+    {
+        SelectedDivisionId = divisionId;
+        SelectedTownId = null;
+        
+        if (coords != null)
+        {
+            MapCenter = coords;
+            MapZoom = 12;
         }
 
         NotifyStateChanged();
