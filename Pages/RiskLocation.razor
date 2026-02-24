@@ -265,16 +265,26 @@
             
             double currentRainfall = weather?.Rain ?? 0;
             
-            // 2. Determine Location Name for AI Context
-            string locName = AppState.SelectedLocationName ?? "Unknown";
-            string province = ""; // Optional, Gemini handles it well with just District name if well known 
+            // 2. Determine Location Hierarchy for AI Context
+            string province = "";
+            string district = "";
+            string division = AppState.SelectedLocationName ?? "Unknown";
+
+            if (AppState.SelectedProvinceId.HasValue)
+            {
+                province = LocationService.GetProvinces().FirstOrDefault(p => p.Id == AppState.SelectedProvinceId)?.Name ?? "";
+            }
+            if (AppState.SelectedDistrictId.HasValue)
+            {
+                district = LocationService.GetDistricts(AppState.SelectedProvinceId ?? 0).FirstOrDefault(d => d.Id == AppState.SelectedDistrictId)?.Name ?? "";
+            }
             
             // Get Historical Severity
-            var histData = HistoricalData.GetHistoricalRisk(province, locName, locName);
+            var histData = HistoricalData.GetHistoricalRisk(province, district, division);
 
-            // 3. Get Gemini Prediction
+            // 3. Get Claude Prediction
             _aiReportMarkdown = await AIPredictor.PredictRiskAsync(
-                province, locName, locName, currentRainfall, histData);
+                province, district, division, currentRainfall, histData);
 
             // 4. Overwrite Legacy UI state based on Gemini assessment
             var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng, currentRainfall);
