@@ -253,7 +253,10 @@
         
         foreach(var claim in Claims)
         {
-            csv.AppendLine($"\"{claim.Id}\",\"{claim.ReportedAt:yyyy-MM-dd HH:mm:ss}\",\"{claim.FullName.Replace("\"", "\"\"")}\",\"{claim.Address.Replace("\"", "\"\"")}\",\"{claim.ContactNumber}\",\"{claim.Description.Replace("\"", "\"\"")}\",\"{claim.Status}\",\"{claim.Latitude}\",\"{claim.Longitude}\"");
+            var nameSafe = claim.FullName?.Replace("\"", "\"\"") ?? "";
+            var addressSafe = claim.Address?.Replace("\"", "\"\"") ?? "";
+            var descSafe = claim.Description?.Replace("\"", "\"\"") ?? "";
+            csv.AppendLine($"\"{claim.Id}\",\"{claim.ReportedAt:yyyy-MM-dd HH:mm:ss}\",\"{nameSafe}\",\"{addressSafe}\",\"{claim.ContactNumber}\",\"{descSafe}\",\"{claim.Status}\",\"{claim.Latitude}\",\"{claim.Longitude}\"");
         }
 
         var fileName = $"slic-claims-export-{DateTime.UtcNow:yyyyMMdd}.csv";

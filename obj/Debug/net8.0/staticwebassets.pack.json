@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\data\\risk_zones.geojson"
     },
     {
+      "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
+    },
+    {
       "Id": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\map.js",
       "PackagePath": "staticwebassets\\js\\map.js"
     },

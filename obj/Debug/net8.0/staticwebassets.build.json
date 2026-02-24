@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AVzwxUqa6w3m6gh/zVdEL9VFu8dv7ge7nI8zeeFtb6E=",
+  "Hash": "N4gecFkXdH+IJHMFmfx28ppKlnAFrRZpX5ikSRzBGzQ=",
   "Source": "FloodApp",
   "BasePath": "_content/FloodApp",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\data\\risk_zones.geojson"
+    },
+    {
+      "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\admin.js",
+      "SourceId": "FloodApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\",
+      "BasePath": "_content/FloodApp",
+      "RelativePath": "js/admin.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "D:\\My_PaidProjects\\slic-flood-management\\wwwroot\\js\\map.js",
