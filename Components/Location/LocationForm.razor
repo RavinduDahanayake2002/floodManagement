@@ -15,21 +15,24 @@
                    Placeholder="Select Province"
                    Items="@Provinces.Select(p => new AppSelect.SelectOption { Text = p.Name, Value = p.Id })"
                    SelectedValue="@AppState.SelectedProvinceId"
-                   SelectedValueChanged="@OnProvinceChanged" />
+                   SelectedValueChanged="@OnProvinceChanged" 
+                   Class="w-full" />
 
         <!-- District -->
         <AppSelect Label="District" 
                    Placeholder="Select District"
                    Items="@Districts.Select(d => new AppSelect.SelectOption { Text = d.Name, Value = d.Id })"
                    SelectedValue="@AppState.SelectedDistrictId"
-                   SelectedValueChanged="@OnDistrictChanged" />
+                   SelectedValueChanged="@OnDistrictChanged" 
+                   Class="w-full" />
 
         <!-- Division -->
         <AppSelect Label="Division" 
                    Placeholder="Select Division"
                    Items="@Divisions.Select(div => new AppSelect.SelectOption { Text = div.Name, Value = div.Id })"
                    SelectedValue="@AppState.SelectedDivisionId"
-                   SelectedValueChanged="@OnDivisionChanged" />
+                   SelectedValueChanged="@OnDivisionChanged" 
+                   Class="w-full" />
 
         <div class="flex flex-col gap-3 mt-4">
             <AppButton Color="AppButton.ButtonColor.Primary" 

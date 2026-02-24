@@ -12,6 +12,7 @@
 @inject ShelterService ShelterService
 @inject HistoricalDataService HistoricalData
 @inject AIFloodPredictor AIPredictor
+@inject LocationService LocService
 @inject IJSRuntime JS
 @layout FloodApp.Components.Layout.MainLayout
 
@@ -272,11 +273,11 @@
 
             if (AppState.SelectedProvinceId.HasValue)
             {
-                province = LocationService.GetProvinces().FirstOrDefault(p => p.Id == AppState.SelectedProvinceId)?.Name ?? "";
+                province = LocService.GetProvinces().FirstOrDefault(p => p.Id == AppState.SelectedProvinceId)?.Name ?? "";
             }
             if (AppState.SelectedDistrictId.HasValue)
             {
-                district = LocationService.GetDistricts(AppState.SelectedProvinceId ?? 0).FirstOrDefault(d => d.Id == AppState.SelectedDistrictId)?.Name ?? "";
+                district = LocService.GetDistricts(AppState.SelectedProvinceId ?? 0).FirstOrDefault(d => d.Id == AppState.SelectedDistrictId)?.Name ?? "";
             }
             
             // Get Historical Severity

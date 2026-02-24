@@ -46,7 +46,6 @@ Current Weather:
 Historical Risk Context for this Division:
 - Total Past Flood Events: {historicalData.EventCount}
 - Average People Affected: {historicalData.AvgAffected:F1}
-- Severity Score: {historicalData.SeverityScore:F2}
 
 Please provide the risk assessment.";
 
