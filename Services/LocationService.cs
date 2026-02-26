@@ -7,7 +7,6 @@ public class LocationService
     private readonly List<Province> _provinces;
     private readonly List<District> _districts;
     private readonly List<Division> _divisions;
-    private readonly List<Division> _divisions;
     private readonly List<Town> _towns;
 
     public LocationService()
@@ -427,12 +426,7 @@ public class LocationService
         };
 
 
-        // Auto-generated Divisions based on Districts
-        _divisions = new List<Division>();
-        foreach (var d in _districts)
-        {
-            _divisions.Add(new Division { Id = d.Id, DistrictId = d.Id, Name = d.Name + " Division", Coords = d.Coords });
-        }
+
 
         // Sample Towns
         _towns = new List<Town>
