@@ -8,8 +8,8 @@ public class AIFloodPredictor
 {
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _config;
-    // Claude API Key
-    private const string ApiKey = "YOUR_CLAUDE_API_KEY"; 
+    // Gemini API Key
+    private const string ApiKey = "YOUR_GEMINI_API_KEY"; 
 
     public AIFloodPredictor(HttpClient httpClient, IConfiguration config)
     {
@@ -22,17 +22,17 @@ public class AIFloodPredictor
         string district, 
         string division, 
         double currentRainfall, 
-        HistoricalRiskData historicalData)
+        HistoricalRiskData historicalData,
+        string mlPredictedSeverity)
     {
         try
         {
-            var systemPrompt = @"You are the SLIC Flood Risk Assistant.
+            var systemPrompt = $@"You are the SLIC Flood Risk Assistant.
 Analyze the provided location, current rainfall, and historical context to determine the flood risk.
 Your response MUST start with '🛡️ SLIC FLOOD RISK REPORT' and include:
-1. An overall risk level: MUST contain the exact word 'HIGH', 'MEDIUM', or 'LOW'.
+1. An overall risk level: MUST match the ML Model prediction exactly: '{mlPredictedSeverity}'.
 2. Expected damages and affected people based on historical severity.
-3. Recommended actions.
-If the rainfall is high (> 50mm) or historical events are numerous, prioritize assessing the risk as HIGH.";
+3. Recommended actions.";
 
             var userPrompt = $@"
 Location Details:
@@ -49,23 +49,58 @@ Historical Risk Context for this Division:
 
 Please provide the risk assessment.";
 
+            // Fallback Simulation for Demonstrations (When API Key is not set)
+            if (ApiKey == "YOUR_GEMINI_API_KEY" || string.IsNullOrWhiteSpace(ApiKey))
+            {
+                await Task.Delay(1500); // Simulate API call delay
+                
+                string simulatedLevel = mlPredictedSeverity;
+                string simulatedActions = simulatedLevel == "HIGH" 
+                    ? "- Evacuate immediately to higher ground.\n- Prepare emergency kits.\n- Follow DMC instructions."
+                    : simulatedLevel == "MEDIUM" 
+                    ? "- Monitor local weather channels.\n- Be prepared to move valuables.\n- Avoid standing water."
+                    : "No immediate evacuation required. Monitor the situation.";
+
+                return $@"🛡️ SLIC FLOOD RISK REPORT
+
+**Overall Risk Level: {simulatedLevel} RISK**
+
+Based on the analysis for {division} ({district}, {province}):
+- **Current Rainfall**: {currentRainfall:F1} mm
+- **Historical Context**: The area has seen {historicalData.EventCount} past flood events, affecting an average of {historicalData.AvgAffected:F0} people.
+
+**Expected Impact:**
+Given current meteorological parameters and historical precedent, the predicted damages are {(simulatedLevel == "HIGH" ? "severe, anticipating widespread inundation" : simulatedLevel == "MEDIUM" ? "moderate, with localized street flooding expected" : "minimal under current conditions")}.
+
+**Recommended Actions:**
+{simulatedActions}
+
+*(Note: This is a generated simulation because the real Gemini API key has not been configured in the system yet).*";
+            }
+
             var requestBody = new
             {
-                model = "claude-3-haiku-20240307",
-                max_tokens = 1000,
-                system = systemPrompt,
-                messages = new[]
+                system_instruction = new
                 {
-                    new { role = "user", content = userPrompt }
+                    parts = new[] { new { text = systemPrompt } }
+                },
+                contents = new[]
+                {
+                    new
+                    {
+                        parts = new[] { new { text = userPrompt } }
+                    }
+                },
+                generationConfig = new
+                {
+                    maxOutputTokens = 1000
                 }
             };
 
             string jsonBody = JsonSerializer.Serialize(requestBody);
             var content = new StringContent(jsonBody, Encoding.UTF8, "application/json");
 
-            var request = new HttpRequestMessage(HttpMethod.Post, "https://api.anthropic.com/v1/messages");
-            request.Headers.Add("x-api-key", ApiKey);
-            request.Headers.Add("anthropic-version", "2023-06-01");
+            var request = new HttpRequestMessage(HttpMethod.Post, $"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={ApiKey}");
             request.Content = content;
 
             var response = await _httpClient.SendAsync(request);
@@ -76,14 +111,20 @@ Please provide the risk assessment.";
                 using var document = JsonDocument.Parse(responseString);
                 var root = document.RootElement;
                 
-                // Extract Claude's text reply
-                var responseText = root.GetProperty("content")[0].GetProperty("text").GetString();
-                return responseText ?? "Failed to parse Claude response.";
+                // Extract Gemini's text reply
+                var responseText = root
+                    .GetProperty("candidates")[0]
+                    .GetProperty("content")
+                    .GetProperty("parts")[0]
+                    .GetProperty("text")
+                    .GetString();
+                    
+                return responseText ?? "Failed to parse Gemini response.";
             }
             
             var errorBody = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"Claude API Request failed: {response.StatusCode} - {errorBody}");
-            return $"Error calling Claude API: {response.StatusCode}\nPlease configure your actual API key.";
+            Console.WriteLine($"Gemini API Request failed: {response.StatusCode} - {errorBody}");
+            return $"Error calling Gemini API: {response.StatusCode}\nPlease configure your actual API key in AIFloodPredictor.cs.";
         }
         catch(Exception ex)
         {

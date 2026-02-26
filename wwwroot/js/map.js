@@ -1,5 +1,11 @@
 export function initMap(elementId, center, zoom, markers) {
-    const map = L.map(elementId).setView([center.lat, center.lng], zoom);
+    const map = L.map(elementId, {
+        zoomControl: false
+    }).setView([center.lat, center.lng], zoom);
+
+    L.control.zoom({
+        position: 'bottomright'
+    }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
@@ -57,7 +63,7 @@ export function addMarker(map, lat, lng) {
 
 export function addShelterMarker(map, lat, lng, popupContent) {
     if (!window.shelterMarkers) window.shelterMarkers = [];
-    
+
     const shelterIcon = L.divIcon({
         className: 'custom-div-icon',
         html: "<div style='background-color:#3B82F6;width:24px;height:24px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.5);'><span style='font-size:12px;'>🏥</span></div>",

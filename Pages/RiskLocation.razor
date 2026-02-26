@@ -4,7 +4,6 @@
 @using FloodApp.Models
 @using FloodApp.Components.UI
 @using FloodApp.Components.Maps
-@using FloodApp.Components.Location
 @inject NavigationManager Nav
 @inject AppState AppState
 @inject RiskService RiskService
@@ -17,269 +16,390 @@
 @inject IJSRuntime JS
 @layout FloodApp.Components.Layout.MainLayout
 
-<div class="h-screen w-full bg-gray-900 grid" style="grid-template-columns: 420px 1fr;">
-    
-    <!-- Left Panel: Analysis & Info -->
-    <div class="h-full risk-sidebar p-6 flex flex-col gap-5 overflow-y-auto z-10 shadow-xl" id="risk-report">
+<div class="h-screen w-full flex flex-col overflow-hidden bg-gray-900 text-white">
+    <!-- ZONE 1: Map (60vh desktop, 45vh mobile) -->
+    <div class="w-full h-[45vh] md:h-[60vh] bg-black shrink-0 relative">
         
-        <div class="flex items-center gap-2 mb-1">
-            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
-                       Color="AppButton.ButtonColor.Neutral"
-                       OnClick="@GoBack">
-                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-                Back
-            </AppButton>
-            <span class="text-secondary">Analysis Result</span>
+        <!-- The Map Layer -->
+        <!-- Important: the map needs absolute positioning behind our HUD -->
+        <div class="absolute inset-0 z-[10]">
+            @if (AppState.SelectedLatLng != null)
+            {
+                 <RiskMapView Shelters="@NearbyShelters" />
+            }
+            else
+            {
+                <div class="h-full w-full flex items-center justify-center text-gray-500">
+                    <p>Select a location to view map.</p>
+                </div>
+            }
         </div>
 
-        @if (IsCalculating)
-        {
-            <div class="flex-1 flex flex-col items-center justify-center gap-4">
-                <div class="spinner border-4 border-purple-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
-                <p>Analyzing Risk...</p>
-                <p class="text-xs text-secondary">Calculating risk, checking weather conditions...</p>
-            </div>
-        }
-        else if (AppState.SelectedLatLng == null)
-        {
-             <div class="flex-1 flex items-center justify-center">
-                <AppButton OnClick="@(() => Nav.NavigateTo("/location"))">Select Location</AppButton>
-            </div>
-        }
-        else
-        {
-            <!-- AI Generation Report (Gemini) -->
-            <Panel>
-                <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
-                    <span class="text-xl">✨</span>
-                    <h3 class="text-md font-bold text-white">AI General Risk Assessment</h3>
-                </div>
-                @if (!string.IsNullOrEmpty(_aiReportMarkdown))
-                {
-                    <pre class="text-sm text-gray-200 whitespace-pre-wrap font-sans">@_aiReportMarkdown</pre>
-                }
-                else
-                {
-                    <p class="text-sm text-yellow-400">Failed to generate AI Risk Report.</p>
-                }
-            </Panel>
+        <!-- Overlays Layer (HUD) -->
+        <div class="absolute inset-0 pointer-events-none p-4 z-[1000] flex flex-col justify-between">
             
-            <!-- ML Prediction Report (Random Forest) -->
-            @if (_mlPrediction != null)
-            {
-                <Panel>
-                    <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
-                        <span class="text-xl">🤖</span>
-                        <h3 class="text-md font-bold text-white">Machine Learning Assessment</h3>
-                    </div>
-                    
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center bg-gray-800 p-3 rounded border border-gray-700">
-                            <div>
-                                <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Division Profile (Historical)</h4>
-                                <span class="text-sm">Based on @(_mlPrediction.HistoricalEventCount) past events</span>
-                            </div>
-                            <div class="px-3 py-1 rounded bg-gray-900 font-bold border 
-                                @(_mlPrediction.PredictedSeverity == "HIGH" ? "text-red-500 border-red-900" :
-                                  _mlPrediction.PredictedSeverity == "MEDIUM" ? "text-yellow-500 border-yellow-900" : 
-                                  "text-green-500 border-green-900")">
-                                @_mlPrediction.PredictedSeverity
-                            </div>
-                        </div>
-                        
-                        <div class="flex justify-between items-center bg-gray-800 p-3 rounded border border-gray-700">
-                            <div>
-                                <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Impact Forecast</h4>
-                                <span class="text-sm">Predicted affected population</span>
-                            </div>
-                            <div class="font-bold text-xl text-primary">
-                                @(_mlPrediction.PredictedAffected) <span class="text-sm font-normal text-gray-400">people</span>
-                            </div>
-                        </div>
-                    </div>
-                </Panel>
-            }
-            
-            <!-- Weather Escalation Badge -->
-            @if (AppState.CurrentRisk.WasEscalated && !string.IsNullOrEmpty(AppState.CurrentRisk.EscalationReason))
-            {
-                <div class="escalation-badge">
-                    <span class="escalation-icon">⚠️</span>
-                    <span class="escalation-text">@AppState.CurrentRisk.EscalationReason</span>
-                </div>
-            }
+            <!-- Top section of overlays -->
+            <div class="flex justify-between items-start">
+                
+                <!-- Top Left: Back btn + Risk + Stats -->
+                <div class="flex flex-col gap-3 pointer-events-auto max-w-[250px] sm:max-w-none">
+                    <!-- Back button -->
+                    <button @onclick="GoBack" class="flex items-center gap-1 text-sm bg-slate-800/90 hover:bg-slate-700 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 shadow-xl text-white transition-colors w-max cursor-pointer">
+                        <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                        Back
+                    </button>
 
-            <!-- Nearest Safe Zone (for High/Medium) -->
-            @if (AppState.CurrentRisk.Level != RiskLevel.Low && NearestSafeZone != null)
-            {
-                <Panel>
-                    <h3 class="text-sm font-bold text-secondary mb-2">🛡️ Nearest Safe Zone</h3>
-                    <div class="safe-zone-info">
-                        <div class="safe-zone-name">
-                            <span class="safe-dot"></span>
-                            <span>@NearestSafeZone.Value.ZoneName</span>
+                    @if (AppState.SelectedLatLng != null && !IsCalculating)
+                    {
+                        <!-- Risk Level Card -->
+                        <div class="glass-popup border-[2px] @(AppState.CurrentRisk.Level == RiskLevel.High ? "border-red-500/80 shadow-[0_0_15px_rgba(239,68,68,0.5)]" : AppState.CurrentRisk.Level == RiskLevel.Medium ? "border-yellow-500/80 shadow-[0_0_15px_rgba(245,158,11,0.5)]" : "border-green-500/80 shadow-[0_0_15px_rgba(16,185,129,0.5)]")">
+                            <h2 class="text-[0.65rem] uppercase tracking-wider text-gray-300 font-bold mb-1">Current Risk Level</h2>
+                            <div class="flex items-center gap-3">
+                                <div class="text-2xl sm:text-3xl font-black @(AppState.CurrentRisk.Level == RiskLevel.High ? "text-red-500" : AppState.CurrentRisk.Level == RiskLevel.Medium ? "text-yellow-500" : "text-green-500")">
+                                    @(AppState.CurrentRisk.Level.ToString().ToUpper())
+                                </div>
+                                <div class="text-xs sm:text-sm font-medium text-gray-200 border-l border-white/20 pl-3">
+                                    @LocService.GetProvinces().FirstOrDefault(p => p.Id == AppState.SelectedProvinceId)?.Name <br/>
+                                    <span class="text-white font-bold block truncate max-w-[120px] sm:max-w-[200px]">@AppState.SelectedLocationName</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="safe-zone-distance">
-                            <span class="distance-value">@NearestSafeZone.Value.DistanceKm.ToString("F1") km</span>
-                            <span class="distance-label">away</span>
+
+                        <!-- Quick Stats Card -->
+                        <div class="glass-popup flex gap-3 sm:gap-4 divide-x divide-white/20 border border-white/10">
+                            <div>
+                                <div class="text-[0.55rem] sm:text-[0.65rem] uppercase text-gray-400 font-bold">Rain</div>
+                                <div class="font-bold text-secondary text-xs sm:text-sm mt-0.5">@(_currentRainfall.ToString("F1")) mm</div>
+                            </div>
+                            <div class="pl-3 sm:pl-4">
+                                <div class="text-[0.55rem] sm:text-[0.65rem] uppercase text-gray-400 font-bold">Affected</div>
+                                <div class="font-bold text-primary text-xs sm:text-sm mt-0.5">@(_mlPrediction?.PredictedAffected ?? 0)</div>
+                            </div>
+                            <div class="pl-3 sm:pl-4">
+                                <div class="text-[0.55rem] sm:text-[0.65rem] uppercase text-gray-400 font-bold">Safe Zone</div>
+                                <div class="font-bold text-green-400 text-xs sm:text-sm mt-0.5">@(NearestSafeZone?.DistanceKm.ToString("F1") ?? "--") km</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Top Right: Emergency Hotlines -->
+                <div class="glass-popup pointer-events-auto flex flex-col gap-2 border border-white/10">
+                    <a href="tel:117" class="flex items-center gap-3 hover:bg-white/10 p-1.5 rounded transition">
+                        <div class="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center text-red-500 border border-red-500/50">🚨</div>
+                        <div>
+                            <div class="text-[0.65rem] text-gray-400 uppercase leading-none font-bold">DMC</div>
+                            <div class="font-bold text-white text-sm mt-0.5">117</div>
+                        </div>
+                    </a>
+                    <a href="tel:119" class="flex items-center gap-3 hover:bg-white/10 p-1.5 rounded transition">
+                        <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500 border border-blue-500/50">🚓</div>
+                        <div>
+                            <div class="text-[0.65rem] text-gray-400 uppercase leading-none font-bold">Police</div>
+                            <div class="font-bold text-white text-sm mt-0.5">119</div>
+                        </div>
+                    </a>
+                    <a href="tel:1990" class="flex items-center gap-3 hover:bg-white/10 p-1.5 rounded transition">
+                        <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 border border-green-500/50">🚑</div>
+                        <div>
+                            <div class="text-[0.65rem] text-gray-400 uppercase leading-none font-bold">Ambulance</div>
+                            <div class="font-bold text-white text-sm mt-0.5">1990</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom section of overlays -->
+            <div class="flex justify-end pointer-events-auto">
+                <!-- Risk Legend Overlay -->
+                <div class="glass-popup border border-white/10 hidden sm:block">
+                    <h4 class="text-[0.65rem] font-bold text-secondary mb-2 uppercase tracking-wider">Risk Zones</h4>
+                    <div class="space-y-1.5 text-xs text-gray-200 font-medium">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_5px_rgba(239,68,68,0.8)]"></div>
+                            <span>High Risk</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-yellow-500 shadow-[0_0_5px_rgba(245,158,11,0.8)]"></div>
+                            <span>Medium Risk</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_5px_rgba(16,185,129,0.8)]"></div>
+                            <span>Low/Safe</span>
                         </div>
                     </div>
-                    <p class="text-xs text-gray-400 mt-2">Consider evacuating towards this low-risk area if conditions worsen.</p>
-                </Panel>
-            }
+                </div>
+            </div>
             
-            <!-- Recommendations -->
-            <Panel>
-                <h3 class="text-sm font-bold text-secondary mb-2">Recommendations</h3>
-                <ul class="text-sm list-disc pl-4 space-y-2 text-gray-300">
-                    @if (AppState.CurrentRisk.Level == RiskLevel.High)
+        </div>
+        
+    </div>
+
+    <!-- ZONE 2: Tabbed Detail Panel (40vh desktop, 55vh mobile) -->
+    <div class="flex-1 flex flex-col bg-slate-900 w-full border-t border-white/10 relative z-20 min-h-0">
+        
+        <!-- Tab Bar -->
+        <div class="bg-[#1e293b] flex overflow-x-auto hide-scrollbar border-b border-white/5 z-30 shrink-0">
+            <button @onclick="@(() => SetActiveTab("AI"))" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b-2 font-medium transition-colors whitespace-nowrap flex-1 sm:flex-auto @(_activeTab == "AI" ? "border-[#7c3aed] text-white bg-white/5" : "border-transparent text-gray-400 hover:text-gray-200 hover:bg-white/5")">
+                <span class="text-xl sm:text-base">🤖</span><span class="text-[0.65rem] sm:text-sm uppercase sm:capitalize tracking-wider sm:tracking-normal">AI Stats</span>
+            </button>
+            <button @onclick="@(() => SetActiveTab("Weather"))" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b-2 font-medium transition-colors whitespace-nowrap flex-1 sm:flex-auto @(_activeTab == "Weather" ? "border-[#7c3aed] text-white bg-white/5" : "border-transparent text-gray-400 hover:text-gray-200 hover:bg-white/5")">
+                <span class="text-xl sm:text-base">🌧️</span><span class="text-[0.65rem] sm:text-sm uppercase sm:capitalize tracking-wider sm:tracking-normal">Weather</span>
+            </button>
+            <button @onclick="@(() => SetActiveTab("Shelters"))" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b-2 font-medium transition-colors whitespace-nowrap flex-1 sm:flex-auto @(_activeTab == "Shelters" ? "border-[#7c3aed] text-white bg-white/5" : "border-transparent text-gray-400 hover:text-gray-200 hover:bg-white/5")">
+                <span class="text-xl sm:text-base">🏥</span><span class="text-[0.65rem] sm:text-sm uppercase sm:capitalize tracking-wider sm:tracking-normal">Shelters</span>
+            </button>
+            <button @onclick="@(() => SetActiveTab("Recs"))" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b-2 font-medium transition-colors whitespace-nowrap flex-1 sm:flex-auto @(_activeTab == "Recs" ? "border-[#7c3aed] text-white bg-white/5" : "border-transparent text-gray-400 hover:text-gray-200 hover:bg-white/5")">
+                <span class="text-xl sm:text-base">📋</span><span class="text-[0.65rem] sm:text-sm uppercase sm:capitalize tracking-wider sm:tracking-normal">Action</span>
+            </button>
+            <button @onclick="@(() => SetActiveTab("Report"))" class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 sm:py-4 border-b-2 font-medium transition-colors whitespace-nowrap flex-1 sm:flex-auto @(_activeTab == "Report" ? "border-[#7c3aed] text-white bg-white/5" : "border-transparent text-gray-400 hover:text-gray-200 hover:bg-white/5")">
+                <span class="text-xl sm:text-base">📝</span><span class="text-[0.65rem] sm:text-sm uppercase sm:capitalize tracking-wider sm:tracking-normal">Report</span>
+            </button>
+        </div>
+
+        <!-- Tab Content Area -->
+        <div class="flex-1 overflow-y-auto p-4 md:p-6 pb-20 sm:pb-12 bg-gray-900/50">
+            @if (IsCalculating)
+            {
+                <div class="flex-1 flex flex-col items-center justify-center gap-4 h-full min-h-[200px]">
+                    <div class="spinner border-4 border-purple-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+                    <p>Analyzing Risk Data...</p>
+                </div>
+            }
+            else if (AppState.SelectedLatLng == null)
+            {
+                 <div class="flex-1 flex items-center justify-center h-full min-h-[200px]">
+                    <AppButton OnClick="GoBack">Select Location</AppButton>
+                </div>
+            }
+            else
+            {
+                <!-- Tab 1: AI Assessment -->
+                <div class="@(_activeTab == "AI" ? "block" : "hidden") space-y-4 max-w-4xl mx-auto h-full animate-fade-in">
+                    <div class="bg-slate-800/80 backdrop-blur border border-white/5 rounded-xl p-5 shadow-lg">
+                        <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
+                            <span class="text-xl">✨</span>
+                            <h3 class="text-md font-bold text-white">Claude GenAI Assessment</h3>
+                        </div>
+                        @if (!string.IsNullOrEmpty(_aiReportMarkdown))
+                        {
+                            <pre class="text-sm text-gray-300 whitespace-pre-wrap font-sans leading-relaxed">@_aiReportMarkdown</pre>
+                        }
+                        else
+                        {
+                            <p class="text-sm text-yellow-400">Failed to generate AI Risk Report.</p>
+                        }
+                    </div>
+
+                    @if (_mlPrediction != null)
                     {
-                        <li>Evacuate to higher ground immediately if water rises.</li>
-                        <li>Keep emergency kit ready.</li>
-                        <li>Follow official DMC alerts.</li>
-                        <li>Avoid crossing flooded roads and bridges.</li>
+                        <div class="bg-gradient-to-r from-purple-900/40 to-slate-800 border border-purple-500/30 rounded-xl p-5 shadow-lg">
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="text-xl">🤖</span>
+                                <h3 class="text-md font-bold text-white">Predictive ML Model (Random Forest)</h3>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-black/40 p-4 rounded-lg border border-white/5">
+                                    <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-2">Division Profile (Historical)</h4>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm text-gray-300">Based on @(_mlPrediction.HistoricalEventCount) past events</span>
+                                        <div class="px-3 py-1 text-xs rounded font-bold border 
+                                            @(_mlPrediction.PredictedSeverity == "HIGH" ? "text-red-500 border-red-900 bg-red-900/20" :
+                                              _mlPrediction.PredictedSeverity == "MEDIUM" ? "text-yellow-500 border-yellow-900 bg-yellow-900/20" : 
+                                              "text-green-500 border-green-900 bg-green-900/20")">
+                                            @_mlPrediction.PredictedSeverity
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-black/40 p-4 rounded-lg border border-white/5">
+                                    <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-2">Impact Forecast</h4>
+                                    <div class="flex flex-col">
+                                        <span class="text-sm text-gray-300">Predicted affected population today</span>
+                                        <div class="font-black text-2xl text-primary mt-1">
+                                            @(_mlPrediction.PredictedAffected) <span class="text-sm font-normal text-gray-400">people</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     }
-                    else if (AppState.CurrentRisk.Level == RiskLevel.Medium)
+                </div>
+
+                <!-- Tab 2: Weather -->
+                <div class="@(_activeTab == "Weather" ? "block" : "hidden") max-w-4xl mx-auto space-y-6 animate-fade-in">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <Panel>
+                            <WeatherWidget Location="@AppState.SelectedLatLng" />
+                        </Panel>
+                        <Panel>
+                            <ForecastWidget Location="@AppState.SelectedLatLng" />
+                        </Panel>
+                    </div>
+                    <Panel>
+                        <RainfallChart Location="@AppState.SelectedLatLng" />
+                    </Panel>
+                </div>
+
+                <!-- Tab 3: Shelters -->
+                <div class="@(_activeTab == "Shelters" ? "block" : "hidden") max-w-4xl mx-auto animate-fade-in">
+                    @if (NearbyShelters != null && NearbyShelters.Any())
                     {
-                        <li>Monitor rain levels closely.</li>
-                        <li>Prepare for potential evacuation.</li>
-                        <li>Secure important documents and valuables.</li>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            @foreach (var shelter in NearbyShelters)
+                            {
+                                <div class="p-4 bg-slate-800/80 hover:bg-slate-700 transition rounded-xl border border-white/10 flex flex-col justify-between shadow-lg">
+                                    <div>
+                                        <div class="flex justify-between items-start mb-2">
+                                            <span class="font-bold text-gray-100 text-base sm:text-lg pr-2">@shelter.Name</span>
+                                            <span class="text-xs bg-secondary/20 text-secondary border border-secondary/30 px-2 py-1 rounded-full font-semibold whitespace-nowrap">@shelter.DistanceKm.ToString("F1") km</span>
+                                        </div>
+                                        <div class="text-sm text-gray-400 flex items-center gap-2 mb-4">
+                                            <span>@(shelter.Type.ToString() == "School" ? "🏫" : shelter.Type.ToString() == "Temple" ? "🛕" : "🏢")</span>
+                                            <span>@shelter.Type.ToString()</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center justify-between border-t border-white/10 pt-3">
+                                        <a href="tel:@shelter.ContactNumber" class="text-sm font-medium hover:underline flex items-center gap-2 text-white bg-white/5 px-2 sm:px-3 py-1.5 rounded-lg transition hover:bg-white/10">
+                                            📞 @shelter.ContactNumber
+                                        </a>
+                                        <div class="text-xs sm:text-sm font-bold px-2 sm:px-3 py-1.5 rounded-lg @(shelter.IsFull ? "bg-red-500/20 text-red-400 border border-red-500/30" : "bg-green-500/20 text-green-400 border border-green-500/30")">
+                                            @(shelter.IsFull ? "FULL" : $"Cap: {shelter.CurrentOccupancy}/{shelter.Capacity}")
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     }
                     else
                     {
-                        <li>Area is generally safe from floods.</li>
-                        <li>Stay updated during heavy monsoons.</li>
+                        <div class="text-center p-8 text-gray-400 bg-slate-800/50 rounded-xl border border-white/5">
+                            No emergency centers found within a 15km radius.
+                        </div>
                     }
-                </ul>
-            </Panel>
+                </div>
 
-            <!-- Nearby Shelters -->
-            @if (NearbyShelters != null && NearbyShelters.Any())
-            {
-                <Panel>
-                    <h3 class="text-sm font-bold text-secondary mb-2">🏥 Nearby Emergency Centers</h3>
-                    <div class="space-y-3 mt-3">
-                        @foreach (var shelter in NearbyShelters)
-                        {
-                            <div class="p-3 bg-gray-800 rounded border border-gray-700">
-                                <div class="flex justify-between items-start mb-1">
-                                    <span class="font-bold text-gray-200 text-sm">@shelter.Name</span>
-                                    <span class="text-xs bg-blue-900 text-blue-200 px-2 py-1 rounded">@shelter.DistanceKm.ToString("F1") km</span>
-                                </div>
-                                <div class="text-xs text-gray-400 mb-2">Type: @shelter.Type.ToString()</div>
-                                
-                                <div class="flex items-center justify-between mt-2">
-                                    <span class="text-xs text-secondary flex items-center gap-1">
-                                        📞 <a href="tel:@shelter.ContactNumber" class="text-primary hover:underline">@shelter.ContactNumber</a>
-                                    </span>
-                                    <span class="text-xs @(shelter.IsFull ? "text-red-400" : "text-green-400")">
-                                        @(shelter.IsFull ? "FULL" : $"Cap: {shelter.CurrentOccupancy}/{shelter.Capacity}")
-                                    </span>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </Panel>
-            }
-
-            <!-- Weather Widget (Live) -->
-            <Panel>
-                <WeatherWidget Location="@AppState.SelectedLatLng" />
-            </Panel>
-
-            <!-- 7-Day Forecast -->
-            <Panel>
-                <ForecastWidget Location="@AppState.SelectedLatLng" />
-            </Panel>
-
-            <!-- Rainfall Trend Chart -->
-            <Panel>
-                <RainfallChart Location="@AppState.SelectedLatLng" />
-            </Panel>
-
-            <!-- Emergency Contacts -->
-            <Panel>
-                <h3 class="text-sm font-bold text-secondary mb-2">Emergency Contacts</h3>
-                <div class="space-y-2">
-                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded border border-gray-700">
-                        <div class="flex items-center gap-2">
-                            <span class="text-red-400">🚨</span>
-                            <span class="text-sm text-gray-200">DMC Hotline</span>
+                <!-- Tab 4: Recommendations -->
+                <div class="@(_activeTab == "Recs" ? "block" : "hidden") max-w-3xl mx-auto animate-fade-in shadow-lg">
+                    <div class="bg-slate-800/80 backdrop-blur border border-white/5 rounded-xl p-6">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="text-2xl">📋</span>
+                            <h3 class="text-lg font-bold text-white">Actionable Recommendations</h3>
                         </div>
-                        <a href="tel:117" class="text-sm font-bold text-primary hover:text-primary-light">117</a>
-                    </div>
-                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded border border-gray-700">
-                        <div class="flex items-center gap-2">
-                            <span class="text-blue-400">🚓</span>
-                            <span class="text-sm text-gray-200">Police Emergency</span>
-                        </div>
-                        <a href="tel:119" class="text-sm font-bold text-primary hover:text-primary-light">119</a>
-                    </div>
-                    <div class="flex items-center justify-between bg-gray-800 p-2 rounded border border-gray-700">
-                        <div class="flex items-center gap-2">
-                            <span class="text-green-400">🚑</span>
-                            <span class="text-sm text-gray-200">Ambulance</span>
-                        </div>
-                        <a href="tel:1990" class="text-sm font-bold text-primary hover:text-primary-light">1990</a>
+                        
+                        <ul class="space-y-4">
+                            @if (AppState.CurrentRisk.Level == RiskLevel.High)
+                            {
+                                <li class="flex items-start gap-3 bg-red-500/10 p-4 rounded-lg border border-red-500/20">
+                                    <span class="text-red-500 mt-0.5">⚠️</span>
+                                    <div>
+                                        <span class="block font-bold text-red-400 mb-1">Evacuate Immediately</span>
+                                        <span class="text-sm text-gray-300">Move to higher ground or the nearest safe zone. Do not wait for water to rise.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-primary mt-0.5">🎒</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Take Emergency Kit</span>
+                                        <span class="text-sm text-gray-300">Ensure you have water, non-perishable food, flashlight, medications, and IDs.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-secondary mt-0.5">📻</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Follow DMC Alerts</span>
+                                        <span class="text-sm text-gray-300">Monitor local radio and official SMS channels closely.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-yellow-500 mt-0.5">🛑</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Avoid Flooded Roads</span>
+                                        <span class="text-sm text-gray-300">Do not attempt to cross flooded roads or bridges, either on foot or in vehicles.</span>
+                                    </div>
+                                </li>
+                            }
+                            else if (AppState.CurrentRisk.Level == RiskLevel.Medium)
+                            {
+                                <li class="flex items-start gap-3 bg-yellow-500/10 p-4 rounded-lg border border-yellow-500/20">
+                                    <span class="text-yellow-500 mt-0.5">👀</span>
+                                    <div>
+                                        <span class="block font-bold text-yellow-400 mb-1">Monitor Rain Levels</span>
+                                        <span class="text-sm text-gray-300">Pay close attention to continuous rainfall and local water bodies.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-primary mt-0.5">🎒</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Prepare to Evacuate</span>
+                                        <span class="text-sm text-gray-300">Have an emergency bag packed and ready to go just in case.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-secondary mt-0.5">📁</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Secure Valuables</span>
+                                        <span class="text-sm text-gray-300">Move important documents, electronics, and valuables to higher shelves or upper floors.</span>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="flex items-start gap-3 bg-green-500/10 p-4 rounded-lg border border-green-500/20">
+                                    <span class="text-green-500 mt-0.5">✅</span>
+                                    <div>
+                                        <span class="block font-bold text-green-400 mb-1">Area is Safe</span>
+                                        <span class="text-sm text-gray-300">Currently, there is no immediate flood threat based on data models.</span>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 bg-white/5 p-4 rounded-lg border border-white/5">
+                                    <span class="text-primary mt-0.5">🌧️</span>
+                                    <div>
+                                        <span class="block font-bold text-white mb-1">Stay Updated</span>
+                                        <span class="text-sm text-gray-300">Keep checking the app during the monsoon season for changes.</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
                     </div>
                 </div>
-            </Panel>
 
-            <!-- Action Buttons -->
-            <div class="action-buttons mt-auto">
-                <AppButton Class="w-full" 
-                           Variant="AppButton.ButtonVariant.Filled"
-                           Color="AppButton.ButtonColor.Danger"
-                           OnClick="@ReportDamage">
-                    🚨 Report Damage / Claim
-                </AppButton>
-                <AppButton Class="w-full" 
-                           Variant="AppButton.ButtonVariant.Outline"
-                           Color="AppButton.ButtonColor.Primary"
-                           OnClick="@PrintReport">
-                    📄 Download Report
-                </AppButton>
-                <AppButton Class="w-full" 
-                           Variant="AppButton.ButtonVariant.Outline"
-                           Color="AppButton.ButtonColor.Neutral"
-                           OnClick="@NewCheck">
-                    Check Another Location
-                </AppButton>
-            </div>
-        }
-    </div>
-
-    <!-- Right Panel: Map -->
-    <div class="h-full relative bg-black overflow-hidden">
-        @if (AppState.SelectedLatLng != null)
-        {
-             <RiskMapView Shelters="@NearbyShelters" />
-             
-             <!-- Risk Legend Overlay -->
-             <div class="absolute bottom-4 right-4 bg-gray-900/90 backdrop-blur p-4 rounded-lg border border-gray-700 z-[1000]">
-                 <h4 class="text-xs font-bold text-secondary mb-2 uppercase tracking-wider">Risk Zones</h4>
-                 <div class="space-y-2 text-xs">
-                     <div class="flex items-center gap-2">
-                         <div class="w-3 h-3 rounded-full bg-red-500"></div>
-                         <span>High Risk Zone</span>
-                     </div>
-                     <div class="flex items-center gap-2">
-                         <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
-                         <span>Medium Risk Zone</span>
-                     </div>
-                     <div class="flex items-center gap-2">
-                         <div class="w-3 h-3 rounded-full bg-green-500"></div>
-                         <span>Low/Safe Zone</span>
-                     </div>
-                 </div>
-             </div>
-        }
-        else
-        {
-            <div class="h-full w-full flex items-center justify-center text-gray-500">
-                <p>Select a location to view map.</p>
-            </div>
-        }
+                <!-- Tab 5: Report Damage -->
+                <div class="@(_activeTab == "Report" ? "block" : "hidden") max-w-2xl mx-auto text-center py-8 px-4 animate-fade-in">
+                    <div class="mb-8">
+                        <div class="text-5xl mb-4">🏠💦</div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Affected by Flooding?</h3>
+                        <p class="text-gray-400 max-w-md mx-auto">Submit a direct report to the Disaster Management Center and initiate your insurance claim process with SLIC instantly.</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-4 max-w-sm mx-auto">
+                        <AppButton Class="w-full text-lg shadow-[0_0_20px_rgba(239,68,68,0.3)] hover:shadow-[0_0_30px_rgba(239,68,68,0.5)] transition-all" 
+                                   Variant="AppButton.ButtonVariant.Filled"
+                                   Color="AppButton.ButtonColor.Danger"
+                                   OnClick="@ReportDamageAction">
+                            🚨 Report Damage Now
+                        </AppButton>
+                        
+                        <div class="flex sm:flex-row flex-col gap-4 mt-4">
+                            <AppButton Class="flex-1" 
+                                       Variant="AppButton.ButtonVariant.Outline"
+                                       Color="AppButton.ButtonColor.Primary"
+                                       OnClick="@PrintReport">
+                                📄 Download
+                            </AppButton>
+                            <AppButton Class="flex-1" 
+                                       Variant="AppButton.ButtonVariant.Outline"
+                                       Color="AppButton.ButtonColor.Neutral"
+                                       OnClick="@NewCheck">
+                                📍 Change Loc
+                            </AppButton>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
 </div>
 
@@ -290,21 +410,26 @@
     private (string ZoneName, double DistanceKm)? NearestSafeZone;
     private List<Shelter> NearbyShelters = new();
     private IJSObjectReference? _reportModule;
+    private double _currentRainfall = 0;
+    
+    private string _activeTab = "AI";
+
+    private void SetActiveTab(string tab)
+    {
+        _activeTab = tab;
+    }
 
     protected override async Task OnInitializedAsync()
     {
         if (AppState.SelectedLatLng != null)
         {
-            // Fetch nearby shelters
             NearbyShelters = await ShelterService.GetNearbySheltersAsync(AppState.SelectedLatLng, 15.0, 3);
 
-            // 1. Fetch current weather first
             var weather = await WeatherService.GetCurrentWeatherAsync(
                 AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
             
-            double currentRainfall = weather?.Rain ?? 0;
+            _currentRainfall = weather?.Rain ?? 0;
             
-            // 2. Determine Location Hierarchy for AI Context
             string province = "";
             string district = "";
             string division = AppState.SelectedLocationName ?? "Unknown";
@@ -318,28 +443,21 @@
                 district = LocService.GetDistricts(AppState.SelectedProvinceId ?? 0).FirstOrDefault(d => d.Id == AppState.SelectedDistrictId)?.Name ?? "";
             }
             
-            // Get Historical Severity
             var histData = HistoricalData.GetHistoricalRisk(province, district, division);
-            
-            // Get ML Model Predictions
             _mlPrediction = MLPrediction.GetPredictionForDivision(division);
-
-            // 3. Get Claude Prediction
-            _aiReportMarkdown = await AIPredictor.PredictRiskAsync(
-                province, district, division, currentRainfall, histData);
-
-            // 4. Overwrite Legacy UI state based on Gemini assessment
-            var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng, currentRainfall);
+            string mlSeverity = _mlPrediction?.PredictedSeverity ?? "LOW";
             
-            if (!string.IsNullOrEmpty(_aiReportMarkdown))
-            {
-                if (_aiReportMarkdown.Contains("HIGH")) result.Level = RiskLevel.High;
-                else if (_aiReportMarkdown.Contains("MEDIUM")) result.Level = RiskLevel.Medium;
-                else result.Level = RiskLevel.Low;
-            }
+            _aiReportMarkdown = await AIPredictor.PredictRiskAsync(
+                province, district, division, _currentRainfall, histData, mlSeverity);
+
+            var result = await RiskService.CalculateRiskAsync(AppState.SelectedLatLng, _currentRainfall);
+            
+            // Sync overall UI Risk Level strictly with ML Prediction
+            if (mlSeverity == "HIGH") result.Level = RiskLevel.High;
+            else if (mlSeverity == "MEDIUM") result.Level = RiskLevel.Medium;
+            else result.Level = RiskLevel.Low;
             AppState.SetRiskResult(result);
             
-            // 5. Find nearest safe zone for High/Medium risk
             if (result.Level != RiskLevel.Low)
             {
                 NearestSafeZone = await RiskService.FindNearestSafeZoneAsync(AppState.SelectedLatLng);
@@ -353,15 +471,8 @@
         }
     }
 
-    private void GoBack()
-    {
-        Nav.NavigateTo("/location");
-    }
-
-    private void NewCheck()
-    {
-        Nav.NavigateTo("/location");
-    }
+    private void GoBack() => Nav.NavigateTo("/location");
+    private void NewCheck() => Nav.NavigateTo("/location");
 
     private async Task PrintReport()
     {
@@ -369,118 +480,37 @@
         await _reportModule.InvokeVoidAsync("printReport");
     }
 
-    private void ReportDamage()
-    {
-        Nav.NavigateTo("/report-damage");
-    }
+    private void ReportDamageAction() => Nav.NavigateTo("/report-damage");
 }
 
 <style>
-    .risk-sidebar {
-        background: rgba(15, 23, 42, 0.9);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        scrollbar-width: thin;
-        scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+    .glass-popup {
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     }
 
-    .risk-sidebar::-webkit-scrollbar {
-        width: 4px;
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
     }
-
-    .risk-sidebar::-webkit-scrollbar-track {
-        background: transparent;
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
-
-    .risk-sidebar::-webkit-scrollbar-thumb {
-        background: rgba(139, 92, 246, 0.3);
-        border-radius: 2px;
+    
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-in-out;
     }
-
-    .escalation-badge {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.625rem 0.875rem;
-        background: rgba(245, 158, 11, 0.12);
-        border: 1px solid rgba(245, 158, 11, 0.3);
-        border-radius: 0.5rem;
-        animation: fadeSlideIn 0.5s ease-out;
-    }
-
-    .escalation-icon {
-        font-size: 1rem;
-        flex-shrink: 0;
-    }
-
-    .escalation-text {
-        font-size: 0.75rem;
-        color: #fbbf24;
-        font-weight: 500;
-    }
-
-    .safe-zone-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.75rem;
-        background: rgba(16, 185, 129, 0.08);
-        border: 1px solid rgba(16, 185, 129, 0.2);
-        border-radius: 0.5rem;
-    }
-
-    .safe-zone-name {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-        color: #d1d5db;
-        font-weight: 500;
-    }
-
-    .safe-dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #10b981;
-        animation: safePulse 2s infinite;
-    }
-
-    @@keyframes safePulse {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
-        50% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-    }
-
-    .safe-zone-distance {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-    }
-
-    .distance-value {
-        font-size: 1.125rem;
-        font-weight: 700;
-        color: #10b981;
-    }
-
-    .distance-label {
-        font-size: 0.625rem;
-        color: #6b7280;
-        text-transform: uppercase;
-    }
-
-    .action-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    @@keyframes fadeSlideIn {
-        from { opacity: 0; transform: translateY(-8px); }
+    
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(4px); }
         to { opacity: 1; transform: translateY(0); }
     }
-
+    
     /* Print styles */
     @@media print {
         .risk-panel {
@@ -488,16 +518,13 @@
             height: auto !important;
         }
         .action-buttons,
-        .app-btn-ghost {
+        .app-btn-ghost,
+        nav, header {
             display: none !important;
         }
         body {
             background: white !important;
             color: black !important;
-        }
-        .app-panel {
-            border: 1px solid #ccc !important;
-            break-inside: avoid;
         }
     }
 </style>
