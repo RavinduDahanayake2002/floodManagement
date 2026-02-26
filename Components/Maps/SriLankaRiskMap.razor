@@ -26,9 +26,9 @@
                 _mapInstance = await _mapModule.InvokeAsync<IJSObjectReference>("initMap", "sl-map", center, 8, null); // Zoom 8
                 
                 // Load Zones
-                var geoJson = await GeoJsonService.GetRiskZonesGeoJsonAsync();
-                var parsed = System.Text.Json.JsonDocument.Parse(geoJson).RootElement;
-                await _mapModule.InvokeVoidAsync("addGeoJson", _mapInstance, parsed, "defaultStyle");
+                // var geoJson = await GeoJsonService.GetRiskZonesGeoJsonAsync();
+                // var parsed = System.Text.Json.JsonDocument.Parse(geoJson).RootElement;
+                // await _mapModule.InvokeVoidAsync("addGeoJson", _mapInstance, parsed, "defaultStyle");
 
                 // If user selected a location (e.g. from dropdown), we could zoom to it.
                 // Subscribing to AppState changes to pan map would be good.

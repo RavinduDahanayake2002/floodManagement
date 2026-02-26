@@ -6,7 +6,7 @@ namespace FloodApp.Services;
 
 public class HistoricalDataService
 {
-    private readonly string _filePath = "dataset/DI_Report103734.xls";
+    private readonly string _filePath = "dataset/flood_data_clean.csv";
     
     // Cache for parsed data: Province -> District -> Division -> List of flood records
     private List<FloodRecord> _allRecords = new();
@@ -31,34 +31,42 @@ public class HistoricalDataService
             
         try 
         {
-            using var stream = File.Open(activePath, FileMode.Open, FileAccess.Read);
-            using var reader = ExcelReaderFactory.CreateReader(stream);
-            var result = reader.AsDataSet(new ExcelDataSetConfiguration()
-            {
-                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
-            });
-
-            var table = result.Tables[0];
+            // Because we're using CSV now, we might need a different loader or a quick native parser.
+            // Using standard CSV parsing since the dataset is now simple:
+            var lines = File.ReadAllLines(activePath);
+            var header = lines[0].Split(',').ToList();
             
-            foreach (DataRow row in table.Rows)
+            var provIdx = header.IndexOf("Province");
+            var distIdx = header.IndexOf("District");
+            var divIdx = header.IndexOf("Division");
+            var housesIdx = header.IndexOf("Houses Damaged");
+            var affectedIdx = header.IndexOf("Affected");
+            var deathsIdx = header.IndexOf("Deaths");
+            
+            for (int i = 1; i < lines.Length; i++)
             {
+                if (string.IsNullOrWhiteSpace(lines[i])) continue;
+                var row = lines[i].Split(',');
+
+                if (row.Length <= Math.Max(affectedIdx, Math.Max(provIdx, divIdx))) continue;
+
                 var record = new FloodRecord
                 {
-                    Province = row["Province"]?.ToString() ?? "",
-                    District = row["District"]?.ToString() ?? "",
-                    Division = row["Division"]?.ToString() ?? "",
+                    Province = row[provIdx],
+                    District = row[distIdx],
+                    Division = row[divIdx],
                 };
                 
-                float.TryParse(row["Deaths"]?.ToString(), out float deaths);
-                float.TryParse(row["Houses Destroyed"]?.ToString(), out float destroyed);
-                float.TryParse(row["Affected"]?.ToString(), out float affected);
+                float deaths = deathsIdx >= 0 && row.Length > deathsIdx ? (float.TryParse(row[deathsIdx], out var pd) ? pd : 0) : 0;
+                float disabled = housesIdx >= 0 && row.Length > housesIdx ? (float.TryParse(row[housesIdx], out var phd) ? phd : 0) : 0;
+                float affected = affectedIdx >= 0 && row.Length > affectedIdx ? (float.TryParse(row[affectedIdx], out var pa) ? pa : 0) : 0;
                 
                 record.Deaths = deaths;
-                record.HousesDestroyed = destroyed;
+                record.HousesDestroyed = disabled;
                 record.Affected = affected;
                 
-                // Calculate severity: (Deaths × 10) + (Houses_Destroyed × 2) + (Affected / 100)
-                record.SeverityScore = (deaths * 10) + (destroyed * 2) + (affected / 100);
+                // Calculate severity: (Deaths * 10) + (Houses_Destroyed * 2) + (Affected / 100)
+                record.SeverityScore = (deaths * 10) + (disabled * 2) + (affected / 100);
                 
                 _allRecords.Add(record);
             }

@@ -1,0 +1,2990 @@
+[
+  {
+    "division": "Wattala",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 3460,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 181,
+    "historicalAvgAffected": 2875.403314917127
+  },
+  {
+    "division": "Kolonnawa",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 2301,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 73,
+    "historicalAvgAffected": 5371.8493150684935
+  },
+  {
+    "division": "Eravur Town (Eravur)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 5476,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 8684.794871794871
+  },
+  {
+    "division": "Kelaniya",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 727,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 83,
+    "historicalAvgAffected": 4041.2289156626507
+  },
+  {
+    "division": "Kattankudy",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 10138,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 12001.538461538461
+  },
+  {
+    "division": "Manmunai South & Eruvilpattu (",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 1967,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 61,
+    "historicalAvgAffected": 5104.213114754099
+  },
+  {
+    "division": "Eravur Pattu (Chenkalady)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 700,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 57,
+    "historicalAvgAffected": 5449.964912280701
+  },
+  {
+    "division": "Porativu Pattu (Ellavul)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 863,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 53,
+    "historicalAvgAffected": 5730.132075471698
+  },
+  {
+    "division": "Manmunai North (Batti Town)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 2743,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 88,
+    "historicalAvgAffected": 3220.090909090909
+  },
+  {
+    "division": "Koralai Pattu (Valachchenai)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 4738,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 7899.689655172414
+  },
+  {
+    "division": "Colombo",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 825,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 56,
+    "historicalAvgAffected": 3815.3571428571427
+  },
+  {
+    "division": "Manmunai Pattu (Araipattai)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 699,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 52,
+    "historicalAvgAffected": 3898.230769230769
+  },
+  {
+    "division": "Katana",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 4335,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 76,
+    "historicalAvgAffected": 2446.657894736842
+  },
+  {
+    "division": "Bulathsinhala",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 4784,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 75,
+    "historicalAvgAffected": 2419.6133333333332
+  },
+  {
+    "division": "Pothuvil",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 2077,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 10157.588235294117
+  },
+  {
+    "division": "Manmunai West(Vavunatheivu)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 5082,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 7533.545454545455
+  },
+  {
+    "division": "Koralai Pattu West (Oddamavadi",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 3133,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 6663.727272727273
+  },
+  {
+    "division": "Thirukkovil",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 13150,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 11717.083333333334
+  },
+  {
+    "division": "Akkaraipattu(Karunkoditivu)",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 3880,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 11996.90909090909
+  },
+  {
+    "division": "Ninthavur",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 5682,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 7588.411764705882
+  },
+  {
+    "division": "Puttalam",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 139,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 30,
+    "historicalAvgAffected": 4277.866666666667
+  },
+  {
+    "division": "Addalachchenai",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 4000,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 11400.545454545454
+  },
+  {
+    "division": "Karativu",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 4085,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 7287.764705882353
+  },
+  {
+    "division": "Biyagama",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 2783,
+    "predictedSeverity": "HIGH",
+    "historicalEventCount": 58,
+    "historicalAvgAffected": 2119.6724137931033
+  },
+  {
+    "division": "Koralai Pattu Central",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 2286,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 6420.315789473684
+  },
+  {
+    "division": "Alayadiwembu",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 4629,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 7969.933333333333
+  },
+  {
+    "division": "Koralai Pattu South (Kiran)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 982,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 32,
+    "historicalAvgAffected": 3592.28125
+  },
+  {
+    "division": "Ja-Ela",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 1532,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 73,
+    "historicalAvgAffected": 1560.041095890411
+  },
+  {
+    "division": "Koralai Pattu North(Vakarai)",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 3187,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 36,
+    "historicalAvgAffected": 3138.75
+  },
+  {
+    "division": "Karachchi",
+    "province": "Northern",
+    "district": "Kilinochchi",
+    "predictedAffected": 1169,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 60,
+    "historicalAvgAffected": 1880.4
+  },
+  {
+    "division": "Thimbirigasyaya",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 1589,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 32,
+    "historicalAvgAffected": 3499.28125
+  },
+  {
+    "division": "Chilaw",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 820,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 3764.2413793103447
+  },
+  {
+    "division": "Mundalama",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 2915,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 62,
+    "historicalAvgAffected": 1709.8064516129032
+  },
+  {
+    "division": "Nagoda",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 3151,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 5971.941176470588
+  },
+  {
+    "division": "Mannar Town",
+    "province": "Northern",
+    "district": "Mannar",
+    "predictedAffected": 1559,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 71,
+    "historicalAvgAffected": 1405.8591549295775
+  },
+  {
+    "division": "Dodangoda",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 3624,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 7051.071428571428
+  },
+  {
+    "division": "Hali-Ela",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 24118,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 13971.42857142857
+  },
+  {
+    "division": "Manmunai South - West (Peddipe",
+    "province": "Eastern",
+    "district": "Batticaloa",
+    "predictedAffected": 2752,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 50,
+    "historicalAvgAffected": 1922.34
+  },
+  {
+    "division": "Kandavalai",
+    "province": "Northern",
+    "district": "Kilinochchi",
+    "predictedAffected": 1314,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 47,
+    "historicalAvgAffected": 2030.2553191489362
+  },
+  {
+    "division": "Sayinthamarathu",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 3973,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 9378.5
+  },
+  {
+    "division": "Ratnapura",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 344,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 97,
+    "historicalAvgAffected": 842.5670103092783
+  },
+  {
+    "division": "Puthukudiyiruppu",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 1410,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 4717.35294117647
+  },
+  {
+    "division": "Millaniya",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 269,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 3634.409090909091
+  },
+  {
+    "division": "Panadura",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 2591,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 41,
+    "historicalAvgAffected": 1939.439024390244
+  },
+  {
+    "division": "Matara Four Gravets",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 1473,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 3522.5
+  },
+  {
+    "division": "Kalutara",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 876,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 3989.5263157894738
+  },
+  {
+    "division": "Samanthurai",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 1929,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 5257.785714285715
+  },
+  {
+    "division": "Akuressa",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 2638,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 35,
+    "historicalAvgAffected": 2100.885714285714
+  },
+  {
+    "division": "Elapatha",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 539,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 85,
+    "historicalAvgAffected": 800.0117647058823
+  },
+  {
+    "division": "Palindanuwara",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 413,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 81,
+    "historicalAvgAffected": 817.358024691358
+  },
+  {
+    "division": "Kinniya",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 1152,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 61,
+    "historicalAvgAffected": 1067.688524590164
+  },
+  {
+    "division": "Madurawala",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 728,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 3913.6875
+  },
+  {
+    "division": "Thawalama",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 323,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 3613.9411764705883
+  },
+  {
+    "division": "Kiriella",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 236,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 97,
+    "historicalAvgAffected": 614.020618556701
+  },
+  {
+    "division": "Athuraliya",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 3576,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 31,
+    "historicalAvgAffected": 1854.741935483871
+  },
+  {
+    "division": "Negombo",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 3489,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 1473.128205128205
+  },
+  {
+    "division": "Kamburupitiya",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 4223,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 38,
+    "historicalAvgAffected": 1478.4736842105262
+  },
+  {
+    "division": "Kaduwela",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 800,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 67,
+    "historicalAvgAffected": 824.8507462686567
+  },
+  {
+    "division": "Thihagoda",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 8468,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 33,
+    "historicalAvgAffected": 1670.969696969697
+  },
+  {
+    "division": "Thenmaradchi (Chavakachcheri)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 8741,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 33,
+    "historicalAvgAffected": 1640.2424242424242
+  },
+  {
+    "division": "Ratmalana",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 5333,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 24,
+    "historicalAvgAffected": 2248.0
+  },
+  {
+    "division": "Gampaha",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 868,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 68,
+    "historicalAvgAffected": 783.2647058823529
+  },
+  {
+    "division": "Welivitiya-Divithura",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 689,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 4057.4615384615386
+  },
+  {
+    "division": "Nattandiya",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 190,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 74,
+    "historicalAvgAffected": 704.027027027027
+  },
+  {
+    "division": "Kalpitiya",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 1496,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 25,
+    "historicalAvgAffected": 2072.6
+  },
+  {
+    "division": "Arachchikattuwa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 1262,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 27,
+    "historicalAvgAffected": 1890.962962962963
+  },
+  {
+    "division": "Sri Jayawardanapura Kotte",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 888,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 46,
+    "historicalAvgAffected": 1098.3478260869565
+  },
+  {
+    "division": "Jaffna",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 1290,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 44,
+    "historicalAvgAffected": 1042.6363636363637
+  },
+  {
+    "division": "Maritimepattu",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 3117,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 2159.2380952380954
+  },
+  {
+    "division": "Lahugala",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 3877,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 24,
+    "historicalAvgAffected": 1863.25
+  },
+  {
+    "division": "Neluwa",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 4382,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 2447.3333333333335
+  },
+  {
+    "division": "Hikkaduwa",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 2918,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 2080.3333333333335
+  },
+  {
+    "division": "Oddusuddan",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 1529,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 2072.5714285714284
+  },
+  {
+    "division": "Navithanveli",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 3147,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 6036.714285714285
+  },
+  {
+    "division": "Walallavita",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 3521,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 25,
+    "historicalAvgAffected": 1675.56
+  },
+  {
+    "division": "Valikamam South -West (Sandili",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 595,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 104,
+    "historicalAvgAffected": 386.0673076923077
+  },
+  {
+    "division": "Kalmunai",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 876,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 4000.2
+  },
+  {
+    "division": "Hambantota",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 1527,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 1522.1923076923076
+  },
+  {
+    "division": "Poonakary",
+    "province": "Northern",
+    "district": "Kilinochchi",
+    "predictedAffected": 1030,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 35,
+    "historicalAvgAffected": 1129.7142857142858
+  },
+  {
+    "division": "Malimbada",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 829,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 34,
+    "historicalAvgAffected": 1108.5
+  },
+  {
+    "division": "Thissamaharama",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 124,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 70,
+    "historicalAvgAffected": 527.0285714285715
+  },
+  {
+    "division": "Mahawewa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 1763,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 940.4615384615385
+  },
+  {
+    "division": "Galle Four Gravets",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 452,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 58,
+    "historicalAvgAffected": 619.051724137931
+  },
+  {
+    "division": "Ingiriya",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 3700,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 2755.153846153846
+  },
+  {
+    "division": "Muttur",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 2687,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 38,
+    "historicalAvgAffected": 927.4736842105264
+  },
+  {
+    "division": "Lankapura",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 71,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 899.1282051282051
+  },
+  {
+    "division": "Verugal/ Echchalampattai",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 2629,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 25,
+    "historicalAvgAffected": 1372.08
+  },
+  {
+    "division": "Vadamaradchi East (Maruthnkern",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 2948,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 20,
+    "historicalAvgAffected": 1711.25
+  },
+  {
+    "division": "Kalmunai Tamil",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 6678,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 9978.0
+  },
+  {
+    "division": "Pitabeddara",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 1957,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 1417.3809523809523
+  },
+  {
+    "division": "Niyagama",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 2770,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 2108.214285714286
+  },
+  {
+    "division": "Valikamam West (Chankanai)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 496,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 36,
+    "historicalAvgAffected": 808.5
+  },
+  {
+    "division": "Ayagama",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 133,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 81,
+    "historicalAvgAffected": 345.41975308641975
+  },
+  {
+    "division": "Mahara",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 395,
+    "predictedSeverity": "MEDIUM",
+    "historicalEventCount": 40,
+    "historicalAvgAffected": 687.675
+  },
+  {
+    "division": "Attanagalla",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 223,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 48,
+    "historicalAvgAffected": 556.9166666666666
+  },
+  {
+    "division": "Thamankaduwa",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 369,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 30,
+    "historicalAvgAffected": 885.7
+  },
+  {
+    "division": "Baddegama",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 1738,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 1502.235294117647
+  },
+  {
+    "division": "Madampe",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 867,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 1144.5454545454545
+  },
+  {
+    "division": "Welipitiya",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 538,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 35,
+    "historicalAvgAffected": 679.2
+  },
+  {
+    "division": "Beruwala",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 1233,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 1572.6
+  },
+  {
+    "division": "Habaraduwa",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 3664,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 2864.25
+  },
+  {
+    "division": "Mahaoya",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 5777,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 2275.8
+  },
+  {
+    "division": "Vadamaradchi North (Point Pedr",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 299,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 45,
+    "historicalAvgAffected": 501.0444444444444
+  },
+  {
+    "division": "Kuruvita",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 557,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 59,
+    "historicalAvgAffected": 379.3220338983051
+  },
+  {
+    "division": "Kotapola",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 738,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 37,
+    "historicalAvgAffected": 601.7567567567568
+  },
+  {
+    "division": "Valikamam North(Tellipallai)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 57,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 76,
+    "historicalAvgAffected": 289.75
+  },
+  {
+    "division": "Madhu",
+    "province": "Northern",
+    "district": "Mannar",
+    "predictedAffected": 711,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 846.1153846153846
+  },
+  {
+    "division": "Moratuwa",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 1665,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 1288.8823529411766
+  },
+  {
+    "division": "Valikamam East (Kopay)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 658,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 53,
+    "historicalAvgAffected": 400.9811320754717
+  },
+  {
+    "division": "Musalai",
+    "province": "Northern",
+    "district": "Mannar",
+    "predictedAffected": 200,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 698.8275862068965
+  },
+  {
+    "division": "Bandaragama",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 391,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 687.7586206896551
+  },
+  {
+    "division": "Wennappuwa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 183,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 36,
+    "historicalAvgAffected": 552.1388888888889
+  },
+  {
+    "division": "Nallur",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 241,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 95,
+    "historicalAvgAffected": 208.2842105263158
+  },
+  {
+    "division": "Mathugama",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 281,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 903.5714285714286
+  },
+  {
+    "division": "Pachchilaipalli",
+    "province": "Northern",
+    "district": "Kilinochchi",
+    "predictedAffected": 370,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 727.2307692307693
+  },
+  {
+    "division": "Kuchchaveli",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 1488,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 648.9655172413793
+  },
+  {
+    "division": "Nivithigala",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 41,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 63,
+    "historicalAvgAffected": 293.55555555555554
+  },
+  {
+    "division": "Kalawana",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 27,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 119,
+    "historicalAvgAffected": 147.3361344537815
+  },
+  {
+    "division": "Thunukkai",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 1865,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 1346.3846153846155
+  },
+  {
+    "division": "Valikamam South (Uduvil)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 615,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 42,
+    "historicalAvgAffected": 405.8809523809524
+  },
+  {
+    "division": "Hanwella",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 851,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 20,
+    "historicalAvgAffected": 834.5
+  },
+  {
+    "division": "Vanathavilluwa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 330,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 555.1379310344828
+  },
+  {
+    "division": "Trincomalee Town and Gravets",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 309,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 25,
+    "historicalAvgAffected": 635.2
+  },
+  {
+    "division": "Maharagama",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 844,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 1111.0
+  },
+  {
+    "division": "Nanadhan",
+    "province": "Northern",
+    "district": "Mannar",
+    "predictedAffected": 387,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 33,
+    "historicalAvgAffected": 464.90909090909093
+  },
+  {
+    "division": "Vadamaradchi South-west (Karav",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 105,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 526.3103448275862
+  },
+  {
+    "division": "Balapitiya",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 3215,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 1612.7777777777778
+  },
+  {
+    "division": "Homagama",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 1410,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 1023.4285714285714
+  },
+  {
+    "division": "Mulatiyana",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 369,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 64,
+    "historicalAvgAffected": 219.953125
+  },
+  {
+    "division": "Elpitiya",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 136,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 25,
+    "historicalAvgAffected": 548.52
+  },
+  {
+    "division": "Dompe",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 95,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 67,
+    "historicalAvgAffected": 184.044776119403
+  },
+  {
+    "division": "Vavuniya(Tamil)",
+    "province": "Northern",
+    "district": "Vavuniya",
+    "predictedAffected": 67,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 34,
+    "historicalAvgAffected": 345.4117647058824
+  },
+  {
+    "division": "Pelmadulla",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 48,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 57,
+    "historicalAvgAffected": 205.1578947368421
+  },
+  {
+    "division": "Pannala",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 56,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 43,
+    "historicalAvgAffected": 268.09302325581393
+  },
+  {
+    "division": "Thambalagamuwa",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 893,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 24,
+    "historicalAvgAffected": 471.2916666666667
+  },
+  {
+    "division": "Kareinagar",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 482,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 430.84615384615387
+  },
+  {
+    "division": "Kesbewa",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 1327,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 656.625
+  },
+  {
+    "division": "Island North(Kayts)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 61,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 60,
+    "historicalAvgAffected": 174.36666666666667
+  },
+  {
+    "division": "Pasgoda",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 1205,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 1141.4444444444443
+  },
+  {
+    "division": "Akmeemana",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 288,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 27,
+    "historicalAvgAffected": 365.1111111111111
+  },
+  {
+    "division": "Dehiovita",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 525,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 26,
+    "historicalAvgAffected": 372.2307692307692
+  },
+  {
+    "division": "Dimbulagala",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 543,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 65,
+    "historicalAvgAffected": 148.23076923076923
+  },
+  {
+    "division": "Eragama",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 2756,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 1604.0
+  },
+  {
+    "division": "Island South (Velanai)",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 138,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 561.4705882352941
+  },
+  {
+    "division": "Minuwangoda",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 19,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 242.4102564102564
+  },
+  {
+    "division": "Ambalangoda",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 384,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 494.1578947368421
+  },
+  {
+    "division": "Dehiattakandiya",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 2121,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 928.8
+  },
+  {
+    "division": "Tangalle",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 573,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 825.8181818181819
+  },
+  {
+    "division": "Nuwaragam Palatha East",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 381,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 905.5
+  },
+  {
+    "division": "Bingiriya",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 602,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 23,
+    "historicalAvgAffected": 382.5652173913044
+  },
+  {
+    "division": "Ampara",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 379,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 665.1538461538462
+  },
+  {
+    "division": "Pasbage Korale",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 196,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 24,
+    "historicalAvgAffected": 358.25
+  },
+  {
+    "division": "Kahawatta",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 25,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 43,
+    "historicalAvgAffected": 194.6046511627907
+  },
+  {
+    "division": "Seruvila",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 455,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 479.3529411764706
+  },
+  {
+    "division": "Weligama",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 1051,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 1134.2857142857142
+  },
+  {
+    "division": "Katharagama",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 1058,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 880.3333333333334
+  },
+  {
+    "division": "Dambulla",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 1224,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 37,
+    "historicalAvgAffected": 211.64864864864865
+  },
+  {
+    "division": "Eheliyagoda",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 14,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 32,
+    "historicalAvgAffected": 244.28125
+  },
+  {
+    "division": "Udubaddawa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 55,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 51,
+    "historicalAvgAffected": 145.88235294117646
+  },
+  {
+    "division": "Dankotuwa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 107,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 32,
+    "historicalAvgAffected": 223.375
+  },
+  {
+    "division": "Agalawatta",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 182,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 507.2142857142857
+  },
+  {
+    "division": "Divulapitiya",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 367,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 633.2727272727273
+  },
+  {
+    "division": "Karuwalagaswewa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 656,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 403.29411764705884
+  },
+  {
+    "division": "Dehiwala",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 1691,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 961.1428571428571
+  },
+  {
+    "division": "Kanthalai",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 756,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 746.5555555555555
+  },
+  {
+    "division": "Nuwara Eliya",
+    "province": "Central",
+    "district": "Nuwara Eliya",
+    "predictedAffected": 4,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 66,
+    "historicalAvgAffected": 100.98484848484848
+  },
+  {
+    "division": "Manthai West",
+    "province": "Northern",
+    "district": "Mannar",
+    "predictedAffected": 293,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 363.3888888888889
+  },
+  {
+    "division": "Delft",
+    "province": "Northern",
+    "district": "Jaffna",
+    "predictedAffected": 86,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 23,
+    "historicalAvgAffected": 277.9130434782609
+  },
+  {
+    "division": "Manthai East",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 200,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 605.7
+  },
+  {
+    "division": "Ambagamuwakorale",
+    "province": "Central",
+    "district": "Nuwara Eliya",
+    "predictedAffected": 34,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 37,
+    "historicalAvgAffected": 147.56756756756758
+  },
+  {
+    "division": "Padukka",
+    "province": "Western",
+    "district": "Colombo",
+    "predictedAffected": 170,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 571.5555555555555
+  },
+  {
+    "division": "Yakkalamulla",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 400,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 420.4166666666667
+  },
+  {
+    "division": "Medirigiriya",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 138,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 550.7777777777778
+  },
+  {
+    "division": "Rajanganaya",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 441,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 614.375
+  },
+  {
+    "division": "Vavuniya North",
+    "province": "Northern",
+    "district": "Vavuniya",
+    "predictedAffected": 836,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 398.1666666666667
+  },
+  {
+    "division": "Bope-Poddala",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 439,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 658.0
+  },
+  {
+    "division": "Imaduwa",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 358,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 449.6
+  },
+  {
+    "division": "Damana",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 560,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 326.61538461538464
+  },
+  {
+    "division": "Horowpothana",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 913,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 847.2
+  },
+  {
+    "division": "Opanayaka",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 5,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 45,
+    "historicalAvgAffected": 92.04444444444445
+  },
+  {
+    "division": "Nawagattegama",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 13,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 253.1875
+  },
+  {
+    "division": "Nochchiyagama",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 526,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 806.6
+  },
+  {
+    "division": "Nachchadoowa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 287,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 668.0
+  },
+  {
+    "division": "Hakmana",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 53,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 46,
+    "historicalAvgAffected": 86.80434782608695
+  },
+  {
+    "division": "Narammala",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 90,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 189.14285714285714
+  },
+  {
+    "division": "Kuliyapitiya West",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 9,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 242.5
+  },
+  {
+    "division": "Badulla",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 89,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 28,
+    "historicalAvgAffected": 138.25
+  },
+  {
+    "division": "Ruwanwella",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 59,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 295.2307692307692
+  },
+  {
+    "division": "Mahakumbukkadawala",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 39,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 293.15384615384613
+  },
+  {
+    "division": "Pallama",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 17,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 232.5625
+  },
+  {
+    "division": "Anamaduwa",
+    "province": "North-Western",
+    "district": "Puttalam",
+    "predictedAffected": 37,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 187.6315789473684
+  },
+  {
+    "division": "Horana",
+    "province": "Western",
+    "district": "Kalutara",
+    "predictedAffected": 63,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 20,
+    "historicalAvgAffected": 177.7
+  },
+  {
+    "division": "Nuwaragam Palatha Central",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 12,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 266.6923076923077
+  },
+  {
+    "division": "Rasnayakapura",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 52,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 160.04761904761904
+  },
+  {
+    "division": "Hingurakgoda",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 309,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 412.875
+  },
+  {
+    "division": "Karandeniya",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 100,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 181.05555555555554
+  },
+  {
+    "division": "Balangoda",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 23,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 67,
+    "historicalAvgAffected": 46.940298507462686
+  },
+  {
+    "division": "Vengalacheddikulam",
+    "province": "Northern",
+    "district": "Vavuniya",
+    "predictedAffected": 26,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 203.86666666666667
+  },
+  {
+    "division": "Welikanda",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 8,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 255.45454545454547
+  },
+  {
+    "division": "Badalkumbura",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 1566,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 391.7142857142857
+  },
+  {
+    "division": "Polgahawela",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 40,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 142.94736842105263
+  },
+  {
+    "division": "Galgamuwa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 63,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 270.9
+  },
+  {
+    "division": "Thambuttegama",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 162,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 163.4375
+  },
+  {
+    "division": "Godakawela",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 51,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 37,
+    "historicalAvgAffected": 67.16216216216216
+  },
+  {
+    "division": "Kandy Four Gravets & Gangawata",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 45,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 129.52631578947367
+  },
+  {
+    "division": "Ipalogama",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 109,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 345.57142857142856
+  },
+  {
+    "division": "Dickwella",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 697,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 22,
+    "historicalAvgAffected": 109.22727272727273
+  },
+  {
+    "division": "Kahatagasdigiliya",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 690,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 788.6666666666666
+  },
+  {
+    "division": "Nikaweratiya",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 71,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 37,
+    "historicalAvgAffected": 63.891891891891895
+  },
+  {
+    "division": "Ehetuwewa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 259.55555555555554
+  },
+  {
+    "division": "Kolonna",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 164,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 166.57142857142858
+  },
+  {
+    "division": "Thalawa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 1009,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 388.1666666666667
+  },
+  {
+    "division": "Benthota",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 516,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 109.76190476190476
+  },
+  {
+    "division": "Galigamuwa",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 64,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 173.0
+  },
+  {
+    "division": "Katuwana",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 137,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 549.75
+  },
+  {
+    "division": "Wariyapola",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 75.55172413793103
+  },
+  {
+    "division": "Galenbindunuwewa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 917,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 2,
+    "historicalAvgAffected": 1084.5
+  },
+  {
+    "division": "Elahera",
+    "province": "North-Central",
+    "district": "Polonnaruwa",
+    "predictedAffected": 26,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 127.29411764705883
+  },
+  {
+    "division": "Akurana",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 213,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 39,
+    "historicalAvgAffected": 53.48717948717949
+  },
+  {
+    "division": "Kurunegala",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 58,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 17,
+    "historicalAvgAffected": 120.29411764705883
+  },
+  {
+    "division": "Paduwasnuwara west",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 605,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 407.4
+  },
+  {
+    "division": "Medadumbara",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 141,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 169.58333333333334
+  },
+  {
+    "division": "Padiyathalawa",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 114,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 337.1666666666667
+  },
+  {
+    "division": "Ganga Ihala Korale",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 864,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 106.47368421052632
+  },
+  {
+    "division": "Kobeigane",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 92,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 182.0909090909091
+  },
+  {
+    "division": "Mirigama",
+    "province": "Western",
+    "district": "Gampaha",
+    "predictedAffected": 100,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 151.69230769230768
+  },
+  {
+    "division": "Palagala",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 575,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 209.22222222222223
+  },
+  {
+    "division": "Panduwasnuwara East",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 38,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 24,
+    "historicalAvgAffected": 77.54166666666667
+  },
+  {
+    "division": "Warakapola",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 37,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 202.77777777777777
+  },
+  {
+    "division": "Wilgamuwa",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 105,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 201.0
+  },
+  {
+    "division": "Beliatta",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 93,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 200.88888888888889
+  },
+  {
+    "division": "Naula",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 158,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 198.77777777777777
+  },
+  {
+    "division": "Ganewatta",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 18,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 99.05555555555556
+  },
+  {
+    "division": "Kekirawa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 486,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 439.0
+  },
+  {
+    "division": "Okewela",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 193,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 574.0
+  },
+  {
+    "division": "Alawwa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 235,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 113.8
+  },
+  {
+    "division": "Deraniyagala",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 205,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 147.9090909090909
+  },
+  {
+    "division": "Buttala",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 19,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 28,
+    "historicalAvgAffected": 57.392857142857146
+  },
+  {
+    "division": "Embilipitiya",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 69,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 29,
+    "historicalAvgAffected": 55.275862068965516
+  },
+  {
+    "division": "Devinuwara",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 166,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 83.63157894736842
+  },
+  {
+    "division": "Haldummulla",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 13,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 262.1666666666667
+  },
+  {
+    "division": "Sooriyawewa",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 1089,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 390.0
+  },
+  {
+    "division": "Ambalantota",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 163,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 170.66666666666666
+  },
+  {
+    "division": "Weeraketiya",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 74,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 306.4
+  },
+  {
+    "division": "Lunugala",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 61,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 306.2
+  },
+  {
+    "division": "Uhana",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 215,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 166.33333333333334
+  },
+  {
+    "division": "Padavi Sri Pura",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 51,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 145.6
+  },
+  {
+    "division": "Lunugamvehera",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 94,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 181.875
+  },
+  {
+    "division": "Walasmulla",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 75,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 206.57142857142858
+  },
+  {
+    "division": "Palugaswewa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 205,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 277.2
+  },
+  {
+    "division": "Mawathagama",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 35,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 124.0909090909091
+  },
+  {
+    "division": "Galnewa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 5,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 266.2
+  },
+  {
+    "division": "Ukuwela",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 80,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 121.5
+  },
+  {
+    "division": "Morawewa",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 252,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 201.33333333333334
+  },
+  {
+    "division": "Rambewa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 858,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 399.6666666666667
+  },
+  {
+    "division": "Bamunukotuwa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 81,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 27,
+    "historicalAvgAffected": 44.370370370370374
+  },
+  {
+    "division": "Moneragala",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 68,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 79.86666666666666
+  },
+  {
+    "division": "Ella",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 7,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 129.55555555555554
+  },
+  {
+    "division": "Ibbagamuwa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 54,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 64.33333333333333
+  },
+  {
+    "division": "Ambanpola",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 48,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 191.66666666666666
+  },
+  {
+    "division": "Mahiyanganaya",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 184,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 189.83333333333334
+  },
+  {
+    "division": "Maspotha",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 61,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 16,
+    "historicalAvgAffected": 63.9375
+  },
+  {
+    "division": "Thanamalvila",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 57,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 90.72727272727273
+  },
+  {
+    "division": "Haputale",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 538,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 139.28571428571428
+  },
+  {
+    "division": "Passara",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 34,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 81.08333333333333
+  },
+  {
+    "division": "Rideegama",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 634,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 106.77777777777777
+  },
+  {
+    "division": "Mahavilachchiya",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 42,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 232.25
+  },
+  {
+    "division": "Thirappane",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 63,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 305.3333333333333
+  },
+  {
+    "division": "Katupotha",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 35,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 18,
+    "historicalAvgAffected": 50.55555555555556
+  },
+  {
+    "division": "Walapane",
+    "province": "Central",
+    "district": "Nuwara Eliya",
+    "predictedAffected": 83,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 136.5
+  },
+  {
+    "division": "Bulathkohupitiya",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 132,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 101.75
+  },
+  {
+    "division": "Hatharaliyadda",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 168,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 201.75
+  },
+  {
+    "division": "Giribawa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 384,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 111.85714285714286
+  },
+  {
+    "division": "Wellawaya",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 85,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 21,
+    "historicalAvgAffected": 36.904761904761905
+  },
+  {
+    "division": "Kuliyapitiya East",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 593,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 109.28571428571429
+  },
+  {
+    "division": "Pathahewaheta",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 47,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 190.75
+  },
+  {
+    "division": "Angunakolapelessa",
+    "province": "Southern",
+    "district": "Hambantota",
+    "predictedAffected": 604,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 106.42857142857143
+  },
+  {
+    "division": "Bandarawela",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 118,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 82.11111111111111
+  },
+  {
+    "division": "Goonapeenuwala",
+    "province": "Southern",
+    "district": "Galle",
+    "predictedAffected": 50,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 78.11111111111111
+  },
+  {
+    "division": "Laggala-Pallegama",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 8,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 58.0
+  },
+  {
+    "division": "Siyambalanduwa",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 28,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 45.733333333333334
+  },
+  {
+    "division": "Kirinda Puhulwella",
+    "province": "Southern",
+    "district": "Matara",
+    "predictedAffected": 58,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 65.2
+  },
+  {
+    "division": "Matale",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 57,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 127.8
+  },
+  {
+    "division": "Polpithigama",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 27,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 127.2
+  },
+  {
+    "division": "Rattota",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 74,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 144.75
+  },
+  {
+    "division": "Galewela",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 27,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 75.85714285714286
+  },
+  {
+    "division": "Weli Oya",
+    "province": "Northern",
+    "district": "Mullaitivu",
+    "predictedAffected": 107,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 53.0
+  },
+  {
+    "division": "Yatiyanthota",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 22,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 15,
+    "historicalAvgAffected": 33.733333333333334
+  },
+  {
+    "division": "Udadumbara",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 68,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 121.25
+  },
+  {
+    "division": "Mallawapitiya",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 135,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 53.111111111111114
+  },
+  {
+    "division": "Aranayaka",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 20,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 57.125
+  },
+  {
+    "division": "Panvila",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 127,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 151.33333333333334
+  },
+  {
+    "division": "Mawanella",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 17,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 19,
+    "historicalAvgAffected": 23.42105263157895
+  },
+  {
+    "division": "Pathadumbara",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 74,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 60.142857142857146
+  },
+  {
+    "division": "Welimada",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 193,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 103.0
+  },
+  {
+    "division": "Kotavehera",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 18,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 38.8
+  },
+  {
+    "division": "Poojapitiya",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 41,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 9,
+    "historicalAvgAffected": 42.888888888888886
+  },
+  {
+    "division": "Medagama",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 51,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 52.57142857142857
+  },
+  {
+    "division": "Bibile",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 30,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 11,
+    "historicalAvgAffected": 32.36363636363637
+  },
+  {
+    "division": "Kothmale",
+    "province": "Central",
+    "district": "Nuwara Eliya",
+    "predictedAffected": 21,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 14,
+    "historicalAvgAffected": 25.0
+  },
+  {
+    "division": "Kebithigollewa",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 180,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 115.0
+  },
+  {
+    "division": "Pallepola",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 64,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 64.0
+  },
+  {
+    "division": "Mahawa",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 64,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 64.0
+  },
+  {
+    "division": "Udunuwara",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 22,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 39.875
+  },
+  {
+    "division": "Rambukkana",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 14,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 12,
+    "historicalAvgAffected": 26.333333333333332
+  },
+  {
+    "division": "Kegalle",
+    "province": "Sabaragamuwa",
+    "district": "Kegalle",
+    "predictedAffected": 6,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 13,
+    "historicalAvgAffected": 23.53846153846154
+  },
+  {
+    "division": "Ambanganga Korale",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 52,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 70.75
+  },
+  {
+    "division": "Meegahakivula",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 38.0
+  },
+  {
+    "division": "Yatinuwara",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 46,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 48.2
+  },
+  {
+    "division": "Imbulpe",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 61,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 36.5
+  },
+  {
+    "division": "Minipe",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 9,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 7,
+    "historicalAvgAffected": 30.714285714285715
+  },
+  {
+    "division": "Vavuniya South",
+    "province": "Northern",
+    "district": "Vavuniya",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 26.0
+  },
+  {
+    "division": "Weerambugedara",
+    "province": "North-Western",
+    "district": "Kurunegala",
+    "predictedAffected": 18,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 20.2
+  },
+  {
+    "division": "Medawachchiya",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 54,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 64.33333333333333
+  },
+  {
+    "division": "Yatawatta",
+    "province": "Central",
+    "district": "Matale",
+    "predictedAffected": 38,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 48.0
+  },
+  {
+    "division": "Delthota",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 75,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 59.666666666666664
+  },
+  {
+    "division": "Kundasale",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 35,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 40.5
+  },
+  {
+    "division": "Udapalatha",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 19,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 10,
+    "historicalAvgAffected": 16.0
+  },
+  {
+    "division": "Hanguranketha",
+    "province": "Central",
+    "district": "Nuwara Eliya",
+    "predictedAffected": 18,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 23.0
+  },
+  {
+    "division": "Uva Paranagama",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 24,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 33.25
+  },
+  {
+    "division": "Harispattuwa",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 14,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 8,
+    "historicalAvgAffected": 14.625
+  },
+  {
+    "division": "Weligepola",
+    "province": "Sabaragamuwa",
+    "district": "Ratnapura",
+    "predictedAffected": 28,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 2,
+    "historicalAvgAffected": 57.0
+  },
+  {
+    "division": "Gomarankadawala",
+    "province": "Eastern",
+    "district": "Trincomalee",
+    "predictedAffected": 17,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 18.333333333333332
+  },
+  {
+    "division": "Rideemaliyadda",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 6,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 11.833333333333334
+  },
+  {
+    "division": "Soranathota",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 18,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 19.333333333333332
+  },
+  {
+    "division": "Thumpane",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 8,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 5,
+    "historicalAvgAffected": 9.2
+  },
+  {
+    "division": "Doluwa",
+    "province": "Central",
+    "district": "Kandy",
+    "predictedAffected": 10,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 4,
+    "historicalAvgAffected": 10.5
+  },
+  {
+    "division": "Padaviya",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 2,
+    "historicalAvgAffected": 15.5
+  },
+  {
+    "division": "Kandaketiya",
+    "province": "Uva",
+    "district": "Badulla",
+    "predictedAffected": 7,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 9.666666666666666
+  },
+  {
+    "division": "Mihinthale",
+    "province": "North-Central",
+    "district": "Anuradhapura",
+    "predictedAffected": 15,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 1,
+    "historicalAvgAffected": 26.0
+  },
+  {
+    "division": "Sevanagala",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 7,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 2,
+    "historicalAvgAffected": 7.5
+  },
+  {
+    "division": "Madulla",
+    "province": "Uva",
+    "district": "Moneragala",
+    "predictedAffected": 5,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 3,
+    "historicalAvgAffected": 1.6666666666666667
+  }
+]

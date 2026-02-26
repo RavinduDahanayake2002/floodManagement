@@ -11,6 +11,7 @@
 @inject WeatherService WeatherService
 @inject ShelterService ShelterService
 @inject HistoricalDataService HistoricalData
+@inject MLPredictionService MLPrediction
 @inject AIFloodPredictor AIPredictor
 @inject LocationService LocService
 @inject IJSRuntime JS
@@ -62,6 +63,42 @@
                     <p class="text-sm text-yellow-400">Failed to generate AI Risk Report.</p>
                 }
             </Panel>
+            
+            <!-- ML Prediction Report (Random Forest) -->
+            @if (_mlPrediction != null)
+            {
+                <Panel>
+                    <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-700">
+                        <span class="text-xl">🤖</span>
+                        <h3 class="text-md font-bold text-white">Machine Learning Assessment</h3>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center bg-gray-800 p-3 rounded border border-gray-700">
+                            <div>
+                                <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Division Profile (Historical)</h4>
+                                <span class="text-sm">Based on @(_mlPrediction.HistoricalEventCount) past events</span>
+                            </div>
+                            <div class="px-3 py-1 rounded bg-gray-900 font-bold border 
+                                @(_mlPrediction.PredictedSeverity == "HIGH" ? "text-red-500 border-red-900" :
+                                  _mlPrediction.PredictedSeverity == "MEDIUM" ? "text-yellow-500 border-yellow-900" : 
+                                  "text-green-500 border-green-900")">
+                                @_mlPrediction.PredictedSeverity
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center bg-gray-800 p-3 rounded border border-gray-700">
+                            <div>
+                                <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Impact Forecast</h4>
+                                <span class="text-sm">Predicted affected population</span>
+                            </div>
+                            <div class="font-bold text-xl text-primary">
+                                @(_mlPrediction.PredictedAffected) <span class="text-sm font-normal text-gray-400">people</span>
+                            </div>
+                        </div>
+                    </div>
+                </Panel>
+            }
             
             <!-- Weather Escalation Badge -->
             @if (AppState.CurrentRisk.WasEscalated && !string.IsNullOrEmpty(AppState.CurrentRisk.EscalationReason))
@@ -249,6 +286,7 @@
 @code {
     private bool IsCalculating = true;
     private string? _aiReportMarkdown;
+    private MLDivisionPrediction? _mlPrediction;
     private (string ZoneName, double DistanceKm)? NearestSafeZone;
     private List<Shelter> NearbyShelters = new();
     private IJSObjectReference? _reportModule;
@@ -282,6 +320,9 @@
             
             // Get Historical Severity
             var histData = HistoricalData.GetHistoricalRisk(province, district, division);
+            
+            // Get ML Model Predictions
+            _mlPrediction = MLPrediction.GetPredictionForDivision(division);
 
             // 3. Get Claude Prediction
             _aiReportMarkdown = await AIPredictor.PredictRiskAsync(

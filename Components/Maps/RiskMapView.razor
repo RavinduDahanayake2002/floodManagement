@@ -25,9 +25,9 @@
             _mapInstance = await _mapModule.InvokeAsync<IJSObjectReference>("initMap", "risk-map", center, 13, null);
             
             // Add Zones
-            var geoJson = await GeoJsonService.GetRiskZonesGeoJsonAsync();
-            var parsed = System.Text.Json.JsonDocument.Parse(geoJson).RootElement;
-            await _mapModule.InvokeVoidAsync("addGeoJson", _mapInstance, parsed, "defaultStyle");
+            // var geoJson = await GeoJsonService.GetRiskZonesGeoJsonAsync();
+            // var parsed = System.Text.Json.JsonDocument.Parse(geoJson).RootElement;
+            // await _mapModule.InvokeVoidAsync("addGeoJson", _mapInstance, parsed, "defaultStyle");
             
             // Add Marker
             await _mapModule.InvokeVoidAsync("addMarker", _mapInstance, AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
