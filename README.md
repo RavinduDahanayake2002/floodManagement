@@ -12,9 +12,13 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
 - **Cascading Selection**: Select Province -> District -> Town hierarchy.
 - **Smart Navigation**: Map automatically zooms and pans to the selected region.
 
+### 🤖 AI & Machine Learning Integration
+- **Generative Assessment**: Connects to **Google Gemini API** to write custom, human-readable flood risk reports.
+- **Predictive ML Model**: Uses **ML.NET Random Forest** algorithms to predict risk severity and affected population using historical flood datasets.
+
 ### 🛡️ Risk Assessment
 - **Advanced Analytics**: Uses "Point-in-Polygon" algorithms to determine flood risk.
-- **Visual Mapping**: Interactive Leaflet map with colored risk overlays.
+- **Visual Mapping**: Interactive Leaflet map with animated, color-coded risk overlays (Pulse / Blast Radius animation).
 - **Risk Levels**: High, Medium, Low.
 
 ### 📝 Insurance Claims & Damage Reporting
@@ -37,8 +41,10 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
 - **Framework**: [.NET 8 Blazor Web App (Interactive Server)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
 - **Language**: C#
 - **Map Library**: [Leaflet.js](https://leafletjs.com/) with OpenStreetMap tiles
+- **Machine Learning**: ML.NET (Random Forest Classification/Regression)
+- **AI Engine**: Google Gemini API (1.5 Flash)
 - **Styling**: Tailwind CSS / Custom CSS Variables
-- **Data**: GeoJSON for risk zones, JSON for location data
+- **Data**: GeoJSON for risk zones, JSON for location data, CSV for historical training sets
 
 ---
 
