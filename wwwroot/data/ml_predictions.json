@@ -1998,15 +1998,6 @@
     "historicalAvgAffected": 169.58333333333334
   },
   {
-    "division": "Padiyathalawa",
-    "province": "Eastern",
-    "district": "Ampara",
-    "predictedAffected": 114,
-    "predictedSeverity": "LOW",
-    "historicalEventCount": 6,
-    "historicalAvgAffected": 337.1666666666667
-  },
-  {
     "division": "Ganga Ihala Korale",
     "province": "Central",
     "district": "Kandy",
@@ -2014,6 +2005,15 @@
     "predictedSeverity": "LOW",
     "historicalEventCount": 19,
     "historicalAvgAffected": 106.47368421052632
+  },
+  {
+    "division": "Padiyathalawa",
+    "province": "Eastern",
+    "district": "Ampara",
+    "predictedAffected": 114,
+    "predictedSeverity": "LOW",
+    "historicalEventCount": 6,
+    "historicalAvgAffected": 337.1666666666667
   },
   {
     "division": "Kobeigane",
@@ -2709,18 +2709,18 @@
     "historicalAvgAffected": 115.0
   },
   {
-    "division": "Pallepola",
-    "province": "Central",
-    "district": "Matale",
+    "division": "Mahawa",
+    "province": "North-Western",
+    "district": "Kurunegala",
     "predictedAffected": 64,
     "predictedSeverity": "LOW",
     "historicalEventCount": 5,
     "historicalAvgAffected": 64.0
   },
   {
-    "division": "Mahawa",
-    "province": "North-Western",
-    "district": "Kurunegala",
+    "division": "Pallepola",
+    "province": "Central",
+    "district": "Matale",
     "predictedAffected": 64,
     "predictedSeverity": "LOW",
     "historicalEventCount": 5,

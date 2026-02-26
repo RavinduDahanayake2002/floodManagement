@@ -7,6 +7,7 @@ public class LocationService
     private readonly List<Province> _provinces;
     private readonly List<District> _districts;
     private readonly List<Division> _divisions;
+    private readonly List<Division> _divisions;
     private readonly List<Town> _towns;
 
     public LocationService()
@@ -424,6 +425,14 @@ public class LocationService
             new() { Id = 329, DistrictId = 25, Name = "Warakapola", Coords = new(7.2226, 80.1887) },
             new() { Id = 330, DistrictId = 25, Name = "Yatiyanthota", Coords = new(7.2513, 80.3464) },
         };
+
+
+        // Auto-generated Divisions based on Districts
+        _divisions = new List<Division>();
+        foreach (var d in _districts)
+        {
+            _divisions.Add(new Division { Id = d.Id, DistrictId = d.Id, Name = d.Name + " Division", Coords = d.Coords });
+        }
 
         // Sample Towns
         _towns = new List<Town>
