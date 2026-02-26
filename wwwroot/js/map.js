@@ -61,6 +61,45 @@ export function addMarker(map, lat, lng) {
     window.currentMarker = L.marker([lat, lng]).addTo(map);
 }
 
+export function addRiskRadius(map, lat, lng, riskLevel) {
+    if (window.currentRiskCircle) {
+        map.removeLayer(window.currentRiskCircle);
+    }
+    if (window.currentRiskPulse) {
+        map.removeLayer(window.currentRiskPulse);
+    }
+
+    var color = '#10B981'; // Low (Green)
+    var pulseColor = 'rgba(16, 185, 129, 0.6)';
+
+    if (riskLevel === 'High') {
+        color = '#EF4444'; // Red
+        pulseColor = 'rgba(239, 68, 68, 0.6)';
+    } else if (riskLevel === 'Medium') {
+        color = '#F59E0B'; // Yellow/Orange
+        pulseColor = 'rgba(245, 158, 11, 0.6)';
+    }
+
+    // A static circle filling the division area (~2.5km radius)
+    window.currentRiskCircle = L.circle([lat, lng], {
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.2,
+        weight: 2,
+        radius: 2500
+    }).addTo(map);
+
+    // A custom marker that acts as the "blast"/pulse animation center
+    const pulseIcon = L.divIcon({
+        className: 'risk-pulse-icon',
+        html: `<div style="--pulse-color: ${pulseColor}; width: 24px; height: 24px; border-radius: 50%; background-color: ${color}; outline: 2px solid white; box-shadow: 0 0 0 0 var(--pulse-color); animation: mapPulse 2s infinite;"></div>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+    });
+
+    window.currentRiskPulse = L.marker([lat, lng], { icon: pulseIcon }).addTo(map);
+}
+
 export function addShelterMarker(map, lat, lng, popupContent) {
     if (!window.shelterMarkers) window.shelterMarkers = [];
 

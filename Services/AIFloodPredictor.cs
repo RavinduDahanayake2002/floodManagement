@@ -9,7 +9,7 @@ public class AIFloodPredictor
     private readonly HttpClient _httpClient;
     private readonly IConfiguration _config;
     // Gemini API Key
-    private const string ApiKey = "YOUR_GEMINI_API_KEY"; 
+    private const string ApiKey = "AIzaSyAm0fpp6AENXQwuMpVvRGmslQ_aqmdXjF8"; 
 
     public AIFloodPredictor(HttpClient httpClient, IConfiguration config)
     {
@@ -128,8 +128,8 @@ Given current meteorological parameters and historical precedent, the predicted 
         }
         catch(Exception ex)
         {
-            Console.WriteLine($"Error querying Claude API: {ex.Message}");
-            return $"Error connecting to Claude API: {ex.Message}";
+            Console.WriteLine($"Error querying Gemini API: {ex.Message}");
+            return $"Error connecting to Gemini API: {ex.Message}";
         }
     }
 }

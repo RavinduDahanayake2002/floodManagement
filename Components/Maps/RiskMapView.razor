@@ -12,6 +12,9 @@
     [Parameter]
     public List<Shelter> Shelters { get; set; } = new();
 
+    [Parameter]
+    public string RiskLevelString { get; set; } = "Low";
+
     private IJSObjectReference? _mapModule;
     private IJSObjectReference? _mapInstance;
 
@@ -19,7 +22,8 @@
     {
         if (firstRender && AppState.SelectedLatLng != null)
         {
-            _mapModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/map.js");
+            var cacheBuster = Guid.NewGuid().ToString("N");
+            _mapModule = await JS.InvokeAsync<IJSObjectReference>("import", $"./js/map.js?v={cacheBuster}");
             
             var center = new { lat = AppState.SelectedLatLng.Lat, lng = AppState.SelectedLatLng.Lng };
             _mapInstance = await _mapModule.InvokeAsync<IJSObjectReference>("initMap", "risk-map", center, 13, null);
@@ -29,8 +33,8 @@
             // var parsed = System.Text.Json.JsonDocument.Parse(geoJson).RootElement;
             // await _mapModule.InvokeVoidAsync("addGeoJson", _mapInstance, parsed, "defaultStyle");
             
-            // Add Marker
-            await _mapModule.InvokeVoidAsync("addMarker", _mapInstance, AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng);
+            // Add Colored Blast Radius
+            await _mapModule.InvokeVoidAsync("addRiskRadius", _mapInstance, AppState.SelectedLatLng.Lat, AppState.SelectedLatLng.Lng, RiskLevelString);
             
             // Add Shelters
             foreach (var s in Shelters)
