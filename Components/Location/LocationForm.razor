@@ -37,30 +37,22 @@
         <!-- OR Manual Coordinates -->
         <div class="relative flex items-center py-2">
             <div class="flex-grow border-t border-[var(--border-color)]"></div>
-            <span class="flex-shrink-0 mx-4 text-secondary text-sm">OR Enter Coordinates</span>
+            <span class="flex-shrink-0 mx-4 text-secondary text-sm">OR Enter Addresses</span>
             <div class="flex-grow border-t border-[var(--border-color)]"></div>
         </div>
 
-        <div class="flex gap-4">
-            <div class="flex flex-col gap-1 w-1/2">
-                <label class="text-xs text-secondary mb-1">Latitude</label>
-                <input type="number" step="any" placeholder="e.g. 6.9271" 
-                       class="app-input w-full p-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-md text-sm"
-                       @bind="ManualLat" @bind:event="oninput" />
-            </div>
-            <div class="flex flex-col gap-1 w-1/2">
-                <label class="text-xs text-secondary mb-1">Longitude</label>
-                <input type="number" step="any" placeholder="e.g. 79.8612" 
-                       class="app-input w-full p-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-md text-sm"
-                       @bind="ManualLng" @bind:event="oninput" />
-            </div>
+        <div class="flex flex-col gap-1 w-full">
+            <label class="text-xs text-secondary mb-1">Location Address</label>
+            <input type="text" placeholder="e.g. Colombo, Sri Lanka" 
+                   class="app-input w-full p-2 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-md text-sm"
+                   @bind="ManualAddress" @bind:event="oninput" />
         </div>
 
         <div class="flex flex-col gap-3 mt-4">
             <AppButton Color="AppButton.ButtonColor.Primary" 
-                       Disabled="@(!CanProceed)"
+                       Disabled="@(!CanProceed || _isGeocoding)"
                        OnClick="@CheckRisk">
-                Check Risk for Selected Location
+                @(_isGeocoding ? "Searching Address..." : "Check Risk for Selected Location")
             </AppButton>
             
             <div class="text-center text-secondary text-sm">OR</div>
@@ -91,10 +83,10 @@
         ? LocationService.GetTowns(AppState.SelectedDivisionId.Value) 
         : new();
 
-    private bool CanProceed => AppState.SelectedDivisionId.HasValue || (ManualLat.HasValue && ManualLng.HasValue);
+    private bool CanProceed => AppState.SelectedDivisionId.HasValue || !string.IsNullOrWhiteSpace(ManualAddress);
 
-    private double? ManualLat;
-    private double? ManualLng;
+    private string? ManualAddress;
+    private bool _isGeocoding = false;
 
     protected override void OnInitialized()
     {
@@ -152,12 +144,41 @@
         }
     }
 
-    private void CheckRisk()
+    private async Task CheckRisk()
     {
-        // If they provided manual lat/lng, prioritize it
-        if (ManualLat.HasValue && ManualLng.HasValue)
+        if (!string.IsNullOrWhiteSpace(ManualAddress))
         {
-            AppState.SetExplicitLocation(new LatLng(ManualLat.Value, ManualLng.Value));
+            _isGeocoding = true;
+            StateHasChanged(); 
+            
+            try 
+            {
+                using var client = new System.Net.Http.HttpClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "SLICFloodApp/1.0");
+                var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(ManualAddress)}&format=json&limit=1";
+                
+                var response = await client.GetStringAsync(url);
+                using var doc = System.Text.Json.JsonDocument.Parse(response);
+                if (doc.RootElement.GetArrayLength() > 0)
+                {
+                    var first = doc.RootElement[0];
+                    var latStr = first.GetProperty("lat").GetString();
+                    var lonStr = first.GetProperty("lon").GetString();
+                    if (double.TryParse(latStr, System.Globalization.CultureInfo.InvariantCulture, out double lat) && 
+                        double.TryParse(lonStr, System.Globalization.CultureInfo.InvariantCulture, out double lon))
+                    {
+                        AppState.SetExplicitLocation(new LatLng(lat, lon));
+                    }
+                }
+            }
+            catch 
+            {
+                // Fallback or ignore
+            }
+            finally 
+            {
+                _isGeocoding = false;
+            }
         }
 
         Nav.NavigateTo("/risk");
