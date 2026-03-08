@@ -83,7 +83,7 @@ public class LocationService
             new() { Id = 12, DistrictId = 1, Name = "Seethawaka", Coords = new(6.9271, 79.8612) },
             new() { Id = 13, DistrictId = 1, Name = "Thimbirigasyaya", Coords = new(6.9271, 79.8612) },
             // Gampaha District
-            new() { Id = 14, DistrictId = 2, Name = "Attanagalla", Coords = new(7.0323, 81.1977) },
+            new() { Id = 14, DistrictId = 2, Name = "Attanagalla", Coords = new(7.1152, 80.1341) },
             new() { Id = 15, DistrictId = 2, Name = "Biyagama", Coords = new(6.9423, 79.9842) },
             new() { Id = 16, DistrictId = 2, Name = "Divulapitiya", Coords = new(7.224, 80.0094) },
             new() { Id = 17, DistrictId = 2, Name = "Dompe", Coords = new(6.9503, 80.051) },
