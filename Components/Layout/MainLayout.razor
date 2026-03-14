@@ -9,8 +9,10 @@
             </div>
             <nav class="nav-links">
                 <NavLink href="/" Match="NavLinkMatch.All" class="nav-link">Home</NavLink>
-                <NavLink href="/location" class="nav-link">Risk App</NavLink>
+                <NavLink href="/location" class="nav-link">Flood Risk</NavLink>
                 <NavLink href="/history" class="nav-link">History</NavLink>
+                <NavLink href="/landslide-location" class="nav-link">Landslide Risk</NavLink>
+                <NavLink href="/landslide" class="nav-link">History</NavLink>
                 <NavLink href="/find-agent" class="nav-link">Find Agent</NavLink>
                 <NavLink href="/awareness" class="nav-link">Awareness</NavLink>
             </nav>
@@ -32,7 +34,7 @@
     }
     
     .global-navbar {
-        position: sticky;
+        position: fixed;
         top: 0;
         z-index: 50;
         width: 100%;
@@ -65,8 +67,10 @@
 
     .nav-links {
         display: flex;
-        gap: 1.5rem;
-        align-items: center;
+        gap: 0.5rem;
+        align-items: flex-end; /* Align tabs to bottom */
+        height: 100%;
+        margin-bottom: -0.75rem; /* Pull down to touch bottom border */
     }
 
     .nav-link {
@@ -74,18 +78,29 @@
         text-decoration: none;
         font-size: 0.95rem;
         font-weight: 500;
-        transition: color 0.2s, text-shadow 0.2s;
+        padding: 0.75rem 1rem;
+        border-radius: 6px 6px 0 0;
+        transition: all 0.2s;
+        border-bottom: 2px solid transparent;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover {
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
         color: #2dd4bf;
-        text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+        background: rgba(45, 212, 191, 0.1);
+        border-bottom: 2px solid #2dd4bf;
+        text-shadow: 0 0 10px rgba(45, 212, 191, 0.3);
     }
 
     .content {
         flex: 1;
         width: 100%;
         overflow-x: hidden;
+        padding-top: 64px; /* Account for fixed navbar height */
     }
 </style>
 

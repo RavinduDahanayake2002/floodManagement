@@ -1,11 +1,11 @@
-@page "/history"
+@page "/landslide"
 @using FloodApp.Services
 @using FloodApp.Components.UI
-@inject HistoricalFloodEventService HistoryService
+@inject HistoricalLandslideService LandslideService
 @inject IJSRuntime JS
 @inject NavigationManager Nav
 
-<div class="history-page">
+<div class="landslide-page">
     <div class="container mx-auto px-4 py-8">
         <!-- Back Button -->
         <div class="flex justify-start mb-4 fade-in">
@@ -20,8 +20,8 @@
         
         <!-- Header -->
         <div class="text-center mb-8 fade-in">
-            <h1 class="text-4xl font-bold text-white mb-2 tracking-tight">Sri Lanka Flood History</h1>
-            <p class="text-lg text-secondary">Documented major flood events from 1947 to present</p>
+            <h1 class="text-4xl font-bold text-white mb-2 tracking-tight">Sri Lanka Landslide History</h1>
+            <p class="text-lg text-secondary">Documented major landslide events and their impact across Sri Lanka</p>
         </div>
 
         <!-- Filter Bar -->
@@ -70,7 +70,7 @@
                     @if (!filteredEvents.Any())
                     {
                         <div class="text-center py-10 glass-panel rounded-xl">
-                            <p class="text-secondary">No flood events found matching your filters.</p>
+                            <p class="text-secondary">No landslide events found matching your filters.</p>
                         </div>
                     }
                     else
@@ -79,9 +79,9 @@
                         {
                             <div class="timeline-item slide-up">
                                 <div class="timeline-dot" style="background-color: @GetSeverityColor(evt.Severity)"></div>
-                                <div class="glass-panel p-6 rounded-xl relative overflow-hidden group hover:border-teal-500/30 transition-all duration-300">
+                                <div class="glass-panel p-6 rounded-xl relative overflow-hidden group hover:border-amber-500/30 transition-all duration-300">
                                     <div class="absolute top-0 right-0 p-3 opacity-20 group-hover:opacity-40 transition-opacity">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="@GetSeverityColor(evt.Severity)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h3l3 -9l5 21l6 -16l3 4h2"/></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="@GetSeverityColor(evt.Severity)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 4 4-6 4 10"/><path d="M3 21h18"/></svg>
                                     </div>
 
                                     <div class="flex items-center gap-3 mb-3">
@@ -113,7 +113,7 @@
                                         </div>
                                         <div>
                                             <p class="text-xs text-secondary uppercase tracking-wider">Est. Damage</p>
-                                            <p class="font-semibold text-error">Rs. @(evt.DamageEstimateLKR / 1000000000.0)B</p>
+                                            <p class="font-semibold text-amber-400">Rs. @(evt.DamageEstimateLKR / 1000000000.0)B</p>
                                         </div>
                                     </div>
                                 </div>
@@ -128,11 +128,11 @@
                 <div class="sticky top-24 flex flex-col gap-6 fade-in" style="animation-delay: 0.2s;">
                     
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="glass-panel p-5 rounded-xl text-center border-t-2 border-teal-500">
+                        <div class="glass-panel p-5 rounded-xl text-center border-t-2 border-amber-500">
                             <h4 class="text-sm text-secondary uppercase mb-1">Total Events</h4>
                             <p class="text-3xl font-bold text-white">@totalCount</p>
                         </div>
-                        <div class="glass-panel p-5 rounded-xl text-center border-t-2 border-primary">
+                        <div class="glass-panel p-5 rounded-xl text-center border-t-2 border-orange-600">
                             <h4 class="text-sm text-secondary uppercase mb-1">Most Affected</h4>
                             <p class="text-xl font-bold text-white mt-2">@mostAffectedProv</p>
                         </div>
@@ -140,19 +140,19 @@
 
                     @if (deadliestEvent != null)
                     {
-                        <div class="glass-panel p-6 rounded-xl bg-gradient-to-br from-slate-800/80 to-red-900/20 border-l-4 border-error">
+                        <div class="glass-panel p-6 rounded-xl bg-gradient-to-br from-slate-800/80 to-amber-900/20 border-l-4 border-amber-500">
                             <h4 class="text-sm text-secondary uppercase mb-2 flex items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-error"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                Deadliest Flood on Record
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-500"><path d="M3 17l4-8 4 4 4-6 4 10"/><path d="M3 21h18"/></svg>
+                                Deadliest Landslide on Record
                             </h4>
                             <p class="text-lg font-bold text-white mb-1">@deadliestEvent.Name</p>
                             <p class="text-sm text-slate-300 line-clamp-2 mb-3">@deadliestEvent.Description</p>
-                            <div class="flex justify-between items-end border-t border-red-500/20 pt-3">
+                            <div class="flex justify-between items-end border-t border-amber-500/20 pt-3">
                                 <div>
-                                    <p class="text-xs text-red-300">Lives Lost</p>
-                                    <p class="text-xl font-bold text-error">@deadliestEvent.Deaths</p>
+                                    <p class="text-xs text-amber-300">Lives Lost</p>
+                                    <p class="text-xl font-bold text-amber-400">@deadliestEvent.Deaths</p>
                                 </div>
-                                <span class="badge" style="border-color: #ef4444; color: #ef4444;">@deadliestEvent.Year</span>
+                                <span class="badge" style="border-color: #f59e0b; color: #f59e0b;">@deadliestEvent.Year</span>
                             </div>
                         </div>
                     }
@@ -160,18 +160,19 @@
                     <div class="glass-panel p-6 rounded-xl">
                         <h4 class="text-md font-semibold text-white mb-4">Decade Frequency</h4>
                         <div class="h-48 w-full">
-                            <canvas id="historyChart"></canvas>
+                            <canvas id="landslideChart"></canvas>
                         </div>
                     </div>
 
-                    <div class="glass-panel p-6 rounded-xl cta-gradient text-center shadow-lg transform transition hover:-translate-y-1">
+                    <!-- NBRO Alert Box -->
+                    <div class="glass-panel p-6 rounded-xl nbro-gradient text-center shadow-lg transform transition hover:-translate-y-1">
                         <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-2">Is your property protected?</h3>
-                        <p class="text-slate-200 text-sm mb-6">Don't wait for history to repeat itself. Shield your home with SLIC Flood Cover.</p>
-                        <a href="/location" class="cta-btn block w-full">
-                            Get a Flood Quote Today
+                        <h3 class="text-xl font-bold text-white mb-2">Are you on a slope?</h3>
+                        <p class="text-slate-200 text-sm mb-6">Landslide risk is invisible until it's too late. Protect your hillside or estate property with SLIC cover.</p>
+                        <a href="/location" class="nbro-btn block w-full">
+                            Check My Landslide Risk
                         </a>
                     </div>
                 </div>
@@ -182,7 +183,7 @@
 </div>
 
 @code {
-    private List<HistoricalFloodEvent> filteredEvents = new();
+    private List<HistoricalLandslideEvent> filteredEvents = new();
     private string _selectedProvince = "All";
     private string selectedProvince
     {
@@ -205,19 +206,17 @@
     }
 
     private int totalCount;
-    private HistoricalFloodEvent? deadliestEvent;
+    private HistoricalLandslideEvent? deadliestEvent;
     private string mostAffectedProv = "";
     private Dictionary<string, int> decFreq = new();
 
     protected override void OnInitialized()
     {
         ApplyFilters();
-        
-        // Static stats calculation
-        totalCount = HistoryService.GetTotalEventsCount();
-        deadliestEvent = HistoryService.GetDeadliestEvent();
-        mostAffectedProv = HistoryService.GetMostAffectedProvince();
-        decFreq = HistoryService.GetDecadeFrequency();
+        totalCount = LandslideService.GetTotalEventsCount();
+        deadliestEvent = LandslideService.GetDeadliestEvent();
+        mostAffectedProv = LandslideService.GetMostAffectedProvince();
+        decFreq = LandslideService.GetDecadeFrequency();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -226,13 +225,13 @@
         {
             var labels = decFreq.Keys.ToArray();
             var values = decFreq.Values.ToArray();
-            await JS.InvokeVoidAsync("renderHistoryChart", "historyChart", labels, values);
+            await JS.InvokeVoidAsync("renderLandslideChart", "landslideChart", labels, values);
         }
     }
 
     private void ApplyFilters()
     {
-        filteredEvents = HistoryService.GetFilteredEvents(selectedProvince, selectedYearRange, selectedSeverity);
+        filteredEvents = LandslideService.GetFilteredEvents(selectedProvince, selectedYearRange, selectedSeverity);
     }
 
     private void ResetFilters()
@@ -247,21 +246,21 @@
     {
         return severity switch
         {
-            "Catastrophic" => "#ef4444", // Red
-            "Major" => "#eab308", // Yellow
-            "Moderate" => "#10b981", // Green
-            _ => "#94a3b8"
+            "Catastrophic" => "#ef4444",   // Red
+            "Major"        => "#f59e0b",   // Amber
+            "Moderate"     => "#10b981",   // Green
+            _              => "#94a3b8"
         };
     }
 }
 
 <style>
-    .history-page {
+    .landslide-page {
         min-height: 100vh;
         background-color: #0f172a;
         background-image: 
-            radial-gradient(at 0% 0%, rgba(15, 118, 110, 0.15) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.1) 0px, transparent 50%);
+            radial-gradient(at 0% 0%, rgba(120, 53, 15, 0.18) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(180, 83, 9, 0.12) 0px, transparent 50%);
         padding-top: 1rem;
         padding-bottom: 4rem;
     }
@@ -286,8 +285,8 @@
     }
     
     .glass-input:focus {
-        border-color: #2dd4bf;
-        box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
+        border-color: #f59e0b;
+        box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
     }
     
     .glass-input option {
@@ -323,7 +322,7 @@
         top: 0;
         bottom: 0;
         width: 2px;
-        background: linear-gradient(to bottom, rgba(45, 212, 191, 0.5), rgba(124, 58, 237, 0.2));
+        background: linear-gradient(to bottom, rgba(245, 158, 11, 0.6), rgba(180, 83, 9, 0.2));
         border-radius: 1px;
     }
 
@@ -360,25 +359,22 @@
     .district-tag {
         font-size: 0.75rem;
         padding: 0.2rem 0.6rem;
-        background: rgba(148, 163, 184, 0.1);
-        color: #cbd5e1;
+        background: rgba(245, 158, 11, 0.08);
+        color: #fcd34d;
         border-radius: 0.25rem;
-        border: 1px solid rgba(148, 163, 184, 0.2);
+        border: 1px solid rgba(245, 158, 11, 0.2);
     }
 
     .text-secondary { color: #94a3b8; }
-    .text-error { color: #ef4444; }
-    .text-primary { color: #7c3aed; }
-    .border-primary { border-color: #7c3aed; }
 
-    .cta-gradient {
-        background: linear-gradient(135deg, rgba(17, 94, 89, 0.8) 0%, rgba(13, 148, 136, 0.6) 100%);
-        border: 1px solid rgba(45, 212, 191, 0.3);
+    .nbro-gradient {
+        background: linear-gradient(135deg, rgba(120, 53, 15, 0.7) 0%, rgba(180, 83, 9, 0.5) 100%);
+        border: 1px solid rgba(245, 158, 11, 0.3);
     }
 
-    .cta-btn {
+    .nbro-btn {
         background: white;
-        color: #0d9488;
+        color: #92400e;
         padding: 0.75rem 1.5rem;
         border-radius: 0.5rem;
         font-weight: 700;
@@ -387,8 +383,8 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
-    .cta-btn:hover {
-        background: #f8fafc;
+    .nbro-btn:hover {
+        background: #fffbeb;
         transform: translateY(-2px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
     }

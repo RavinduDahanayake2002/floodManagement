@@ -1,0 +1,13 @@
+﻿MSBuild version 17.9.4+90725d08d for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+D:\My_PaidProjects\slic-flood-management\Components\Location\LocationForm.razor(72,38): warning CS8625: Cannot convert null literal to non-nullable reference type. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+  FloodApp -> D:\My_PaidProjects\slic-flood-management\bin\Debug\net8.0\FloodApp.dll
+
+Build succeeded.
+
+D:\My_PaidProjects\slic-flood-management\Components\Location\LocationForm.razor(72,38): warning CS8625: Cannot convert null literal to non-nullable reference type. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:02.80

@@ -43,3 +43,48 @@ window.renderHistoryChart = (canvasId, dataLabels, dataValues) => {
         }
     });
 };
+
+window.renderLandslideChart = (canvasId, dataLabels, dataValues) => {
+    const ctx = document.getElementById(canvasId);
+    if (!ctx) return;
+
+    if (window.landslideChartInstance) {
+        window.landslideChartInstance.destroy();
+    }
+
+    window.landslideChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: dataLabels,
+            datasets: [{
+                label: 'Landslide Events',
+                data: dataValues,
+                backgroundColor: 'rgba(245, 158, 11, 0.5)',
+                borderColor: 'rgba(245, 158, 11, 1)',
+                borderWidth: 1,
+                borderRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1,
+                        color: 'rgba(255, 255, 255, 0.7)'
+                    },
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    ticks: { color: 'rgba(255, 255, 255, 0.7)' },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+};

@@ -1,9 +1,20 @@
+@using FloodApp.Components.UI
+@inject NavigationManager Nav
 @page "/awareness"
 
 <div class="awareness-page min-h-screen pb-16 overflow-hidden">
     
     <!-- Hero Header -->
     <div class="hero-section relative py-16 px-4 md:px-8 mb-12">
+        <div class="container mx-auto px-6 mb-8 flex justify-start z-20 relative">
+            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
+                       Color="AppButton.ButtonColor.Neutral"
+                       OnClick="@(() => Nav.NavigateTo("/"))"
+                       Class="px-2 py-1 -ml-2">
+                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                Back
+            </AppButton>
+        </div>
         <div class="container mx-auto text-center z-10 relative">
             <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight drop-shadow-lg">
                 Flood Awareness & <span class="text-teal-400">Protection Guide</span>

@@ -1,0 +1,620 @@
+﻿Building...
+info: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[63]
+      User profile is available. Using 'C:\Users\manod\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5169
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: D:\My_PaidProjects\slic-flood-management
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/ - - -
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/ (/)'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/ (/)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/ - 200 - text/html;+charset=utf-8 83.0986ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - - -
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/js/historyChart.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.web.js was not modified
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /js/historyChart.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - 304 - text/javascript 3.6136ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/js/historyChart.js - 304 - text/javascript 3.6136ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor/initializers - 200 - application/json;+charset=utf-8 3.2523ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 3.8758ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor?id=_jBQh9DECgjS5RGkqMalYA - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/ (/)'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/ (/)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/ - 200 - text/html;+charset=utf-8 9.8968ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/js/historyChart.js - - -
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /js/historyChart.js was not modified
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/js/historyChart.js - 304 - text/javascript 0.6895ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.web.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - 304 - text/javascript 1.5234ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor/initializers - 200 - application/json;+charset=utf-8 0.6180ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.6219ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor?id=jCtMXKfChYOheLtzKcawnA - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+warn: Microsoft.AspNetCore.Components.Server.Circuits.RemoteRenderer[100]
+      Unhandled exception rendering component: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+      Microsoft.JSInterop.JSException: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+         at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+         at FloodApp.Pages.AgentLocator.ReDrawMap() in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 192
+         at FloodApp.Pages.AgentLocator.OnAfterRenderAsync(Boolean firstRender) in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 167
+         at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+fail: Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost[111]
+      Unhandled exception in circuit 'yyHqyPVh_mXCm2skO6FBo1aZwUCnOTJJBT2bxE1Vz28'.
+      Microsoft.JSInterop.JSException: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+         at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+         at FloodApp.Pages.AgentLocator.ReDrawMap() in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 192
+         at FloodApp.Pages.AgentLocator.OnAfterRenderAsync(Boolean firstRender) in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 167
+         at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor?id=jCtMXKfChYOheLtzKcawnA - 101 - - 19259.6914ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/ (/)'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/ (/)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/ - 200 - text/html;+charset=utf-8 5.2624ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/disconnect - multipart/form-data;+boundary=----WebKitFormBoundaryBMcK3u1Ya8RZjAfE 359
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.web.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - 304 - text/javascript 0.4320ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/disconnect - 200 0 - 10.8201ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor/initializers - 200 - application/json;+charset=utf-8 0.3636ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.5951ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor?id=od-1QYpUXPh9w45g9H79Fg - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+warn: Microsoft.AspNetCore.Components.Server.Circuits.RemoteRenderer[100]
+      Unhandled exception rendering component: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+      Microsoft.JSInterop.JSException: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+         at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+         at FloodApp.Pages.AgentLocator.ReDrawMap() in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 192
+         at FloodApp.Pages.AgentLocator.OnAfterRenderAsync(Boolean firstRender) in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 167
+         at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+fail: Microsoft.AspNetCore.Components.Server.Circuits.CircuitHost[111]
+      Unhandled exception in circuit 'xU40lZtmGh-FAGGHe3XmsZodF_sRYtMXQQibpKwQEko'.
+      Microsoft.JSInterop.JSException: t.addLayer is not a function
+TypeError: t.addLayer is not a function
+    at e.addTo (https://unpkg.com/leaflet@1.9.4/dist/leaflet.js:5:67005)
+    at Module.addAgentMarker (http://localhost:5169/js/map.js:151:62)
+    at http://localhost:5169/_framework/blazor.web.js:1:3244
+    at new Promise (<anonymous>)
+    at y.beginInvokeJSFromDotNet (http://localhost:5169/_framework/blazor.web.js:1:3201)
+    at fn._invokeClientMethod (http://localhost:5169/_framework/blazor.web.js:1:62914)
+    at fn._processIncomingData (http://localhost:5169/_framework/blazor.web.js:1:60389)
+    at An.onreceive (http://localhost:5169/_framework/blazor.web.js:1:54030)
+    at WebSocket.<anonymous> (http://localhost:5169/_framework/blazor.web.js:1:82175)
+         at Microsoft.JSInterop.JSRuntime.InvokeAsync[TValue](Int64 targetInstanceId, String identifier, Object[] args)
+         at Microsoft.JSInterop.JSObjectReferenceExtensions.InvokeVoidAsync(IJSObjectReference jsObjectReference, String identifier, Object[] args)
+         at FloodApp.Pages.AgentLocator.ReDrawMap() in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 192
+         at FloodApp.Pages.AgentLocator.OnAfterRenderAsync(Boolean firstRender) in D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor:line 167
+         at Microsoft.AspNetCore.Components.RenderTree.Renderer.GetErrorHandledTask(Task taskToHandle, ComponentState owningComponentState)
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor?id=od-1QYpUXPh9w45g9H79Fg - 101 - - 3088.4578ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/ (/)'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/ (/)'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/ - 200 - text/html;+charset=utf-8 1.2509ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/disconnect - multipart/form-data;+boundary=----WebKitFormBoundaryc4X1bfagKwyoimJm 359
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/disconnect - 200 0 - 0.8213ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.web.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor web static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_framework/blazor.web.js - 304 - text/javascript 0.3246ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/_blazor/initializers - 200 - application/json;+charset=utf-8 0.2147ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5169/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.4850ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/_blazor?id=9APGpX9sm3K93KMhogtwqA - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Microsoft.AspNetCore.Routing.RouteEndpoint'
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 733.98ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 744.2705ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 245.167ms - 400
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 245.3355ms - 400
+Gemini API Request failed: BadRequest - {
+  "error": {
+    "code": 400,
+    "message": "API key expired. Please renew the API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "API_KEY_INVALID",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "generativelanguage.googleapis.com"
+        }
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+        "locale": "en-US",
+        "message": "API key expired. Please renew the API key."
+      }
+    ]
+  }
+}
+
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/js/map.js?v=7e4da94cc9594b87962712c756e2626f - - -
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
+      Sending file. Request path: '/js/map.js'. Physical path: 'D:\My_PaidProjects\slic-flood-management\wwwroot\js\map.js'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/js/map.js?v=7e4da94cc9594b87962712c756e2626f - 200 7014 text/javascript 5.1034ms
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 140.0431ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 140.1614ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 279.2916ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 279.4016ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 421.9638ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 422.0391ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 139.0568ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 139.1963ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 279.1804ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 279.2761ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 417.9536ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 418.0222ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 137.499ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 137.6121ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 138.5542ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 138.6899ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 164.1328ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 164.2249ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 198.8054ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 199.7955ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 199.9316ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 198.9038ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 199.2103ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 199.3625ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 166.4712ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 166.5972ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 172.0374ms - 400
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 172.1934ms - 400
+Gemini API Request failed: BadRequest - {
+  "error": {
+    "code": 400,
+    "message": "API key expired. Please renew the API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "API_KEY_INVALID",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "generativelanguage.googleapis.com"
+        }
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+        "locale": "en-US",
+        "message": "API key expired. Please renew the API key."
+      }
+    ]
+  }
+}
+
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/js/map.js?v=e5fb8a55458d4c59a1e8bc9c9c7ee624 - - -
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
+      Sending file. Request path: '/js/map.js'. Physical path: 'D:\My_PaidProjects\slic-flood-management\wwwroot\js\map.js'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/js/map.js?v=e5fb8a55458d4c59a1e8bc9c9c7ee624 - 200 7014 text/javascript 1.3423ms
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 135.9059ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 136.0784ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 137.8859ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 137.9534ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 160.3537ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 160.4625ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 135.9727ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 136.0955ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 139.8385ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 140.0061ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 161.8152ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 161.9412ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 715.5103ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 715.6159ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 282.1945ms - 400
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 282.2731ms - 400
+Gemini API Request failed: BadRequest - {
+  "error": {
+    "code": 400,
+    "message": "API key expired. Please renew the API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "API_KEY_INVALID",
+        "domain": "googleapis.com",
+        "metadata": {
+          "service": "generativelanguage.googleapis.com"
+        }
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.LocalizedMessage",
+        "locale": "en-US",
+        "message": "API key expired. Please renew the API key."
+      }
+    ]
+  }
+}
+
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5169/js/map.js?v=636edd3412854e1699b78f09a1c0b2a5 - - -
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
+      Sending file. Request path: '/js/map.js'. Physical path: 'D:\My_PaidProjects\slic-flood-management\wwwroot\js\map.js'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5169/js/map.js?v=636edd3412854e1699b78f09a1c0b2a5 - 200 7014 text/javascript 0.9068ms
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 167.8833ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 167.9616ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 322.5679ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 322.6423ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 471.4251ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 471.4876ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.LogicalHandler[100]
+      Start processing HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[100]
+      Sending HTTP request GET https://api.open-meteo.com/v1/forecast?*
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 145.3975ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 145.4509ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 149.2326ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 149.3024ms - 200
+info: System.Net.Http.HttpClient.Default.ClientHandler[101]
+      Received HTTP response headers after 151.8901ms - 200
+info: System.Net.Http.HttpClient.Default.LogicalHandler[101]
+      End processing HTTP request after 152.0332ms - 200

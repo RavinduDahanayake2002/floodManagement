@@ -67,6 +67,8 @@
 </div>
 
 @code {
+    [Parameter] public string DestinationUrl { get; set; } = "/risk";
+
     private void GoToMapPicker()
     {
         AppState.SetExplicitLocation(null);
@@ -181,6 +183,6 @@
             }
         }
 
-        Nav.NavigateTo("/risk");
+        Nav.NavigateTo(DestinationUrl);
     }
 }

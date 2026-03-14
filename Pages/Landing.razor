@@ -10,7 +10,7 @@
     <div class="floating-blob blob-3"></div>
 
     <!-- Main Content -->
-    <div class="glass-card">
+    <div class="glass-card" tabindex="-1">
         <div class="logo-container">
             <img src="slic-logo.png" alt="SLIC General" class="logo-img" />
         </div>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="cta-section">
-            <button class="btn-primary" @onclick="EnterDashboard">
+            <button class="btn-primary" @onclick="EnterDashboard" tabindex="0">
                 Enter Dashboard
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-arrow"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
@@ -37,6 +37,18 @@
 </div>
 
 @code {
+    [Inject] IJSRuntime JS { get; set; } = default!;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Blur any element that auto-focused on page load to prevent the
+            // unwanted focus ring appearing on the card/button without user interaction.
+            await JS.InvokeVoidAsync("eval", "document.activeElement?.blur()");
+        }
+    }
+
     private void EnterDashboard()
     {
         Nav.NavigateTo("/location");
@@ -245,6 +257,11 @@
         outline: none;
     }
 
+    /* Prevent any browser-injected focus ring on the card itself */
+    .glass-card:focus {
+        outline: none;
+    }
+
     .btn-primary::after {
         content: '';
         position: absolute;
@@ -272,6 +289,11 @@
     .btn-primary:active::after {
         transform: translate(-50%, -50%) scale(1);
         transition: transform 0s;
+    }
+
+    /* Only show focus ring for keyboard navigation, not on click/page-load */
+    .btn-primary:focus {
+        outline: none;
     }
 
     .btn-primary:focus-visible {

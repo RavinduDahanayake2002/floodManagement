@@ -12,6 +12,8 @@ builder.Services.AddRazorComponents()
 builder.Services.AddSingleton<LocationService>();
 builder.Services.AddSingleton<AdminService>();
 builder.Services.AddSingleton<HistoricalFloodEventService>();
+builder.Services.AddSingleton<HistoricalLandslideService>();
+builder.Services.AddSingleton<ClaimDataService>();
 builder.Services.AddSingleton<AgentLocatorService>();
 builder.Services.AddScoped<AppState>();
 builder.Services.AddSingleton<GeoJsonService>();

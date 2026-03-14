@@ -1,6 +1,7 @@
-@page "/location"
+@page "/landslide-location"
 @using FloodApp.Components.Location
 @using FloodApp.Components.UI
+@using FloodApp.Components.Maps
 @layout FloodApp.Components.Layout.MainLayout
 
 <div class="h-screen w-full flex overflow-hidden">
@@ -16,11 +17,11 @@
             </AppButton>
         </div>
         <div>
-            <h1 class="text-2xl font-bold mb-1">Check Location</h1>
-            <p class="text-secondary text-sm">Select a region to analyze flood risk.</p>
+            <h1 class="text-2xl font-bold mb-1">Check Landslide Risk</h1>
+            <p class="text-secondary text-sm">Select a region to analyze landslide risk.</p>
         </div>
         
-        <LocationForm />
+        <LocationForm DestinationUrl="/landslide-risk" />
         
         <div class="mt-auto text-xs text-secondary text-center">
             Data provided by Disaster Management Center

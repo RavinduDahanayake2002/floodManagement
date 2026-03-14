@@ -28,7 +28,16 @@
     <!-- Main Content -->
     <main class="main-content">
         <header class="top-header">
-            <h2>Dashboard Overview</h2>
+            <div class="flex items-center gap-4">
+                <AppButton Variant="AppButton.ButtonVariant.Ghost" 
+                           Color="AppButton.ButtonColor.Neutral"
+                           OnClick="@GoHome"
+                           Class="px-2 py-1 -ml-2">
+                    <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                    Back
+                </AppButton>
+                <h2>Dashboard Overview</h2>
+            </div>
             <div class="user-profile">
                 <div class="avatar">AD</div>
                 <span>Admin User</span>
