@@ -10,6 +10,7 @@ public class AppState
     public int? SelectedTownId { get; private set; }
     public LatLng? SelectedLatLng { get; private set; }
     public string? SelectedLocationName { get; private set; }
+    public string? FullAddress { get; private set; }
     
     public LatLng? MapCenter { get; private set; }
     public int MapZoom { get; private set; } = 8;
@@ -67,18 +68,24 @@ public class AppState
         NotifyStateChanged();
     }
 
-    public void SetTown(int? townId, LatLng? coords, string? townName = null)
+    public void SetTown(int? townId, LatLng? coords, string? locationName)
     {
         SelectedTownId = townId;
-        if (coords != null)
-        {
-            SelectedLatLng = coords;
-            MapCenter = coords;
-            MapZoom = 14;
-        }
-        if (townName != null) {
-            SelectedLocationName = townName;
-        }
+        if (coords != null) SelectedLatLng = coords;
+        if (locationName != null) SelectedLocationName = locationName;
+        NotifyStateChanged();
+    }
+
+    public void SetCustomLocation(LatLng coords, string locationName)
+    {
+        SelectedLatLng = coords;
+        SelectedLocationName = locationName;
+        
+        SelectedProvinceId = null;
+        SelectedDistrictId = null;
+        SelectedDivisionId = null;
+        SelectedTownId = null;
+        
         NotifyStateChanged();
     }
     
@@ -94,6 +101,12 @@ public class AppState
     public void SetRiskResult(RiskResult result)
     {
         CurrentRisk = result;
+        NotifyStateChanged();
+    }
+
+    public void SetFullAddress(string? address)
+    {
+        FullAddress = address;
         NotifyStateChanged();
     }
 

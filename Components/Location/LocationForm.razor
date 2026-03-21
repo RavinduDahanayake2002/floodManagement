@@ -2,9 +2,11 @@
 @using FloodApp.State
 @using FloodApp.Models
 @using FloodApp.Components.UI
+@using System.Text.Json
 @inject LocationService LocationService
 @inject AppState AppState
 @inject NavigationManager Nav
+@inject IHttpClientFactory HttpClientFactory
 
 <div class="location-form flex flex-col gap-4">
     <Panel Class="flex flex-col gap-6">
@@ -34,11 +36,33 @@
                    SelectedValueChanged="@OnDivisionChanged" 
                    Class="w-full" />
 
+        <div class="text-center text-secondary text-sm font-medium mt-1 mb-1">OR</div>
+
+        <!-- Full Address -->
+        <div class="app-input-group">
+            <label class="app-input-label">Full Address</label>
+            <textarea class="app-textarea" 
+                      placeholder="Example: 71/2 malgahakoratruwa sitinamauwa beliatta"
+                      @bind="addressText"
+                      @bind:event="oninput"></textarea>
+            @if (!string.IsNullOrEmpty(_geocodeError))
+            {
+                <div class="text-red-400 text-xs mt-1">@_geocodeError</div>
+            }
+        </div>
+
         <div class="flex flex-col gap-3 mt-4">
             <AppButton Color="AppButton.ButtonColor.Primary" 
-                       Disabled="@(!CanProceed)"
+                       Disabled="@(!CanProceed || _isGeocoding)"
                        OnClick="@CheckRisk">
-                Check Risk
+                @if (_isGeocoding)
+                {
+                    <span>Locating...</span>
+                }
+                else
+                {
+                    <span>Check Risk</span>
+                }
             </AppButton>
             
             <div class="text-center text-secondary text-sm">OR</div>
@@ -53,6 +77,15 @@
 </div>
 
 @code {
+    private string? addressText
+    {
+        get => AppState.FullAddress;
+        set => AppState.SetFullAddress(value);
+    }
+    
+    private bool _isGeocoding = false;
+    private string? _geocodeError = null;
+
     private List<Province> Provinces => LocationService.GetProvinces();
     private List<District> Districts => AppState.SelectedProvinceId.HasValue 
         ? LocationService.GetDistricts(AppState.SelectedProvinceId.Value) 
@@ -64,7 +97,7 @@
         ? LocationService.GetTowns(AppState.SelectedDivisionId.Value) 
         : new();
 
-    private bool CanProceed => AppState.SelectedDivisionId.HasValue;
+    private bool CanProceed => AppState.SelectedDivisionId.HasValue || !string.IsNullOrWhiteSpace(addressText);
 
     protected override void OnInitialized()
     {
@@ -122,8 +155,102 @@
         }
     }
 
-    private void CheckRisk()
+    private async Task CheckRisk()
     {
-        Nav.NavigateTo("/risk");
+        _geocodeError = null;
+
+        if (!string.IsNullOrWhiteSpace(addressText))
+        {
+            _isGeocoding = true;
+            StateHasChanged();
+            
+            try 
+            {
+                var client = HttpClientFactory.CreateClient();
+                client.DefaultRequestHeaders.Add("User-Agent", "SLICFloodManagementApp/1.0");
+                
+                var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(addressText + ", Sri Lanka")}&format=json&limit=1";
+                var result = await client.GetFromJsonAsync<JsonElement[]>(url);
+                
+                if (result != null && result.Length > 0)
+                {
+                    var latStr = result[0].GetProperty("lat").GetString();
+                    var lonStr = result[0].GetProperty("lon").GetString();
+                    
+                    if (double.TryParse(latStr, out double lat) && double.TryParse(lonStr, out double lon))
+                    {
+                        AppState.SetFullAddress(addressText);
+                        AppState.SetCustomLocation(new LatLng(lat, lon), addressText);
+                        Nav.NavigateTo("/risk");
+                    }
+                    else
+                    {
+                        _geocodeError = "Could not parse coordinates from the address.";
+                    }
+                }
+                else
+                {
+                    _geocodeError = "Address not found. Please try a different address or use the dropdowns.";
+                }
+            }
+            catch (Exception ex)
+            {
+                _geocodeError = "Error looking up address. Please try again or use the dropdowns.";
+                Console.WriteLine($"Geocoding error: {ex.Message}");
+            }
+            finally
+            {
+                _isGeocoding = false;
+                StateHasChanged();
+            }
+        }
+        else if (AppState.SelectedDivisionId.HasValue)
+        {
+            Nav.NavigateTo("/risk");
+        }
     }
 }
+
+<style>
+    .app-input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+    }
+
+    .app-input-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+    }
+
+    .app-textarea {
+        width: 100%;
+        padding: 0.625rem 1rem;
+        background-color: var(--bg-primary);
+        border: 1px solid var(--border-color);
+        border-radius: 0.5rem;
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        resize: vertical;
+        min-height: 80px;
+        transition: all 0.2s;
+        font-family: inherit;
+    }
+
+    .app-textarea::placeholder {
+        color: var(--text-secondary);
+        opacity: 0.7;
+    }
+
+    .app-textarea:hover {
+        border-color: var(--text-secondary);
+    }
+
+    .app-textarea:focus {
+        border-color: var(--accent);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    }
+</style>

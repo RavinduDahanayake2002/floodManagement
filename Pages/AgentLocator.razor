@@ -1,12 +1,22 @@
 @page "/find-agent"
 @using FloodApp.Services
 @inject AgentLocatorService AgentService
+@inject NavigationManager Nav
 @inject IJSRuntime JS
 
 <div class="agent-page flex flex-col h-screen overflow-hidden">
     <!-- Header Area -->
-    <div class="header-section shrink-0 z-20">
-        <div class="container mx-auto px-6 py-6 text-center">
+    <div class="header-section shrink-0 z-20 pt-4">
+        <div class="container mx-auto px-6">
+            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
+                       Color="AppButton.ButtonColor.Neutral"
+                       OnClick="@GoBack"
+                       Class="px-2 py-1 -ml-2 mb-2">
+                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+                Back
+            </AppButton>
+        </div>
+        <div class="container mx-auto px-6 py-4 text-center">
             <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Find Your Nearest SLIC Agent</h1>
             <p class="text-secondary">Walk in or call — we're here to protect you.</p>
         </div>
@@ -248,6 +258,8 @@
             StateHasChanged();
         }
     }
+
+    private void GoBack() => Nav.NavigateTo("/");
 }
 
 <style>

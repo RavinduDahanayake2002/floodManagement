@@ -1,10 +1,18 @@
 @page "/history"
 @using FloodApp.Services
 @inject HistoricalFloodEventService HistoryService
+@inject NavigationManager Nav
 @inject IJSRuntime JS
 
 <div class="history-page">
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-6">
+        <AppButton Variant="AppButton.ButtonVariant.Ghost" 
+                   Color="AppButton.ButtonColor.Neutral"
+                   OnClick="@GoBack"
+                   Class="px-2 py-1 -ml-2 mb-2">
+            <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
+            Back
+        </AppButton>
         
         <!-- Header -->
         <div class="text-center mb-8 fade-in">
@@ -230,6 +238,8 @@
         _selectedSeverity = "All";
         ApplyFilters();
     }
+
+    private void GoBack() => Nav.NavigateTo("/");
 
     private string GetSeverityColor(string severity)
     {
