@@ -3,9 +3,9 @@
 @using FloodApp.Components.UI
 @layout FloodApp.Components.Layout.MainLayout
 
-<div class="h-screen w-full flex overflow-hidden">
+<div class="h-[calc(100vh-60px)] md:h-[calc(100vh-50px)] w-full flex flex-col-reverse md:flex-row overflow-hidden">
     <!-- Left Panel: Form -->
-    <div class="location-sidebar flex flex-col gap-6 z-10 overflow-y-auto">
+    <div class="location-sidebar flex-1 md:flex-none flex flex-col gap-6 z-10 overflow-y-auto">
         <div class="flex items-center gap-2 mb-1">
             <AppButton Variant="AppButton.ButtonVariant.Ghost" 
                        Color="AppButton.ButtonColor.Neutral"
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Right Panel: Map -->
-    <div class="flex-1 bg-gray-800 relative z-0">
+    <div class="h-[40vh] shrink-0 md:h-auto md:flex-1 bg-gray-800 relative z-0">
          <SriLankaRiskMap />
     </div>
 </div>
@@ -49,13 +49,21 @@
     .overflow-y-auto { overflow-y: auto; }
     
     .location-sidebar {
-        width: 33.333333%;
-        min-width: 360px;
-        padding: 1.75rem;
+        width: 100%;
+        padding: 1.25rem;
         background: rgba(15, 23, 42, 0.9);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
-        border-right: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+        box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    }
+    
+    @media (min-width: 768px) {
+        .location-sidebar {
+            width: 33.333333%;
+            min-width: 360px;
+            padding: 1.75rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+        }
     }
 </style>
