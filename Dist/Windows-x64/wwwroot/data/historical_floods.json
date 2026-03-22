@@ -1,0 +1,288 @@
+[
+    {
+        "id": 1,
+        "year": 1947,
+        "month": "August",
+        "name": "1947 Kelani River Basin Floods",
+        "affectedDistricts": [
+            "Colombo",
+            "Gampaha",
+            "Kegalle",
+            "Ratnapura"
+        ],
+        "severity": "Catastrophic",
+        "deaths": 125,
+        "affectedPeople": 500000,
+        "damageEstimateLKR": 15000000000,
+        "description": "One of the most devastating floods in recorded Sri Lankan history. The Kelani river overflowed its banks causing massive destruction across the western province, permanently altering infrastructure planning around Colombo."
+    },
+    {
+        "id": 2,
+        "year": 2003,
+        "month": "May",
+        "name": "2003 Southern Monsoon Floods & Landslides",
+        "affectedDistricts": [
+            "Ratnapura",
+            "Galle",
+            "Matara",
+            "Hambantota",
+            "Kalutara"
+        ],
+        "severity": "Catastrophic",
+        "deaths": 250,
+        "affectedPeople": 750000,
+        "damageEstimateLKR": 21000000000,
+        "description": "Triggered by exceptionally heavy rainfall, the Gin, Kalu, and Nilwala rivers burst, creating severe flooding and triggering massive landslides in Ratnapura."
+    },
+    {
+        "id": 3,
+        "year": 2010,
+        "month": "May",
+        "name": "2010 Western Province Flash Floods",
+        "affectedDistricts": [
+            "Colombo",
+            "Gampaha",
+            "Kalutara"
+        ],
+        "severity": "Major",
+        "deaths": 20,
+        "affectedPeople": 600000,
+        "damageEstimateLKR": 8000000000,
+        "description": "Rapid localized downpours caused severe flash flooding in the Colombo metropolitan area, paralyzing the city and submerging the parliament premises."
+    },
+    {
+        "id": 4,
+        "year": 2011,
+        "month": "January",
+        "name": "2011 Eastern Coast Deluge",
+        "affectedDistricts": [
+            "Batticaloa",
+            "Ampara",
+            "Trincomalee",
+            "Polonnaruwa",
+            "Anuradhapura"
+        ],
+        "severity": "Catastrophic",
+        "deaths": 43,
+        "affectedPeople": 1200000,
+        "damageEstimateLKR": 30000000000,
+        "description": "An unprecedented Northeast Monsoon depression dropped more than 1000mm of rain. Approximately 300,000 people were displaced, and major agricultural lands were destroyed."
+    },
+    {
+        "id": 5,
+        "year": 2011,
+        "month": "December",
+        "name": "2011 Tropical Storm Thane Impact",
+        "affectedDistricts": [
+            "Jaffna",
+            "Kilinochchi",
+            "Mullaitivu",
+            "Trincomalee"
+        ],
+        "severity": "Moderate",
+        "deaths": 5,
+        "affectedPeople": 150000,
+        "damageEstimateLKR": 2000000000,
+        "description": "Severe weather conditions driven by Cyclone Thane brought localized flooding and strong winds to the Northern province."
+    },
+    {
+        "id": 6,
+        "year": 2012,
+        "month": "December",
+        "name": "2012 End-of-Year Monsoons",
+        "affectedDistricts": [
+            "Matale",
+            "Polonnaruwa",
+            "Kurunegala",
+            "Anuradhapura",
+            "Batticaloa"
+        ],
+        "severity": "Major",
+        "deaths": 34,
+        "affectedPeople": 400000,
+        "damageEstimateLKR": 6000000000,
+        "description": "Weeks of continuous heavy rainfall forced authorities to open major reservoir spillways, flooding low-lying areas in the North Central province."
+    },
+    {
+        "id": 7,
+        "year": 2014,
+        "month": "June",
+        "name": "2014 Kelani Basin Floods",
+        "affectedDistricts": [
+            "Colombo",
+            "Kalutara",
+            "Galle",
+            "Matara",
+            "Ratnapura"
+        ],
+        "severity": "Major",
+        "deaths": 22,
+        "affectedPeople": 100000,
+        "damageEstimateLKR": 4500000000,
+        "description": "Strong Southwest Monsoon winds and extreme rain caused the Kelani and Kalu rivers to overflow, leading to widespread power outages and road blockages."
+    },
+    {
+        "id": 8,
+        "year": 2016,
+        "month": "May",
+        "name": "2016 Tropical Cyclone Roanu",
+        "affectedDistricts": [
+            "Kegalle",
+            "Colombo",
+            "Gampaha",
+            "Ratnapura",
+            "Kilinochchi"
+        ],
+        "severity": "Catastrophic",
+        "deaths": 104,
+        "affectedPeople": 340000,
+        "damageEstimateLKR": 35000000000,
+        "description": "Brought extreme rains that caused the deadly Aranayake landslide in Kegalle and catastrophic flooding along the Kelani River that submerged major parts of Colombo."
+    },
+    {
+        "id": 9,
+        "year": 2017,
+        "month": "May",
+        "name": "2017 Southwest Monsoon Catastrophe",
+        "affectedDistricts": [
+            "Ratnapura",
+            "Galle",
+            "Matara",
+            "Kalutara",
+            "Hambantota",
+            "Kegalle",
+            "Matale"
+        ],
+        "severity": "Catastrophic",
+        "deaths": 212,
+        "affectedPeople": 680000,
+        "damageEstimateLKR": 55000000000,
+        "description": "The worst flooding since 2003, triggered by anomalous monsoon rains. Rapid rising of the Kalu, Nilwala, and Gin rivers devastated the southern half of the country."
+    },
+    {
+        "id": 10,
+        "year": 2018,
+        "month": "May",
+        "name": "2018 Puththalam & Western Floods",
+        "affectedDistricts": [
+            "Puttalam",
+            "Kurunegala",
+            "Gampaha",
+            "Colombo",
+            "Kegalle"
+        ],
+        "severity": "Major",
+        "deaths": 23,
+        "affectedPeople": 170000,
+        "damageEstimateLKR": 7500000000,
+        "description": "An active Southwest Monsoon brought massive deluges over the western coast, heavily impacting Puttalam and causing severe urban flooding in Gampaha."
+    },
+    {
+        "id": 11,
+        "year": 2019,
+        "month": "September",
+        "name": "2019 Post-Monsoon Coastal Floods",
+        "affectedDistricts": [
+            "Galle",
+            "Matara",
+            "Kalutara",
+            "Colombo"
+        ],
+        "severity": "Moderate",
+        "deaths": 8,
+        "affectedPeople": 110000,
+        "damageEstimateLKR": 2000000000,
+        "description": "Late-season monsoon squalls hit the southern coastal belt, resulting in localized flash floods, minor property damage, and localized evacuations."
+    },
+    {
+        "id": 12,
+        "year": 2021,
+        "month": "May",
+        "name": "2021 Cyclone Yaas Aftermath",
+        "affectedDistricts": [
+            "Colombo",
+            "Gampaha",
+            "Kalutara",
+            "Galle",
+            "Ratnapura",
+            "Kegalle"
+        ],
+        "severity": "Major",
+        "deaths": 17,
+        "affectedPeople": 270000,
+        "damageEstimateLKR": 8000000000,
+        "description": "The tail-end effects of Cyclone Yaas in the Bay of Bengal intensified the monsoon, causing the Kalu River and Kelani River to breach minor flood levels."
+    },
+    {
+        "id": 13,
+        "year": 2021,
+        "month": "November",
+        "name": "2021 Northeast Monsoon Deluge",
+        "affectedDistricts": [
+            "Jaffna",
+            "Kilinochchi",
+            "Mullaitivu",
+            "Mannar",
+            "Puttalam",
+            "Kurunegala"
+        ],
+        "severity": "Major",
+        "deaths": 26,
+        "affectedPeople": 220000,
+        "damageEstimateLKR": 5000000000,
+        "description": "An intense depression system triggered widespread flooding in the Northern and North-Western provinces, destroying thousands of acres of paddy fields."
+    },
+    {
+        "id": 14,
+        "year": 2022,
+        "month": "August",
+        "name": "2022 Central Highlands Landslides & Floods",
+        "affectedDistricts": [
+            "Nuwara Eliya",
+            "Badulla",
+            "Kandy",
+            "Ratnapura"
+        ],
+        "severity": "Moderate",
+        "deaths": 12,
+        "affectedPeople": 85000,
+        "damageEstimateLKR": 1500000000,
+        "description": "Unseasonal rains triggered flash floods and landslides in the central hill country, destroying estate line rooms and blocking major transport routes."
+    },
+    {
+        "id": 15,
+        "year": 2023,
+        "month": "October",
+        "name": "2023 October Monsoon Floods",
+        "affectedDistricts": [
+            "Matara",
+            "Galle",
+            "Kalutara",
+            "Gampaha",
+            "Colombo"
+        ],
+        "severity": "Major",
+        "deaths": 11,
+        "affectedPeople": 350000,
+        "damageEstimateLKR": 12000000000,
+        "description": "A very intense onset of the monsoon submerged major parts of Matara and Galle districts. The Nilwala river remained at major flood levels for over a week."
+    },
+    {
+        "id": 16,
+        "year": 2023,
+        "month": "December",
+        "name": "2023 Eastern Coast Depression",
+        "affectedDistricts": [
+            "Ampara",
+            "Batticaloa",
+            "Trincomalee",
+            "Polonnaruwa",
+            "Badulla"
+        ],
+        "severity": "Moderate",
+        "deaths": 6,
+        "affectedPeople": 150000,
+        "damageEstimateLKR": 3000000000,
+        "description": "A late-year atmospheric depression brought huge rainfall to the eastern slopes. Spilling irrigation tanks caused downstream flooding in Polonnaruwa."
+    }
+]

@@ -93,6 +93,14 @@ To access the application from a completely different device (like your iPhone o
 3. Find your computer's local IP Address (e.g., `192.168.1.15`). You can find this by typing `ipconfig` in your terminal.
 4. On your phone's Safari/Chrome browser, type in `http://<YOUR_IP_ADDRESS>:5200` to load and use the app fully!
 
+### 🚀 How to Run on ANY Machine WITHOUT installing .NET
+If you want to share this application with someone else and they **do not** have the `.NET 8 SDK` installed, you can compile the app into a "Self-Contained" single file.
+
+1. Double-click the **`Publish-Standalone.bat`** file in the project folder.
+2. It will compress the application and the entire `.NET` engine into a standalone package.
+3. Open the newly created **`Dist`** folder. Inside, you will see folders for Windows, Mac, and Linux.
+4. Simply copy the `FloodApp.exe` file (from the Windows folder) to any other Windows computer and double-click it to run your server locally! No installations string required.
+
 ---
 
 ## 📂 Project Structure

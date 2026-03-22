@@ -1,0 +1,222 @@
+[
+    {
+        "id": "A1",
+        "name": "SLIC General - Colombo Main Branch",
+        "type": "Branch",
+        "province": "Western",
+        "city": "Colombo",
+        "address": "21 Vauxhall St, Colombo 00200",
+        "phone": "0112 357 357",
+        "latitude": 6.9271,
+        "longitude": 79.8612
+    },
+    {
+        "id": "A2",
+        "name": "SLIC Agency - Gampaha City",
+        "type": "Agent",
+        "province": "Western",
+        "city": "Gampaha",
+        "address": "15/A Kandy Road, Gampaha 11900",
+        "phone": "0332 233 445",
+        "latitude": 7.0873,
+        "longitude": 79.9989
+    },
+    {
+        "id": "A3",
+        "name": "SLIC General - Kalutara",
+        "type": "Branch",
+        "province": "Western",
+        "city": "Kalutara",
+        "address": "45 Galle Road, Kalutara 12000",
+        "phone": "0342 222 357",
+        "latitude": 6.5854,
+        "longitude": 79.9607
+    },
+    {
+        "id": "A4",
+        "name": "SLIC General - Kandy",
+        "type": "Branch",
+        "province": "Central",
+        "city": "Kandy",
+        "address": "120 DS Senanayake Veediya, Kandy 20000",
+        "phone": "0812 234 357",
+        "latitude": 7.2906,
+        "longitude": 80.6337
+    },
+    {
+        "id": "A5",
+        "name": "SLIC Agency - Matale",
+        "type": "Agent",
+        "province": "Central",
+        "city": "Matale",
+        "address": "60 Trincomalee Street, Matale 21000",
+        "phone": "0662 222 111",
+        "latitude": 7.4698,
+        "longitude": 80.6217
+    },
+    {
+        "id": "A6",
+        "name": "SLIC General - Galle Regional",
+        "type": "Branch",
+        "province": "Southern",
+        "city": "Galle",
+        "address": "No.8 Wakwella Road, Galle 80000",
+        "phone": "0912 245 678",
+        "latitude": 6.0535,
+        "longitude": 80.2210
+    },
+    {
+        "id": "A7",
+        "name": "SLIC Agency - Matara Hub",
+        "type": "Agent",
+        "province": "Southern",
+        "city": "Matara",
+        "address": "45 Beach Road, Matara 81000",
+        "phone": "0412 223 357",
+        "latitude": 5.9549,
+        "longitude": 80.5550
+    },
+    {
+        "id": "A8",
+        "name": "SLIC General - Hambantota",
+        "type": "Branch",
+        "province": "Southern",
+        "city": "Hambantota",
+        "address": "Terrace Street, Hambantota 82000",
+        "phone": "0472 220 357",
+        "latitude": 6.1245,
+        "longitude": 81.1215
+    },
+    {
+        "id": "A9",
+        "name": "SLIC General - Ratnapura",
+        "type": "Branch",
+        "province": "Sabaragamuwa",
+        "city": "Ratnapura",
+        "address": "Main Street, Ratnapura 81000",
+        "phone": "0452 222 357",
+        "latitude": 6.6993,
+        "longitude": 80.3996
+    },
+    {
+        "id": "A10",
+        "name": "SLIC Agency - Kegalle",
+        "type": "Agent",
+        "province": "Sabaragamuwa",
+        "city": "Kegalle",
+        "address": "100 Colombo-Kandy Rd, Kegalle 71000",
+        "phone": "0352 222 123",
+        "latitude": 7.2513,
+        "longitude": 80.3464
+    },
+    {
+        "id": "A11",
+        "name": "SLIC General - Trincomalee",
+        "type": "Branch",
+        "province": "Eastern",
+        "city": "Trincomalee",
+        "address": "Dockyard Road, Trincomalee 31000",
+        "phone": "0262 222 357",
+        "latitude": 8.5874,
+        "longitude": 81.2152
+    },
+    {
+        "id": "A12",
+        "name": "SLIC Agency - Batticaloa",
+        "type": "Agent",
+        "province": "Eastern",
+        "city": "Batticaloa",
+        "address": "Lloyds Avenue, Batticaloa 30000",
+        "phone": "0652 222 357",
+        "latitude": 7.7102,
+        "longitude": 81.6924
+    },
+    {
+        "id": "A13",
+        "name": "SLIC General - Jaffna",
+        "type": "Branch",
+        "province": "Northern",
+        "city": "Jaffna",
+        "address": "Hospital Road, Jaffna 40000",
+        "phone": "0212 222 357",
+        "latitude": 9.6615,
+        "longitude": 80.0255
+    },
+    {
+        "id": "A14",
+        "name": "SLIC Agency - Vavuniya",
+        "type": "Agent",
+        "province": "Northern",
+        "city": "Vavuniya",
+        "address": "Kandy Road, Vavuniya 43000",
+        "phone": "0242 222 357",
+        "latitude": 8.7513,
+        "longitude": 80.4971
+    },
+    {
+        "id": "A15",
+        "name": "SLIC General - Kurunegala",
+        "type": "Branch",
+        "province": "North Western",
+        "city": "Kurunegala",
+        "address": "Colombo Road, Kurunegala 60000",
+        "phone": "0372 222 357",
+        "latitude": 7.4818,
+        "longitude": 80.3609
+    },
+    {
+        "id": "A16",
+        "name": "SLIC Agency - Puttalam",
+        "type": "Agent",
+        "province": "North Western",
+        "city": "Puttalam",
+        "address": "Chilaw Road, Puttalam 61200",
+        "phone": "0322 265 357",
+        "latitude": 8.0336,
+        "longitude": 79.8279
+    },
+    {
+        "id": "A17",
+        "name": "SLIC General - Anuradhapura",
+        "type": "Branch",
+        "province": "North Central",
+        "city": "Anuradhapura",
+        "address": "Maithripala Senanayake Mw, Anuradhapura 50000",
+        "phone": "0252 222 357",
+        "latitude": 8.3114,
+        "longitude": 80.4037
+    },
+    {
+        "id": "A18",
+        "name": "SLIC Agency - Polonnaruwa",
+        "type": "Agent",
+        "province": "North Central",
+        "city": "Polonnaruwa",
+        "address": "Hospital Junction, Polonnaruwa 51000",
+        "phone": "0272 222 357",
+        "latitude": 7.9403,
+        "longitude": 81.0188
+    },
+    {
+        "id": "A19",
+        "name": "SLIC General - Badulla",
+        "type": "Branch",
+        "province": "Uva",
+        "city": "Badulla",
+        "address": "Lower Street, Badulla 90000",
+        "phone": "0552 222 357",
+        "latitude": 6.9897,
+        "longitude": 81.0559
+    },
+    {
+        "id": "A20",
+        "name": "SLIC Agency - Monaragala",
+        "type": "Agent",
+        "province": "Uva",
+        "city": "Monaragala",
+        "address": "Wellawaya Road, Monaragala 91000",
+        "phone": "0552 276 357",
+        "latitude": 6.8778,
+        "longitude": 81.3496
+    }
+]

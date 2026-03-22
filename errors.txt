@@ -1,0 +1,28 @@
+MSBuild version 17.9.4+90725d08d for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+D:\My_PaidProjects\slic-flood-management\Pages\LocationSelection.razor(60,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Components\Layout\MainLayout.razor(56,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(287,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(361,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(491,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(149,42): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(156,36): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(166,9): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(248,17): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+
+Build FAILED.
+
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(149,42): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(156,36): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(166,9): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AgentLocator.razor(248,17): warning CS4014: Because this call is not awaited, execution of the current method continues before the call is completed. Consider applying the 'await' operator to the result of the call. [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\LocationSelection.razor(60,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Components\Layout\MainLayout.razor(56,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(287,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(361,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+D:\My_PaidProjects\slic-flood-management\Pages\AdminDashboard.razor(491,6): error CS0103: The name 'media' does not exist in the current context [D:\My_PaidProjects\slic-flood-management\FloodApp.csproj]
+    4 Warning(s)
+    5 Error(s)
+
+Time Elapsed 00:00:01.14
