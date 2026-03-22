@@ -50,40 +50,48 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
 
 ## 🏁 Getting Started
 
-### Prerequisites
-- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+### 📦 Prerequisites
+- **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)**: This is the ONLY software required to run this project. Download the installer for your operating system (Windows, macOS, or Linux) and install it.
+- **Git** (Optional): If you want to clone via command line instead of downloading the source code ZIP.
 
-### Installation & Run
+### ⚙️ Installation & Run
 
-1. **Clone the repository** (if you haven't already):
+1. **Download the project**:
+   - Clone via Git: 
+     ```powershell
+     git clone <repository-url>
+     ```
+   - *OR* Download the ZIP folder from Git and extract it anywhere on your computer.
+
+2. **Navigate into the project**:
+   Open a terminal (Command Prompt, PowerShell, or Terminal) and navigate to the root folder (where `FloodApp.csproj` is located):
    ```powershell
-   git clone <repository-url>
+   cd path/to/slic-flood-management
    ```
 
-2. **Navigate to the project directory**:
-   ```powershell
-   cd floodManagement
-   ```
-
-3. **Restore Dependencies**:
+3. **Install Dependencies**:
+   This command automatically downloads all required NuGet packages. You do not need to check these into Git:
    ```powershell
    dotnet restore
    ```
 
-4. **Run the server**:
+4. **Run the Application Locally**:
+   Start the local development server:
    ```powershell
    dotnet run --urls "http://localhost:5200"
    ```
-   > **Tip**: If you encounter an "Address already in use" error, try changing the port number.
+   > **Tip**: Open your web browser and go to **[http://localhost:5200](http://localhost:5200)** to view the app!
 
-   **For Network Access (LAN):**
+### 📱 How to test on any device (Mobile Phone, Tablet)
+To access the application from a completely different device (like your iPhone or Android phone), you will need to run the application on your Local Area Network (LAN):
+
+1. Make sure your computer and your phone are connected to the **same Wi-Fi network**.
+2. Run this command instead to expose the app to your network:
    ```powershell
    dotnet run --urls "http://0.0.0.0:5200"
    ```
-   *Access via your machine's IP address (e.g., http://192.168.1.50:5200)*
-
-5. **Access the App**:
-   Open **[http://localhost:5200](http://localhost:5200)** in your browser.
+3. Find your computer's local IP Address (e.g., `192.168.1.15`). You can find this by typing `ipconfig` in your terminal.
+4. On your phone's Safari/Chrome browser, type in `http://<YOUR_IP_ADDRESS>:5200` to load and use the app fully!
 
 ---
 
