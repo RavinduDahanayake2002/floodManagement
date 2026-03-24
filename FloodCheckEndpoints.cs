@@ -85,5 +85,25 @@ public static class FloodCheckEndpoints
             return Results.Ok(response);
         })
         .WithName("CheckFloodLevel");
+
+        app.MapGet("/api/geocode/reverse", async (double lat, double lon, GeocodingService geocodingService) =>
+        {
+            var address = await geocodingService.ReverseGeocodeAsync(lat, lon);
+            if (string.IsNullOrEmpty(address))
+                return Results.NotFound(new { error = "Address not found for these coordinates." });
+
+            return Results.Ok(new { address });
+        })
+        .WithName("ReverseGeocode");
+
+        app.MapGet("/api/geocode/search", async (string address, GeocodingService geocodingService) =>
+        {
+            var result = await geocodingService.GeocodeAsync(address);
+            if (result == null)
+                return Results.NotFound(new { error = "Coordinates not found for this address." });
+
+            return Results.Ok(result);
+        })
+        .WithName("SearchAddress");
     }
 }
