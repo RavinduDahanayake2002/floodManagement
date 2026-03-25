@@ -47,10 +47,7 @@
                 <!-- Top Left: Back btn + Risk + Stats -->
                 <div class="flex flex-col gap-3 pointer-events-auto max-w-[250px] sm:max-w-none">
                     <!-- Back button -->
-                    <button @onclick="GoBack" class="flex items-center gap-1 text-sm bg-[#0b1a1a]/90 hover:bg-slate-700 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 shadow-xl text-white transition-colors w-max cursor-pointer">
-                        <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-                        Back
-                    </button>
+                    <BackButton OnClick="GoBack" />
 
                     @if (AppState.SelectedLatLng != null && !IsCalculating)
                     {

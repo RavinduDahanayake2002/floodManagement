@@ -9,13 +9,7 @@
 <div class="report-wrapper">
     <div class="report-container glass-panel">
         <div class="header">
-            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
-                       Color="AppButton.ButtonColor.Neutral"
-                       OnClick="@GoBack"
-                       Class="back-btn">
-                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-                Back
-            </AppButton>
+            <BackButton OnClick="@GoBack" Class="back-btn" />
             <h2>Report Property Damage</h2>
             <p class="text-secondary">Submit details and photos of flood damage for your insurance claim.</p>
         </div>
@@ -126,21 +120,21 @@
 <style>
     .report-wrapper {
         min-height: 100vh;
-        background-color: var(--color-navy, #0f172a);
+        background-color: var(--bg-dark);
         display: flex;
         justify-content: center;
         align-items: flex-start;
         padding: 2rem 1rem;
-        background-image: radial-gradient(circle at 50% 0%, rgba(17, 94, 89, 0.2) 0%, transparent 50%);
+        background-image: radial-gradient(circle at 50% 0%, rgba(0, 191, 165, 0.1) 0%, transparent 50%);
     }
 
     .report-container {
         width: 100%;
         max-width: 600px;
-        background: rgba(30, 41, 59, 0.7);
+        background: rgba(17, 34, 64, 0.7);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--border-soft);
         border-radius: 16px;
         padding: 2rem;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);

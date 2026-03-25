@@ -6,15 +6,7 @@
 <div class="h-[calc(100vh-60px)] md:h-[calc(100vh-50px)] w-full flex flex-col-reverse md:flex-row overflow-hidden">
     <!-- Left Panel: Form -->
     <div class="location-sidebar flex-1 md:flex-none flex flex-col gap-6 z-10 overflow-y-auto">
-        <div class="flex items-center gap-2 mb-1">
-            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
-                       Color="AppButton.ButtonColor.Neutral"
-                       OnClick="@GoBack"
-                       Class="px-2 py-1 -ml-2">
-                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-                Back
-            </AppButton>
-        </div>
+        <BackButton OnClick="@GoBack" />
         <div>
             <h1 class="text-2xl font-bold mb-1">Check Location</h1>
             <p class="text-secondary text-sm">Select a region to analyze flood risk.</p>
@@ -51,7 +43,7 @@
     .location-sidebar {
         width: 100%;
         padding: 1.25rem;
-        background: rgba(15, 23, 42, 0.9);
+        background: rgba(15, 30, 53, 0.92);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         box-shadow: 0 -10px 30px rgba(0,0,0,0.5);

@@ -1,22 +1,46 @@
 :root {
-    --bg-dark: #030707;
-    --bg-panel: #091414;
-    /* Slightly darker/different for contrast */
-    --text-main: #E0F2F2;
-    --text-muted: #8BA8A8;
-    --accent: #0BFFFF;
-    --accent-hover: #00E5FF;
-    --accent-dim: #00838F;
-    --border-dashed: #0E8A8D;
-    --input-bg: #101F1F;
-    --input-border: #1F3A3A;
-    --hover-bg: #183333;
+    /* === BACKGROUND COLORS === */
+    --bg-dark:        #0d1b2a;  /* Main background */
+    --bg-panel:       #112240;  /* Card/panel background */
+    --bg-secondary:   #0f1e35;  /* Secondary panel */
 
-    /* SLIC Brand Colors */
-    --slic-teal: #17B4B7;
-    --slic-teal-light: #40E0D0;
-    --slic-teal-dark: #0E8A8D;
-    --slic-gold: #D4AF37;
+    /* Legacy aliases kept for compatibility */
+    --input-bg:       #0f1e35;
+    --input-border:   #1e3a5f;
+    --hover-bg:       #1a2f4a;
+    --border-dashed:  #1e3a5f;
+
+    /* === ACCENT / HIGHLIGHT === */
+    --accent:         #00bfa5;  /* Primary teal/green */
+    --accent-hover:   #26d0b6;
+    --accent-dim:     #00897b;
+    --color-purple:   #7c3aed;  /* Purple accent */
+    --color-amber:    #f59e0b;  /* Orange/amber dot */
+
+    /* SLIC Brand */
+    --slic-teal:       #00bfa5;
+    --slic-teal-light: #26d0b6;
+    --slic-teal-dark:  #00897b;
+    --slic-gold:       #f59e0b;
+
+    /* === TEXT COLORS === */
+    --text-main:   #ffffff;  /* Primary text */
+    --text-muted:  #94a3b8;  /* Secondary/muted */
+    --text-label:  #64748b;  /* Label text */
+
+    /* === ALERT / STATUS === */
+    --color-danger:     #ef4444;
+    --color-danger-dark:#dc2626;
+    --color-success:    #10b981;
+    --color-warning:    #f59e0b;
+
+    /* === CHART === */
+    --chart-fill:  #14b8a6;
+    --chart-grid:  #1e3a5f;
+
+    /* === BORDERS === */
+    --border-card: #1e3a5f;
+    --border-soft: rgba(255,255,255,0.08);
 }
 
 body {

@@ -8,7 +8,7 @@
     @if (IsLoading)
     {
         <div class="forecast-loading">
-            <div class="spinner border-2 border-[#17B4B7] border-t-transparent rounded-full w-6 h-6 animate-spin"></div>
+            <div class="spinner border-2 border-t-transparent rounded-full w-6 h-6 animate-spin" style="border-color: var(--accent); border-top-color: transparent;"></div>
         </div>
     }
     else if (Forecasts.Count == 0)
@@ -93,7 +93,7 @@
         overflow-x: auto;
         padding-bottom: 0.5rem;
         scrollbar-width: thin;
-        scrollbar-color: rgba(23, 180, 183, 0.3) transparent;
+        scrollbar-color: rgba(0, 191, 165, 0.3) transparent;
     }
 
     .forecast-scroll::-webkit-scrollbar {
@@ -105,14 +105,14 @@
     }
 
     .forecast-scroll::-webkit-scrollbar-thumb {
-        background: rgba(23, 180, 183, 0.3);
+        background: rgba(0, 191, 165, 0.3);
         border-radius: 2px;
     }
 
     .forecast-card {
         min-width: 100px;
-        background: rgba(31, 41, 55, 0.8);
-        border: 1px solid rgba(55, 65, 81, 0.8);
+        background: var(--bg-secondary, #0f1e35);
+        border: 1px solid var(--border-card, #1e3a5f);
         border-radius: 0.75rem;
         padding: 0.75rem 0.5rem;
         display: flex;
@@ -124,7 +124,7 @@
     }
 
     .forecast-card:hover {
-        border-color: rgba(23, 180, 183, 0.4);
+        border-color: rgba(0, 191, 165, 0.4);
         transform: translateY(-2px);
     }
 
@@ -177,7 +177,7 @@
 
     .temp-low {
         font-size: 0.75rem;
-        color: #6b7280;
+        color: var(--text-label, #64748b);
     }
 
     .forecast-precip {

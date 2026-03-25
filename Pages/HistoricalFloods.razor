@@ -1,18 +1,13 @@
 @page "/history"
 @using FloodApp.Services
+@using FloodApp.Components.UI
 @inject HistoricalFloodEventService HistoryService
 @inject NavigationManager Nav
 @inject IJSRuntime JS
 
 <div class="history-page">
     <div class="container mx-auto px-4 py-6">
-        <AppButton Variant="AppButton.ButtonVariant.Ghost" 
-                   Color="AppButton.ButtonColor.Neutral"
-                   OnClick="@GoBack"
-                   Class="px-2 py-1 -ml-2 mb-2">
-            <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-            Back
-        </AppButton>
+        <BackButton OnClick="@GoBack" />
         
         <!-- Header -->
         <div class="text-center mb-8 fade-in">
@@ -256,19 +251,19 @@
 <style>
     .history-page {
         min-height: 100vh;
-        background-color: #0f172a;
+        background-color: var(--bg-dark);
         background-image: 
-            radial-gradient(at 0% 0%, rgba(15, 118, 110, 0.15) 0px, transparent 50%),
-            radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.1) 0px, transparent 50%);
+            radial-gradient(at 0% 0%, rgba(0, 191, 165, 0.1) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(124, 58, 237, 0.08) 0px, transparent 50%);
         padding-top: 1rem;
         padding-bottom: 4rem;
     }
 
     .glass-panel {
-        background: rgba(30, 41, 59, 0.6);
+        background: rgba(17, 34, 64, 0.6);
         backdrop-filter: blur(16px);
         -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border-soft);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     }
 
@@ -364,10 +359,11 @@
         border: 1px solid rgba(148, 163, 184, 0.2);
     }
 
-    .text-secondary { color: #94a3b8; }
-    .text-error { color: #ef4444; }
-    .text-primary { color: #7c3aed; }
-    .border-primary { border-color: #7c3aed; }
+    .text-secondary { color: var(--text-muted); }
+    .text-error { color: var(--color-danger); }
+    .text-primary { color: var(--color-purple); }
+    .border-primary { border-color: var(--color-purple); }
+    .border-teal-500 { border-color: var(--accent); }
 
     .cta-gradient {
         background: linear-gradient(135deg, rgba(17, 94, 89, 0.8) 0%, rgba(13, 148, 136, 0.6) 100%);
