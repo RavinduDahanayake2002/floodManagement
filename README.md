@@ -1,6 +1,6 @@
 # SLIC Flood Management System
 
-An intelligent flood risk assessment application for **Sri Lanka Insurance Corporation (SLIC)**, built with **.NET 8 Blazor**. This system helps users assess flood risks for specific locations across Sri Lanka, report property damage for insurance claims, and locate emergency shelters using real-time weather data and geospatial analytics.
+An intelligent flood risk assessment application for **Sri Lanka Insurance Corporation (SLIC)**, built with **.NET 8 Blazor**. This system helps users assess flood risks for specific locations across Sri Lanka, and locate emergency shelters using real-time weather data and geospatial analytics.
 
 ## 🚀 Key Features
 
@@ -20,10 +20,6 @@ An intelligent flood risk assessment application for **Sri Lanka Insurance Corpo
 - **Advanced Analytics**: Uses "Point-in-Polygon" algorithms to determine flood risk.
 - **Visual Mapping**: Interactive Leaflet map with animated, color-coded risk overlays (Pulse / Blast Radius animation).
 - **Risk Levels**: High, Medium, Low.
-
-### 📝 Insurance Claims & Damage Reporting
-- **Report Damage**: Seamlessly report flood damage for properties directly to SLIC.
-- **Evidence Collection**: Attach photographic evidence for fast claims processing.
 
 ### 🏥 Emergency Shelter Directory
 - **Shelter Locator**: Find the nearest emergency shelters based on your location.
