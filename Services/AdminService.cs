@@ -56,6 +56,17 @@ public class AdminService
             claim.Status = newStatus;
         }
     }
+
+    public void UpdateClaim(DamageReport updatedClaim)
+    {
+        var existing = _claims.FirstOrDefault(c => c.Id == updatedClaim.Id);
+        if (existing != null)
+        {
+            existing.Status = updatedClaim.Status;
+            existing.PropertyValue = updatedClaim.PropertyValue;
+            existing.PayoutAmount = updatedClaim.PayoutAmount;
+        }
+    }
     
     public Dictionary<string, int> GetClaimsStatusSummary()
     {

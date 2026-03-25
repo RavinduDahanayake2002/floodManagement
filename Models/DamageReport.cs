@@ -35,4 +35,7 @@ public class DamageReport
         >= 3 => "Medium",
         _ => "Normal"
     };
+
+    public double PropertyValue { get; set; }
+    public double PayoutAmount { get; set; }
 }
