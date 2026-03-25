@@ -7,9 +7,6 @@
 <div class="agent-page flex flex-col h-screen overflow-hidden">
     <!-- Header Area -->
     <div class="header-section shrink-0 relative z-50 pt-4">
-        <div class="container mx-auto px-6 relative z-50">
-        <BackButton OnClick="@GoBack" />
-        </div>
         <div class="container mx-auto px-6 py-4 text-center">
             <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Find Your Nearest SLIC Agent</h1>
             <p class="text-secondary">Walk in or call — we're here to protect you.</p>
@@ -254,7 +251,7 @@
         }
     }
 
-    private void GoBack() => Nav.NavigateTo("/location");
+
 }
 
 <style>

@@ -9,7 +9,6 @@
 <div class="report-wrapper">
     <div class="report-container glass-panel">
         <div class="header">
-            <BackButton OnClick="@GoBack" Class="back-btn" />
             <h2>Report Property Damage</h2>
             <p class="text-secondary">Submit details and photos of flood damage for your insurance claim.</p>
         </div>
@@ -73,11 +72,6 @@
                 </div>
 
                 <div class="form-actions">
-                    <AppButton Variant="AppButton.ButtonVariant.Outline" 
-                               Color="AppButton.ButtonColor.Neutral"
-                               OnClick="@GoBack" type="button">
-                        Cancel
-                    </AppButton>
                     <AppButton Color="AppButton.ButtonColor.Primary" type="submit" IsLoading="@isSubmitting">
                         Submit Claim Request
                     </AppButton>
@@ -106,10 +100,7 @@
         isSubmitted = true;
     }
 
-    private void GoBack()
-    {
-        Nav.NavigateTo("/location");
-    }
+
 
     private void GoHome()
     {
@@ -137,19 +128,6 @@
         border-radius: 16px;
         padding: 2rem;
         box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
-
-    .header {
-        margin-bottom: 2rem;
-        text-align: center;
-        position: relative;
-    }
-
-    .back-btn {
-        position: absolute;
-        left: 0;
-        top: 0;
-        padding: 0.5rem;
     }
 
     .header h2 {

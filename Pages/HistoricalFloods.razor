@@ -7,8 +7,6 @@
 
 <div class="history-page">
     <div class="container mx-auto px-4 py-6">
-        <BackButton OnClick="@GoBack" />
-        
         <!-- Header -->
         <div class="text-center mb-8 fade-in">
             <h1 class="text-4xl font-bold text-white mb-2 tracking-tight">Sri Lanka Flood History</h1>
@@ -234,7 +232,7 @@
         ApplyFilters();
     }
 
-    private void GoBack() => Nav.NavigateTo("/location");
+
 
     private string GetSeverityColor(string severity)
     {
