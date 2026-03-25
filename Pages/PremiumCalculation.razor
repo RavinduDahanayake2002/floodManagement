@@ -1,94 +1,116 @@
 @page "/premium"
 @layout FloodApp.Components.Layout.MainLayout
+@inject NavigationManager Nav
 
 <div class="page-container">
-    <div class="glass-header">
-        <h1>Premium Calculation</h1>
-        <p>Calculate your insurance premium based on localized risk factors.</p>
-    </div>
-
-    <div class="calc-grid">
-        <div class="feature-card">
-            <h2>Instant Quote</h2>
-            <p>Enter your details below to receive an estimated insurance premium rating based on Flood and Landslide risks.</p>
-            
-            <div class="calculation-form">
-                <div class="input-row">
-                    <div class="input-group">
-                        <label>Property Value (LKR)</label>
-                        <input type="number" @bind="_propertyValue" @bind:event="oninput" placeholder="Enter property value" class="dark-input" />
-                    </div>
-                </div>
-                
-                <div class="input-row mt-4">
-                    <div class="input-group">
-                        <label>Risk Rating</label>
-                        <select @bind="_selectedRate" class="dark-input">
-                            <option value="2.0">Low (2%)</option>
-                            <option value="4.0">Medium (4%)</option>
-                            <option value="6.0">High (6%)</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="info-box mt-4 @RiskLevelClass">
-                    <span class="risk-label">Rating: @RiskLevelText</span>
-                </div>
-            </div>
+    <div class="calc-grid-wrapper">
+        <div class="glass-header brand-cyan-glow">
+            <h1>Premium Calculation</h1>
+            <p>Calculate your insurance premium based on localized risk factors.</p>
         </div>
 
-        <div class="results-card @RiskLevelClass">
-            <div class="total-premium">
-                <span class="label">Estimated Yearly Premium</span>
-                <span class="value">Rs. @FormattedPremium*</span>
+        <div class="calc-grid">
+            <div class="feature-card">
+                <h2>Instant Quote</h2>
+                <p>Enter your details below to receive an estimated insurance premium rating based on Flood and Landslide risks.</p>
+                
+                <div class="calculation-form">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Property Value (LKR)</label>
+                            <input type="number" @bind="_propertyValue" @bind:event="oninput" placeholder="Enter property value" class="dark-input" />
+                        </div>
+                    </div>
+                    
+                    <div class="input-row mt-4">
+                        <div class="input-group">
+                            <label>Risk Rating</label>
+                            <select @bind="_selectedRate" class="dark-input">
+                                <option value="2.5">Medium (2.5%)</option>
+                                <option value="5.0">High (5%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box mt-4 @RiskLevelClass">
+                        <span class="risk-label">Rating: @RiskLevelText</span>
+                    </div>
+                </div>
             </div>
-            <p class="disclaimer">*Subject to full survey and verification.</p>
+
+            <div class="results-card @RiskLevelClass">
+                <div class="total-premium">
+                    <span class="label">Estimated Yearly Premium</span>
+                    <span class="rate-badge">Rate: @_selectedRate%</span>
+                    <span class="value">Rs. @FormattedPremium*</span>
+                </div>
+                <p class="disclaimer">*Subject to full survey and verification.</p>
+            </div>
         </div>
     </div>
 </div>
 
 @code {
     private double _propertyValue = 1000000;
-    private double _selectedRate = 2.0;
+    private double _selectedRate = 2.5;
 
     private double CalculatedPremium => _propertyValue * (_selectedRate / 100);
     private string FormattedPremium => CalculatedPremium.ToString("N2");
 
     private string RiskLevelText => _selectedRate switch
     {
-        >= 6.0 => "High",
-        >= 4.0 => "Medium",
-        _ => "Low"
+        >= 5.0 => $"High ({_selectedRate}%)",
+        _ => $"Medium ({_selectedRate}%)"
     };
 
     private string RiskLevelClass => _selectedRate switch
     {
-        >= 6.0 => "risk-high",
-        >= 4.0 => "risk-medium",
-        _ => "risk-normal"
+        >= 5.0 => "risk-high",
+        _ => "risk-medium"
     };
 }
 
 <style>
     .page-container {
-        padding: 2rem;
+        padding: 2.5rem 4rem;
+        min-height: calc(100vh - 64px);
+        background-color: #0b1929;
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(11, 255, 255, 0.06) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(0, 229, 255, 0.04) 0px, transparent 50%);
+    }
+
+    .calc-grid-wrapper {
         max-width: 1200px;
         margin: 0 auto;
     }
 
     .glass-header {
-        background: rgba(255, 255, 255, 0.03);
+        background: rgba(8, 22, 38, 0.7);
         backdrop-filter: blur(10px);
-        padding: 2rem;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 2rem;
+        padding: 2.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(11, 255, 255, 0.1);
+        margin-bottom: 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .brand-cyan-glow::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #0BFFFF, transparent);
     }
 
     .glass-header h1 {
         margin: 0;
-        font-size: 2rem;
-        color: var(--accent);
+        font-size: 2.5rem;
+        color: #0BFFFF;
+        text-shadow: 0 0 20px rgba(11, 255, 255, 0.3);
     }
 
     .calc-grid {
@@ -97,12 +119,40 @@
         gap: 2rem;
     }
 
-    .feature-card, .results-card {
-        background: rgba(255, 255, 255, 0.02);
+    .back-btn-simple {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 2rem;
-        border-radius: 20px;
-        transition: all 0.3s ease;
+        color: #94a3b8;
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .back-btn-simple:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-color: var(--accent);
+    }
+
+    .feature-card, .results-card {
+        background: rgba(13, 30, 50, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 2.5rem;
+        border-radius: 24px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .feature-card:hover {
+        border-color: rgba(11, 255, 255, 0.2);
+        transform: translateY(-4px);
     }
 
     .calculation-form {
@@ -151,6 +201,15 @@
         opacity: 0.8;
     }
 
+    .total-premium .rate-badge {
+        display: block;
+        font-size: 1.1rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
+        opacity: 0.95;
+    }
+
     .total-premium .value {
         font-size: 2.25rem;
         font-weight: 700;
@@ -181,7 +240,17 @@
         border-radius: 8px;
         text-align: center;
         font-weight: 600;
-        background: rgba(255, 255, 255, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .info-box.risk-medium {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .info-box.risk-high {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.2);
     }
 
     .disclaimer {
