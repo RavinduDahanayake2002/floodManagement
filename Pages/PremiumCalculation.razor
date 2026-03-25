@@ -22,18 +22,18 @@
                         </div>
                     </div>
                     
-                    <div class="input-row mt-4">
+                    <div class="input-row mt-6">
                         <div class="input-group">
                             <label>Risk Rating</label>
-                            <select @bind="_selectedRate" class="dark-input">
-                                <option value="0">Low (0%)</option>
-                                <option value="2.5">Medium (2.5%)</option>
-                                <option value="5">High (5%)</option>
-                            </select>
+                            <AppSelect Placeholder="Select Risk Rating"
+                                       Items="@_riskOptions"
+                                       SelectedValue="@_selectedRate"
+                                       SelectedValueChanged="@(val => _selectedRate = (double)val)"
+                                       Class="w-full" />
                         </div>
                     </div>
                     
-                    <div class="info-box mt-4 @RiskLevelClass">
+                    <div class="info-box mt-8 @RiskLevelClass">
                         <span class="risk-label">Rating: @RiskLevelText</span>
                     </div>
                 </div>
@@ -54,6 +54,13 @@
 @code {
     private double _propertyValue = 1000000;
     private double _selectedRate = 2.5;
+
+    private List<AppSelect.SelectOption> _riskOptions = new()
+    {
+        new() { Text = "Low (0%)", Value = 0.0 },
+        new() { Text = "Medium (2.5%)", Value = 2.5 },
+        new() { Text = "High (5%)", Value = 5.0 }
+    };
 
     private double CalculatedTotal => _propertyValue + (_propertyValue * (_selectedRate / 100));
     private string FormattedTotal => CalculatedTotal.ToString("N2");
@@ -151,12 +158,12 @@
     .dark-input {
         width: 100%;
         background: rgba(0, 0, 0, 0.3);
-        border: 1px solid var(--border-card);
+        border: 1px solid var(--border-soft);
         color: white;
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
         outline: none;
-        font-size: 1rem;
+        font-size: 1.1rem;
         transition: border-color 0.2s;
     }
 
@@ -171,29 +178,29 @@
 
     .total-premium {
         text-align: center;
-        padding: 2.5rem 1rem;
-        border-radius: 16px;
+        padding: 3rem 1.5rem;
+        border-radius: 20px;
         transition: all 0.3s ease;
     }
 
     .total-premium .label {
         display: block;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
         opacity: 0.8;
     }
 
     .total-premium .rate-badge {
         display: block;
-        font-size: 1.1rem;
+        font-size: 1.15rem;
         font-weight: 700;
         letter-spacing: 1px;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
         opacity: 0.95;
     }
 
     .total-premium .value {
-        font-size: 2.25rem;
+        font-size: 2.5rem;
         font-weight: 700;
         color: white;
     }
@@ -218,10 +225,11 @@
     .risk-high .risk-label, .risk-high .label { color: #f87171; }
 
     .info-box {
-        padding: 0.75rem 1rem;
-        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+        border-radius: 12px;
         text-align: center;
         font-weight: 600;
+        font-size: 1.1rem;
         transition: all 0.3s ease;
     }
 
