@@ -116,7 +116,7 @@
     .select-trigger:focus {
         border-color: var(--accent);
         outline: none;
-        box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+        box-shadow: 0 0 0 2px rgba(11, 255, 255, 0.2);
     }
 
     .selected-text.placeholder {
@@ -128,14 +128,15 @@
         top: 100%;
         left: 0;
         right: 0;
-        margin-top: 0.25rem;
-        background-color: var(--bg-secondary);
-        border: 1px solid var(--border-color);
+        margin-top: 0.5rem;
+        background-color: #0d1b2a;
+        border: 1px solid var(--accent);
         border-radius: 0.5rem;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        z-index: 50;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 10px rgba(11, 255, 255, 0.1);
+        z-index: 100;
         max-height: 15rem;
         overflow-y: auto;
+        backdrop-filter: blur(10px);
     }
 
     .select-item {
@@ -147,11 +148,12 @@
     }
 
     .select-item:hover {
-        background-color: rgba(139, 92, 246, 0.1);
+        background-color: rgba(11, 255, 255, 0.15);
+        color: white;
     }
 
     .select-item.selected {
-        background-color: rgba(139, 92, 246, 0.2);
+        background-color: rgba(11, 255, 255, 0.2);
         color: var(--accent);
         font-weight: 500;
     }

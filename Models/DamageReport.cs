@@ -26,4 +26,16 @@ public class DamageReport
     
     public double Latitude { get; set; }
     public double Longitude { get; set; }
+
+    public double DamageRate { get; set; } // Percentage 0-100
+
+    public string DamageLabel => DamageRate switch
+    {
+        > 5 => "High",
+        >= 3 => "Medium",
+        _ => "Normal"
+    };
+
+    public double PropertyValue { get; set; }
+    public double PayoutAmount { get; set; }
 }

@@ -1,21 +1,51 @@
 :root {
-    --bg-dark: #111827;
-    --bg-panel: #0f141e;
-    /* Slightly darker/different for contrast */
-    --text-main: #d1d5db;
-    --text-muted: #9ca3af;
-    --accent-purple: #8B5CF6;
-    --accent-purple-dim: #7C3AED;
-    --border-dashed: #7C3AED;
-    --input-bg: #1f2937;
-    --input-border: #374151;
-    --hover-bg: #2d3648;
+    /* === BACKGROUND COLORS === */
+    --bg-dark:        #0d1b2a;  /* Main background */
+    --bg-panel:       #112240;  /* Card/panel background */
+    --bg-secondary:   #0f1e35;  /* Secondary panel */
 
-    /* SLIC Brand Colors */
-    --slic-teal: #17B4B7;
-    --slic-teal-light: #20D4D8;
-    --slic-teal-dark: #0E8A8D;
-    --slic-gold: #D4AF37;
+    /* Legacy aliases kept for compatibility */
+    --input-bg:       #0f1e35;
+    --input-border:   #1e3a5f;
+    --hover-bg:       #1a2f4a;
+    --border-dashed:  #1e3a5f;
+
+    /* === ACCENT / HIGHLIGHT === */
+    --gradient-teal:  linear-gradient(180deg, #00BCD4 0%, #009688 100%);
+    --color-teal-top: #00BCD4;
+    --color-teal-bottom: #009688;
+    --color-teal-mid: #00B2AA;
+
+    --accent:         var(--color-teal-mid);  /* Primary teal/green */
+    --accent-hover:   var(--color-teal-top);
+    --accent-dim:     var(--color-teal-bottom);
+    --color-purple:   #7c3aed;  /* Purple accent */
+    --color-amber:    #f59e0b;  /* Orange/amber dot */
+
+    /* SLIC Brand */
+    --slic-teal:       var(--color-teal-mid);
+    --slic-teal-light: var(--color-teal-top);
+    --slic-teal-dark:  var(--color-teal-bottom);
+    --slic-gold:       #f59e0b;
+
+    /* === TEXT COLORS === */
+    --text-main:   #ffffff;  /* Primary text */
+    --text-muted:  #94a3b8;  /* Secondary/muted */
+    --text-label:  #64748b;  /* Label text */
+
+    /* === ALERT / STATUS === */
+    --color-danger:     #ef4444;
+    --color-danger-dark:#dc2626;
+    --color-success:    #10b981;
+    --color-warning:    #f59e0b;
+
+    /* === CHART === */
+    --chart-fill:  #14b8a6;
+    --chart-grid:  #1e3a5f;
+
+    /* === BORDERS === */
+    --border-card: #1e3a5f;
+    --border-soft: rgba(255,255,255,0.08);
 }
 
 body {
@@ -34,7 +64,7 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--accent-purple);
+    color: var(--color-teal-mid);
     margin-top: 0;
 }
 
@@ -45,8 +75,19 @@ h6 {
 }
 
 /* Utilities */
-.text-purple {
-    color: var(--accent-purple);
+.bg-gradient-teal {
+    background: var(--gradient-teal);
+    color: white;
+}
+
+.text-gradient-teal {
+    background: var(--gradient-teal);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.text-teal {
+    color: var(--color-teal-mid);
 }
 
 .text-center {
@@ -115,7 +156,7 @@ h6 {
 .landing-hero {
     height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), url('landing-bg.png');
+    background-image: linear-gradient(rgba(3, 7, 7, 0.6), rgba(3, 7, 7, 0.85)), url('landing-bg.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -127,18 +168,19 @@ h6 {
 }
 
 .hero-title {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 800;
     margin-bottom: 2rem;
-    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(to right, #8B5CF6, #3B82F6);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to right, var(--color-teal-top), var(--slic-teal));
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    letter-spacing: -0.02em;
 }
 
 .btn-primary {
-    background-color: var(--accent-purple);
+    background-color: var(--color-teal-mid);
     color: white;
     padding: 0.75rem 2rem;
     border-radius: 9999px;
@@ -148,13 +190,13 @@ h6 {
     border: none;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 4px 6px -1px rgba(23, 180, 183, 0.4);
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-purple-dim);
+    background-color: var(--color-teal-bottom);
     transform: translateY(-2px);
-    box-shadow: 0 6px 8px -1px rgba(139, 92, 246, 0.5);
+    box-shadow: 0 6px 8px -1px rgba(23, 180, 183, 0.5);
 }
 
 
@@ -181,7 +223,7 @@ h6 {
     gap: 0.5rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--accent-purple);
+    color: var(--color-teal-mid);
 }
 
 /* Dropdown/Select Styling */
@@ -206,7 +248,7 @@ h6 {
 
 .app-select-trigger:hover,
 .app-select-trigger.active {
-    border-color: var(--accent-purple);
+    border-color: var(--color-teal-mid);
 }
 
 .app-select-trigger.disabled {
@@ -220,9 +262,9 @@ h6 {
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #1f2937;
+    background-color: #101F1F;
     /* Slightly lighter than panel bg */
-    border: 1px solid var(--accent-purple-dim);
+    border: 1px solid var(--color-teal-bottom);
     border-radius: 8px;
     margin-top: 0.5rem;
     z-index: 50;
@@ -327,7 +369,7 @@ h6 {
 
 .search-input:focus {
     outline: none;
-    border-color: var(--accent-purple);
+    border-color: var(--color-teal-mid);
 }
 
 .options-list {
@@ -350,9 +392,9 @@ h6 {
 }
 
 .option-item.selected {
-    border-left: 3px solid var(--accent-purple);
-    background-color: rgba(139, 92, 246, 0.1);
-    color: var(--accent-purple);
+    border-left: 3px solid var(--color-teal-mid);
+    background-color: rgba(23, 180, 183, 0.1);
+    color: var(--color-teal-mid);
 }
 
 /* Selected Values Display (Demo List below dropdown) */
@@ -360,13 +402,13 @@ h6 {
     margin-top: 1.5rem;
     flex-grow: 1;
     overflow-y: auto;
-    border-top: 1px solid #374151;
+    border-top: 1px solid #1F3A3A;
     padding-top: 1rem;
 }
 
 .value-row {
     padding: 0.5rem 0;
-    border-bottom: 1px solid #1f2937;
+    border-bottom: 1px solid #101F1F;
     color: var(--text-muted);
     font-size: 0.9rem;
     display: flex;
@@ -436,7 +478,7 @@ h6 {
 }
 
 .text-primary {
-    color: var(--accent-purple);
+    color: var(--color-teal-mid);
 }
 
 .text-secondary {
@@ -472,19 +514,19 @@ h6 {
 }
 
 .bg-gray-800 {
-    background-color: #1f2937;
+    background-color: #101F1F;
 }
 
 .bg-gray-900 {
-    background-color: #111827;
+    background-color: #030707;
 }
 
 .border-gray-700 {
-    border-color: #374151;
+    border-color: #1F3A3A;
 }
 
 .border-gray-800 {
-    border-color: #1f2937;
+    border-color: #101F1F;
 }
 
 .rounded {
@@ -656,7 +698,7 @@ h6 {
 }
 
 .border-purple-500 {
-    border-color: #8b5cf6;
+    border-color: var(--color-teal-mid);
 }
 
 .border-t-transparent {
@@ -667,7 +709,7 @@ h6 {
 @media print {
     body {
         background: white !important;
-        color: #111827 !important;
+        color: #030707 !important;
         font-size: 12pt;
     }
 
@@ -680,11 +722,11 @@ h6 {
     .text-gray-300,
     .text-gray-400,
     .text-secondary {
-        color: #374151 !important;
+        color: #1F3A3A !important;
     }
 
     .text-2xl {
-        color: #111827 !important;
+        color: #030707 !important;
     }
 
     .app-panel {
@@ -700,7 +742,7 @@ h6 {
 
     a[href^="tel:"] {
         text-decoration: none;
-        color: #111827 !important;
+        color: #030707 !important;
     }
 
     .action-buttons,

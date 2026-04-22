@@ -14,8 +14,8 @@ window.renderHistoryChart = (canvasId, dataLabels, dataValues) => {
             datasets: [{
                 label: 'Flood Events',
                 data: dataValues,
-                backgroundColor: 'rgba(45, 212, 191, 0.5)',
-                borderColor: 'rgba(45, 212, 191, 1)',
+                backgroundColor: 'rgba(0, 178, 170, 0.5)',
+                borderColor: 'rgba(0, 178, 170, 1)',
                 borderWidth: 1,
                 borderRadius: 4
             }]

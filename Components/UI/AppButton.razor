@@ -45,7 +45,14 @@
         border: 1px solid transparent;
         line-height: 1.25;
         outline: none;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .app-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.35);
     }
 
     .app-btn:active:not(:disabled) {
@@ -57,8 +64,11 @@
     }
 
     .app-btn:disabled {
-        opacity: 0.5;
+        opacity: 0.4;
         cursor: not-allowed;
+        background-color: rgba(255, 255, 255, 0.08); /* Distinct background even when disabled */
+        border-color: rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.4);
     }
     
     .spinner {
@@ -75,8 +85,18 @@
     /* Variants & Colors */
     
     /* Filled */
-    .app-btn-filled.app-btn-primary { background: var(--accent); color: white; border-color: var(--accent); }
-    .app-btn-filled.app-btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .app-btn-filled.app-btn-primary { 
+        background-color: var(--accent); 
+        color: #143037; 
+        border: 1px solid rgba(255, 255, 255, 0.2); 
+        box-shadow: 0 4px 15px rgba(11, 255, 255, 0.3);
+        font-weight: 700;
+    }
+    .app-btn-filled.app-btn-primary:hover:not(:disabled) { 
+        background-color: var(--accent-hover);
+        box-shadow: 0 6px 20px rgba(11, 255, 255, 0.4);
+        filter: brightness(110%);
+    }
 
     .app-btn-filled.app-btn-neutral { background: var(--bg-secondary); color: var(--text-primary); border-color: var(--border-color); }
     .app-btn-filled.app-btn-neutral:hover { background: var(--border-color); }
@@ -86,20 +106,20 @@
 
     /* Outline */
     .app-btn-outline { background: transparent; }
-    .app-btn-outline.app-btn-primary { border-color: var(--accent); color: var(--accent); }
-    .app-btn-outline.app-btn-primary:hover { background: rgba(139, 92, 246, 0.1); }
+    .app-btn-outline.app-btn-primary { border-color: var(--color-teal-mid); color: var(--color-teal-mid); }
+    .app-btn-outline.app-btn-primary:hover { background: rgba(0, 178, 170, 0.1); }
     
     .app-btn-outline.app-btn-neutral { border-color: var(--border-color); color: var(--text-secondary); }
     .app-btn-outline.app-btn-neutral:hover { border-color: var(--text-primary); color: var(--text-primary); }
 
     /* Soft */
-    .app-btn-soft.app-btn-primary { background: rgba(139, 92, 246, 0.15); color: #A78BFA; border-color: transparent; }
-    .app-btn-soft.app-btn-primary:hover { background: rgba(139, 92, 246, 0.25); }
+    .app-btn-soft.app-btn-primary { background: rgba(0, 178, 170, 0.15); color: var(--color-teal-mid); border-color: transparent; }
+    .app-btn-soft.app-btn-primary:hover { background: rgba(0, 178, 170, 0.25); }
 
     /* Ghost */
     .app-btn-ghost { background: transparent; border-color: transparent; }
-    .app-btn-ghost.app-btn-primary { color: var(--accent); }
-    .app-btn-ghost.app-btn-primary:hover { background: rgba(139, 92, 246, 0.1); }
+    .app-btn-ghost.app-btn-primary { color: var(--color-teal-mid); }
+    .app-btn-ghost.app-btn-primary:hover { background: rgba(0, 178, 170, 0.1); }
     
     .app-btn-ghost.app-btn-neutral { color: var(--text-secondary); }
     .app-btn-ghost.app-btn-neutral:hover { color: var(--text-primary); background: rgba(255,255,255, 0.05); }

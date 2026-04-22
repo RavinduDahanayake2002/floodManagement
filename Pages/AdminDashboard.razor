@@ -10,8 +10,8 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="slic-logo.png" alt="SLIC" class="sidebar-logo" />
-            <h3>Admin Space</h3>
+            <img src="slic-logo-wide-full.jpg" alt="SLIC General" class="sidebar-logo-wide" />
+            <div class="sidebar-title">Admin Space</div>
         </div>
         <nav class="sidebar-nav">
             <button class="nav-item active">
@@ -121,7 +121,16 @@
                 <div class="panel-header">
                     <h3>Recent Damage Reports</h3>
                     <div class="actions">
-                        <AppButton Variant="AppButton.ButtonVariant.Outline" Size="AppButton.ButtonSize.Small" OnClick="ExportCsv">
+                        <div class="filter-group">
+                            <label class="text-secondary text-sm">Rating Filter:</label>
+                            <select class="form-select filter-select" @onchange="OnRatingFilterChanged">
+                                <option value="All">All Ratings</option>
+                                <option value="High">High (&gt; 5%)</option>
+                                <option value="Medium">Medium (3% - 5%)</option>
+                                <option value="Normal">Normal (&lt; 3%)</option>
+                            </select>
+                        </div>
+                        <AppButton Variant="AppButton.ButtonVariant.Outline" OnClick="ExportCsv">
                            <Icon SvgContent='<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" fill="none" stroke-width="2"></path><polyline points="7 10 12 15 17 10" stroke="currentColor" fill="none" stroke-width="2"></polyline><line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2"></line>' />
                            Export CSV
                         </AppButton>
@@ -135,6 +144,7 @@
                                 <th>Date/Time</th>
                                 <th>Customer Name</th>
                                 <th>Address</th>
+                                <th>Damage Rating</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -148,11 +158,18 @@
                                     <td>@claim.FullName</td>
                                     <td>@claim.Address</td>
                                     <td>
+                                        <div class="rating-cell">
+                                            <span class="badge rating-badge @claim.DamageLabel.ToLower()">@claim.DamageLabel</span>
+                                            <span class="rate-value">@claim.DamageRate.ToString("0.0")%</span>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <span class="badge @claim.Status.ToLower()">@claim.Status</span>
                                     </td>
                                     <td>
-                                        <select class="form-select" @onchange="@(e => UpdateStatus(claim.Id, e.Value?.ToString() ?? ""))">
+                                        <select class="form-select" @onchange="@(e => HandleAction(claim, e.Value?.ToString() ?? ""))">
                                             <option value="" disabled selected>Update</option>
+                                            <option value="Assess">Assess Claim</option>
                                             <option value="Pending">Pending</option>
                                             <option value="Approved">Approved</option>
                                             <option value="Processed">Processed</option>
@@ -167,6 +184,55 @@
             </div>
         </div>
     </main>
+
+    @if (_showCalculator && _currentClaim != null)
+    {
+        <div class="modal-overlay">
+            <div class="modal-content glass-panel">
+                <div class="modal-header">
+                    <h3>Claim Assessment - @(_currentClaim.FullName)</h3>
+                    <button class="close-btn" @onclick="CloseCalculator">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="claim-info-summary">
+                        <div class="info-item">
+                            <label>Damage Rating</label>
+                            <span class="badge rating-badge @(_currentClaim.DamageLabel.ToLower())">@(_currentClaim.DamageLabel) (@(_currentClaim.DamageRate.ToString("0.0"))%)</span>
+                        </div>
+                        <div class="info-item">
+                            <label>Ref ID</label>
+                            <span class="text-secondary">@(_currentClaim.Id.Substring(0,8).ToUpper())</span>
+                        </div>
+                    </div>
+
+                    <div class="calculator-form">
+                        <div class="form-group">
+                            <label for="propValue">Property Value (LKR)</label>
+                            <div class="input-wrapper">
+                                <span class="prefix">Rs.</span>
+                                <input id="propValue" type="number" class="form-control" @bind="_tempPropertyValue" @bind:event="oninput" placeholder="e.g. 1,000,000" />
+                            </div>
+                            <small class="text-secondary">Enter the total estimated value of the property.</small>
+                        </div>
+
+                        <div class="calculation-result">
+                            <div class="result-box">
+                                <label>Calculated Payout</label>
+                                <div class="payout-value">Rs. @(_calculatedPayout.ToString("N0"))</div>
+                                <div class="math-logic text-sm text-secondary">
+                                    Math: Rs. @(_tempPropertyValue.ToString("N0")) × @(_currentClaim.DamageRate)% = Rs. @(_calculatedPayout.ToString("N0"))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <AppButton Variant="AppButton.ButtonVariant.Outline" OnClick="CloseCalculator">Cancel</AppButton>
+                    <AppButton Variant="AppButton.ButtonVariant.Filled" Color="AppButton.ButtonColor.Primary" OnClick="SaveAssessment">Save & Approve Claim</AppButton>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
 @code {
@@ -174,6 +240,13 @@
     private Dictionary<string, int> Summary = new();
     private string _forecastLevel = "Medium";
     private int _forecastVolume = 15;
+    private string _ratingFilter = "All";
+
+    /* Calculator State */
+    private bool _showCalculator = false;
+    private DamageReport? _currentClaim;
+    private double _tempPropertyValue;
+    private double _calculatedPayout => _currentClaim != null ? _tempPropertyValue * (_currentClaim.DamageRate / 100.0) : 0;
 
     protected override void OnInitialized()
     {
@@ -228,8 +301,58 @@
 
     private void RefreshData()
     {
-        Claims = adminService.GetAllClaims();
+        var allClaims = adminService.GetAllClaims();
         Summary = adminService.GetClaimsStatusSummary();
+
+        if (_ratingFilter == "All")
+        {
+            Claims = allClaims;
+        }
+        else
+        {
+            Claims = allClaims.Where(c => c.DamageLabel == _ratingFilter).ToList();
+        }
+    }
+
+    private void OnRatingFilterChanged(ChangeEventArgs e)
+    {
+        _ratingFilter = e.Value?.ToString() ?? "All";
+        RefreshData();
+    }
+
+    private void HandleAction(DamageReport claim, string action)
+    {
+        if (action == "Assess")
+        {
+            _currentClaim = claim;
+            _tempPropertyValue = claim.PropertyValue > 0 ? claim.PropertyValue : 0;
+            _showCalculator = true;
+        }
+        else if (!string.IsNullOrEmpty(action))
+        {
+            UpdateStatus(claim.Id, action);
+        }
+    }
+
+    private void CloseCalculator()
+    {
+        _showCalculator = false;
+        _currentClaim = null;
+    }
+
+    private async Task SaveAssessment()
+    {
+        if (_currentClaim != null)
+        {
+            _currentClaim.PropertyValue = _tempPropertyValue;
+            _currentClaim.PayoutAmount = _calculatedPayout;
+            _currentClaim.Status = "Approved";
+            
+            adminService.UpdateClaim(_currentClaim);
+            
+            CloseCalculator();
+            RefreshData();
+        }
     }
 
     private void UpdateStatus(string id, string newStatus)
@@ -266,11 +389,11 @@
 
 <style>
     :root {
-        --color-navy: #0f172a;
-        --color-navy-light: #1e293b;
-        --color-teal: #14b8a6;
-        --text-primary: #f8fafc;
-        --text-secondary: #94a3b8;
+        --color-navy: #030707;
+        --color-navy-light: #091414;
+        --color-teal: #0BFFFF;
+        --text-primary: #E0F2F2;
+        --text-secondary: #8BA8A8;
         --border-color: rgba(255, 255, 255, 0.1);
     }
 
@@ -293,7 +416,7 @@
     /* Sidebar */
     .sidebar {
         width: 100%;
-        background-color: rgba(15, 23, 42, 0.95);
+        background-color: rgba(3, 7, 7, 0.95);
         border-bottom: 1px solid var(--border-color);
         display: flex;
         flex-direction: column;
@@ -308,15 +431,21 @@
         border-bottom: 1px solid var(--border-color);
     }
 
-    .sidebar-logo {
-        width: 40px;
-        height: 40px;
-        background: white;
-        border-radius: 8px;
-        padding: 4px;
+    .sidebar-logo-wide {
+        width: 100%;
+        max-width: 220px;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
     }
 
-    .sidebar-header h3 { margin: 0; font-size: 1.1rem; }
+    .sidebar-header h3, .sidebar-title { 
+        margin: 0; 
+        font-size: 0.9rem; 
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
 
     .sidebar-nav {
         padding: 0.5rem 1rem;
@@ -397,7 +526,7 @@
         justify-content: space-between;
         padding: 0 2rem;
         border-bottom: 1px solid var(--border-color);
-        background: rgba(15, 23, 42, 0.9);
+        background: rgba(3, 7, 7, 0.9);
         position: sticky;
         top: 0;
         z-index: 10;
@@ -482,6 +611,12 @@
 
     .panel-header h3 { margin: 0; font-size: 1.1rem; }
 
+    .actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
     .charts-row {
         display: flex;
         flex-direction: column;
@@ -565,6 +700,131 @@
     }
     
     .form-select:focus { border-color: var(--color-teal); }
+
+    .filter-group {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .filter-select {
+        min-width: 140px;
+    }
+
+    .rating-cell {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .rate-value {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+        font-family: monospace;
+    }
+
+    .badge.rating-badge {
+        width: fit-content;
+    }
+
+    .badge.high { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.5); }
+    .badge.medium { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.5); }
+    .badge.normal { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.5); }
+
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(4px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        padding: 2rem;
+    }
+
+    .modal-content {
+        width: 100%;
+        max-width: 500px;
+        padding: 2rem;
+        border-radius: 20px;
+        animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @@keyframes modalScaleUp {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+
+    .modal-header h3 { margin: 0; font-size: 1.25rem; }
+
+    .close-btn {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .claim-info-summary {
+        display: flex;
+        gap: 2rem;
+        padding: 1rem;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        margin-bottom: 2rem;
+    }
+
+    .info-item label { display: block; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+
+    .calculator-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 8px;
+        padding: 0 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .input-wrapper .prefix { color: var(--text-secondary); margin-right: 0.5rem; font-weight: 500; }
+    .input-wrapper input { background: none; border: none; color: white; padding: 0.75rem 0; outline: none; flex: 1; font-size: 1rem; }
+
+    .calculation-result {
+        margin-top: 1rem;
+    }
+
+    .result-box {
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(14, 138, 141, 0.1) 0%, rgba(14, 138, 141, 0.05) 100%);
+        border: 1px dashed var(--color-teal);
+        border-radius: 16px;
+        text-align: center;
+    }
+
+    .result-box label { font-size: 0.85rem; color: var(--text-secondary); }
+    .payout-value { font-size: 2rem; font-weight: 800; color: var(--color-teal-light); margin: 0.5rem 0; }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin-top: 2.5rem;
+    }
 
     /* Forecast Widget */
     .forecast-panel {

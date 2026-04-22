@@ -5,6 +5,18 @@ using FloodApp.State;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Load .env file if it exists
+var envPath = Path.Combine(Directory.GetCurrentDirectory(), ".env");
+if (File.Exists(envPath))
+{
+    foreach (var line in File.ReadAllLines(envPath))
+    {
+        var parts = line.Split('=', 2);
+        if (parts.Length != 2) continue;
+        Environment.SetEnvironmentVariable(parts[0].Trim(), parts[1].Trim());
+    }
+}
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -21,7 +33,7 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<WeatherService>();
 builder.Services.AddSingleton<HistoricalDataService>();
 builder.Services.AddSingleton<MLPredictionService>();
-builder.Services.AddScoped<AIFloodPredictor>();
+
 builder.Services.AddHttpClient<GeocodingService>();
 
 

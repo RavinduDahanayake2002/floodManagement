@@ -7,15 +7,6 @@
 <div class="agent-page flex flex-col h-screen overflow-hidden">
     <!-- Header Area -->
     <div class="header-section shrink-0 relative z-50 pt-4">
-        <div class="container mx-auto px-6 relative z-50">
-            <AppButton Variant="AppButton.ButtonVariant.Ghost" 
-                       Color="AppButton.ButtonColor.Neutral"
-                       OnClick="@GoBack"
-                       Class="px-2 py-1 -ml-2 mb-2">
-                <Icon SvgContent='<path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' />
-                Back
-            </AppButton>
-        </div>
         <div class="container mx-auto px-6 py-4 text-center">
             <h1 class="text-3xl font-bold text-white mb-2 tracking-tight">Find Your Nearest SLIC Agent</h1>
             <p class="text-secondary">Walk in or call — we're here to protect you.</p>
@@ -80,7 +71,7 @@
                              @onclick="() => SelectAgent(agent)">
                             
                             <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-lg font-bold text-white group-hover:text-teal-400 transition-colors">@agent.Name</h3>
+                                <h3 class="text-lg font-bold text-white group-hover:text-[#00B2AA] transition-colors">@agent.Name</h3>
                                 @if (agent.Type == "Branch")
                                 {
                                     <span class="badge bg-purple-900/40 text-purple-300 border border-purple-500/30">Branch</span>
@@ -97,7 +88,7 @@
                             </p>
                             
                             <div class="flex items-center gap-2 mb-4">
-                                <a href="tel:@agent.Phone.Replace(" ", "")" class="text-teal-400 hover:text-teal-300 font-medium text-sm flex items-center gap-1 bg-teal-900/20 px-2 py-1 rounded-md" @onclick:stopPropagation>
+                                <a href="tel:@agent.Phone.Replace(" ", "")" class="text-[#00B2AA] hover:text-[#00BCD4] font-medium text-sm flex items-center gap-1 bg-[#00B2AA]/20 px-2 py-1 rounded-md" @onclick:stopPropagation>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                                     @agent.Phone
                                 </a>
@@ -146,14 +137,14 @@
     private string selectedProvince
     {
         get => _selectedProvince;
-        set { _selectedProvince = value; ApplyFilters(); }
+        set { _selectedProvince = value; _ = ApplyFilters(); }
     }
 
     private string _searchTerm = "";
     private string searchTerm
     {
         get => _searchTerm;
-        set { _searchTerm = value; ApplyFilters(); }
+        set { _searchTerm = value; _ = ApplyFilters(); }
     }
 
     private double? userLat;
@@ -161,9 +152,9 @@
     private bool isLocating = false;
     private string selectedAgentId = "";
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        ApplyFilters();
+        await ApplyFilters();
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -245,7 +236,7 @@
                 // Clear filters when auto-locating
                 _selectedProvince = "All";
                 _searchTerm = "";
-                ApplyFilters(); // Will redraw automatically
+                await ApplyFilters(); // Will redraw automatically
             }
         }
         catch (Exception)
@@ -260,12 +251,12 @@
         }
     }
 
-    private void GoBack() => Nav.NavigateTo("/location");
+
 }
 
 <style>
     .agent-page {
-        background-color: #0f172a;
+        background-color: var(--bg-dark);
     }
 
     .header-section {
@@ -329,20 +320,20 @@
     }
 
     .agent-card {
-        background: rgba(30, 41, 59, 0.4);
-        border: 1px solid rgba(255,255,255,0.05);
+        background: rgba(17, 34, 64, 0.4);
+        border: 1px solid var(--border-soft);
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     
     .agent-card:hover {
-        background: rgba(30, 41, 59, 0.7);
-        border-color: rgba(45, 212, 191, 0.3);
+        background: rgba(17, 34, 64, 0.75);
+        border-color: rgba(0, 178, 170, 0.3);
         transform: translateY(-2px);
     }
 
     .active-card {
-        background: rgba(30, 41, 59, 0.9);
-        border-color: #7c3aed;
+        background: rgba(17, 34, 64, 0.95);
+        border-color: var(--color-purple);
         box-shadow: 0 0 20px rgba(124, 58, 237, 0.2);
     }
 
@@ -356,9 +347,9 @@
     }
 
     .action-btn {
-        background: rgba(45, 212, 191, 0.1);
-        color: #2dd4bf;
-        border: 1px solid rgba(45, 212, 191, 0.2);
+        background: rgba(0, 178, 170, 0.1);
+        color: #00B2AA;
+        border: 1px solid rgba(0, 178, 170, 0.2);
         padding: 0.5rem;
         border-radius: 0.5rem;
         font-size: 0.85rem;
@@ -370,8 +361,8 @@
     }
 
     .action-btn:hover {
-        background: rgba(45, 212, 191, 0.2);
-        border-color: rgba(45, 212, 191, 0.4);
+        background: rgba(0, 178, 170, 0.2);
+        border-color: rgba(0, 178, 170, 0.4);
     }
     
     .action-btn-outline {

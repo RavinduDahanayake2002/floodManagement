@@ -1,18 +1,19 @@
 @inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@implements IDisposable
 
 <div class="app-layout">
     <!-- Global Slim Top Navbar -->
     <header class="global-navbar">
         <div class="nav-container">
             <div class="nav-brand">
-                <span class="brand-accent">SLIC</span> Apps
+                <span class="brand-accent">SLIC</span> Flood Management
             </div>
             <nav class="nav-links">
                 <NavLink href="/" Match="NavLinkMatch.All" class="nav-link">Home</NavLink>
-                <NavLink href="/location" class="nav-link">Risk App</NavLink>
-                <NavLink href="/history" class="nav-link">History</NavLink>
-                <NavLink href="/find-agent" class="nav-link">Find Agent</NavLink>
-                <NavLink href="/awareness" class="nav-link">Awareness</NavLink>
+                <NavLink href="/location" class="nav-link">Flood Risk</NavLink>
+                <NavLink href="/history" class="nav-link">Flood History</NavLink>
+                <NavLink href="/premium" class="nav-link">Premium Calculation</NavLink>
             </nav>
         </div>
     </header>
@@ -25,8 +26,8 @@
 <style>
     .app-layout {
         min-height: 100vh;
-        background-color: var(--bg-primary, #0f172a);
-        color: var(--text-primary, #ffffff);
+        background-color: var(--bg-dark);
+        color: var(--text-main);
         display: flex;
         flex-direction: column;
     }
@@ -36,10 +37,10 @@
         top: 0;
         z-index: 50;
         width: 100%;
-        background: rgba(15, 23, 42, 0.8);
+        background: rgba(13, 27, 42, 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid var(--border-soft);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     }
 
@@ -68,7 +69,7 @@
     }
 
     .brand-accent {
-        color: #2dd4bf;
+        color: var(--color-teal-mid);
     }
 
     .nav-links {
@@ -95,8 +96,27 @@
     }
 
     .nav-link:hover, .nav-link.active {
-        color: #2dd4bf;
-        text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
+        color: var(--color-teal-mid);
+        text-shadow: 0 0 10px rgba(0, 178, 170, 0.5);
+    }
+
+    .nav-back-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-size: 0.95rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.2s;
+        padding: 0;
+    }
+
+    .nav-back-btn:hover {
+        color: var(--color-teal-top);
+        text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
     }
 
     .content {
@@ -106,3 +126,17 @@
     }
 </style>
 
+
+@code {
+    protected override void OnInitialized()
+    {
+        Navigation.LocationChanged += HandleLocationChanged;
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e) => StateHasChanged();
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= HandleLocationChanged;
+    }
+}

@@ -8,7 +8,8 @@ export function initMap(elementId, center, zoom, markers) {
     }).addTo(map);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
     }).addTo(map);
 
     if (markers) {
@@ -35,7 +36,7 @@ export function addGeoJson(map, geoJsonData, styleCallbackName) {
         style: function (feature) {
             // Simple style mapping based on properties
             var risk = feature.properties.riskLevel;
-            var color = '#10B981'; // Low
+            var color = '#00BCD4'; // Low (Cyan)
             if (risk === 'High') color = '#EF4444';
             if (risk === 'Medium') color = '#F59E0B';
 
@@ -69,8 +70,8 @@ export function addRiskRadius(map, lat, lng, riskLevel) {
         map.removeLayer(window.currentRiskPulse);
     }
 
-    var color = '#10B981'; // Low (Green)
-    var pulseColor = 'rgba(16, 185, 129, 0.6)';
+    var color = '#00BCD4'; // Low (Cyan)
+    var pulseColor = 'rgba(0, 188, 212, 0.6)';
 
     if (riskLevel === 'High') {
         color = '#EF4444'; // Red
@@ -84,15 +85,15 @@ export function addRiskRadius(map, lat, lng, riskLevel) {
     window.currentRiskCircle = L.circle([lat, lng], {
         color: color,
         fillColor: color,
-        fillOpacity: 0.2,
-        weight: 2,
+        fillOpacity: 0.15,
+        weight: 1.5,
         radius: 2500
     }).addTo(map);
 
     // A custom marker that acts as the "blast"/pulse animation center
     const pulseIcon = L.divIcon({
         className: 'risk-pulse-icon',
-        html: `<div style="--pulse-color: ${pulseColor}; width: 24px; height: 24px; border-radius: 50%; background-color: ${color}; outline: 2px solid white; box-shadow: 0 0 0 0 var(--pulse-color); animation: mapPulse 2s infinite;"></div>`,
+        html: `<div style="--pulse-color: ${pulseColor}; width: 24px; height: 24px; border-radius: 50%; background-color: ${color}; outline: 2px solid #00BCD4; box-shadow: 0 0 0 0 var(--pulse-color); animation: mapPulse 2s infinite;"></div>`,
         iconSize: [24, 24],
         iconAnchor: [12, 12]
     });
@@ -105,7 +106,7 @@ export function addShelterMarker(map, lat, lng, popupContent) {
 
     const shelterIcon = L.divIcon({
         className: 'custom-div-icon',
-        html: "<div style='background-color:#3B82F6;width:24px;height:24px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,0.5);'><span style='font-size:12px;'>🏥</span></div>",
+        html: "<div style='background-color:#00B2AA;width:24px;height:24px;border-radius:50%;border:2px solid #00BCD4;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(0, 188, 212, 0.4);'><span style='font-size:12px;'>🏥</span></div>",
         iconSize: [24, 24],
         iconAnchor: [12, 12]
     });
@@ -122,12 +123,12 @@ export function addAgentMarker(map, lat, lng, type, popupContent) {
     if (!window.agentMarkers) window.agentMarkers = [];
 
     const isBranch = type === 'Branch';
-    const color = isBranch ? '#7c3aed' : '#06b6d4'; // Purple for Branch, Cyan for Agent
+    const color = isBranch ? '#009688' : '#00BCD4'; // Dark Teal for Branch, Cyan for Agent
     const iconStr = isBranch ? '🏢' : '👤';
 
     const agentIcon = L.divIcon({
         className: 'custom-div-icon',
-        html: `<div style='background-color:${color};width:28px;height:28px;border-radius:50%;border:2px solid white;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 6px rgba(0,0,0,0.4);'><span style='font-size:14px;'>${iconStr}</span></div>`,
+        html: `<div style='background-color:${color};width:28px;height:28px;border-radius:50%;border:2px solid #00BCD4;display:flex;align-items:center;justify-content:center;box-shadow:0 0 12px rgba(0, 188, 212, 0.4); text-shadow: none;'><span style='font-size:14px;'>${iconStr}</span></div>`,
         iconSize: [28, 28],
         iconAnchor: [14, 14]
     });
@@ -146,7 +147,7 @@ export function addUserLocation(map, lat, lng) {
 
     const userIcon = L.divIcon({
         className: 'user-pulse-icon',
-        html: `<div style="width: 16px; height: 16px; border-radius: 50%; background-color: #3b82f6; outline: 3px solid white; box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); animation: mapPulse 2s infinite;"></div>`,
+        html: `<div style="width: 16px; height: 16px; border-radius: 50%; background-color: #00BCD4; outline: 3px solid #009688; box-shadow: 0 0 10px rgba(0, 188, 212, 0.7); animation: mapPulse 2s infinite;"></div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8]
     });
@@ -166,7 +167,7 @@ export function drawRouteLine(map, lat1, lng1, lat2, lng2) {
     ];
 
     window.routeLine = L.polyline(latlngs, {
-        color: '#2dd4bf',
+        color: '#00B2AA',
         weight: 3,
         dashArray: '5, 10',
         opacity: 0.8

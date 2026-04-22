@@ -1,0 +1,54 @@
+@inject NavigationManager Nav
+
+<button class="back-btn-ghost @Class" @onclick="HandleClick">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 19l-7-7 7-7"/>
+    </svg>
+    Back
+</button>
+
+@code {
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public string? Href { get; set; }
+    [Parameter] public string Class { get; set; } = "";
+
+    private async Task HandleClick()
+    {
+        if (OnClick.HasDelegate)
+            await OnClick.InvokeAsync();
+        else if (!string.IsNullOrEmpty(Href))
+            Nav.NavigateTo(Href);
+    }
+}
+
+<style>
+    .back-btn-ghost {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        padding: 6px 0;
+        transition: color 0.2s ease;
+        white-space: nowrap;
+        line-height: 1;
+    }
+
+    .back-btn-ghost:hover {
+        color: #ffffff;
+    }
+
+    .back-btn-ghost svg {
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+    }
+
+    .back-btn-ghost:hover svg {
+        transform: translateX(-2px);
+    }
+</style>

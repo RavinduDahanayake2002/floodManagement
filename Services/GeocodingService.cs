@@ -7,67 +7,74 @@ namespace FloodApp.Services;
 public class GeocodingService
 {
     private readonly HttpClient _httpClient;
+    private readonly string? _apiKey;
 
-    public GeocodingService(HttpClient httpClient)
+    public GeocodingService(HttpClient httpClient, IConfiguration configuration)
     {
         _httpClient = httpClient;
-        _httpClient.DefaultRequestHeaders.Clear();
-        _httpClient.DefaultRequestHeaders.Add("User-Agent", "SLICFloodManagementApp/1.0 (contact@slic.lk)");
-        _httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-        _httpClient.BaseAddress = new Uri("https://nominatim.openstreetmap.org/");
+        _apiKey = Environment.GetEnvironmentVariable("GEOAPIFY_API_KEY") 
+                  ?? configuration["GEOAPIFY_API_KEY"];
+        
+        _httpClient.BaseAddress = new Uri("https://api.geoapify.com/v1/geocode/");
     }
 
     /// <summary>
-    /// Geocode a free-text address to Lat/Lon.
-    /// Returns null if not found or an error occurs.
+    /// Geocode an address using Geoapify API.
+    /// Strictly limited to Sri Lanka.
     /// </summary>
     public async Task<GeocodeResult?> GeocodeAsync(string address)
     {
+        if (string.IsNullOrEmpty(_apiKey)) return null;
+
         try
         {
-            // Append Sri Lanka to help narrow results
-            var query = address.Contains("Sri Lanka", StringComparison.OrdinalIgnoreCase)
-                ? address
-                : address + ", Sri Lanka";
+            var url = $"search?text={Uri.EscapeDataString(address)}&apiKey={_apiKey}&filter=countrycode:lk&limit=1";
+            var response = await _httpClient.GetFromJsonAsync<JsonElement>(url);
 
-            var url = $"search?q={Uri.EscapeDataString(query)}&format=json&limit=3&countrycodes=lk";
-            var results = await _httpClient.GetFromJsonAsync<JsonElement[]>(url);
-
-            if (results == null || results.Length == 0)
+            var features = response.GetProperty("features");
+            if (features.GetArrayLength() == 0)
                 return null;
 
-            // Prefer results with "Sri Lanka" in display name
-            var best = results.FirstOrDefault(r =>
+            var feature = features[0];
+            var properties = feature.GetProperty("properties");
+            var geometry = feature.GetProperty("geometry").GetProperty("coordinates");
+            
+            return new GeocodeResult
             {
-                var displayName = r.GetProperty("display_name").GetString() ?? "";
-                return displayName.Contains("Sri Lanka", StringComparison.OrdinalIgnoreCase);
-            });
-
-            // Fallback to the first result
-            var element = best.ValueKind == JsonValueKind.Undefined ? results[0] : best;
-
-            var latStr = element.GetProperty("lat").GetString();
-            var lonStr = element.GetProperty("lon").GetString();
-            var displayNameStr = element.GetProperty("display_name").GetString() ?? address;
-
-            if (double.TryParse(latStr, System.Globalization.NumberStyles.Float,
-                    System.Globalization.CultureInfo.InvariantCulture, out double lat) &&
-                double.TryParse(lonStr, System.Globalization.NumberStyles.Float,
-                    System.Globalization.CultureInfo.InvariantCulture, out double lon))
-            {
-                return new GeocodeResult
-                {
-                    Lat = lat,
-                    Lon = lon,
-                    DisplayName = displayNameStr
-                };
-            }
-
-            return null;
+                Lat = geometry[1].GetDouble(),
+                Lon = geometry[0].GetDouble(),
+                DisplayName = properties.GetProperty("formatted").GetString() ?? address
+            };
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"[GeocodingService] Error: {ex.Message}");
+            Console.WriteLine($"[GeocodingService] Geoapify Geocoding Error: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Reverse geocode coordinates using Geoapify API.
+    /// Strictly limited to Sri Lanka.
+    /// </summary>
+    public async Task<string?> ReverseGeocodeAsync(double lat, double lon)
+    {
+        if (string.IsNullOrEmpty(_apiKey)) return null;
+
+        try
+        {
+            var url = $"reverse?lat={lat.ToString(System.Globalization.CultureInfo.InvariantCulture)}&lon={lon.ToString(System.Globalization.CultureInfo.InvariantCulture)}&apiKey={_apiKey}&filter=countrycode:lk&limit=1";
+            var response = await _httpClient.GetFromJsonAsync<JsonElement>(url);
+
+            var features = response.GetProperty("features");
+            if (features.GetArrayLength() == 0)
+                return null;
+
+            return features[0].GetProperty("properties").GetProperty("formatted").GetString();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"[GeocodingService] Geoapify Reverse Geocoding Error: {ex.Message}");
             return null;
         }
     }

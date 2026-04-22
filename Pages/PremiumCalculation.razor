@@ -1,0 +1,265 @@
+@page "/premium"
+@layout FloodApp.Components.Layout.MainLayout
+@inject NavigationManager Nav
+
+<div class="page-container">
+    <div class="calc-grid-wrapper">
+        <div class="glass-header brand-cyan-glow">
+            <h1>Premium Calculation</h1>
+            <p>Calculate your insurance premium based on localized risk factors.</p>
+        </div>
+
+        <div class="calc-grid">
+            <div class="feature-card">
+                <h2>Instant Quote</h2>
+                <p>Enter your details below to receive an estimated insurance premium rating based on Flood and Landslide risks.</p>
+                
+                <div class="calculation-form">
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Property Value (LKR)</label>
+                            <input type="number" @bind="_propertyValue" @bind:event="oninput" placeholder="Enter property value" class="dark-input" />
+                        </div>
+                    </div>
+                    
+                    <div class="input-row mt-6">
+                        <div class="input-group">
+                            <label>Risk Rating</label>
+                            <AppSelect Placeholder="Select Risk Rating"
+                                       Items="@_riskOptions"
+                                       SelectedValue="@_selectedRate"
+                                       SelectedValueChanged="@(val => _selectedRate = (double)val)"
+                                       Class="w-full" />
+                        </div>
+                    </div>
+                    
+                    <div class="info-box mt-8 @RiskLevelClass">
+                        <span class="risk-label">Rating: @RiskLevelText</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="results-card @RiskLevelClass">
+                <div class="total-premium">
+                    <span class="label">Total Estimated Value</span>
+                    <span class="rate-badge">Rate: @_selectedRate%</span>
+                    <span class="value">Rs. @FormattedTotal*</span>
+                </div>
+                <p class="disclaimer">*Subject to full survey and verification.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private double _propertyValue = 1000000;
+    private double _selectedRate = 2.5;
+
+    private List<AppSelect.SelectOption> _riskOptions = new()
+    {
+        new() { Text = "Low (0%)", Value = 0.0 },
+        new() { Text = "Medium (2.5%)", Value = 2.5 },
+        new() { Text = "High (5%)", Value = 5.0 }
+    };
+
+    private double CalculatedTotal => _propertyValue + (_propertyValue * (_selectedRate / 100));
+    private string FormattedTotal => CalculatedTotal.ToString("N2");
+
+    private string RiskLevelText => _selectedRate switch
+    {
+        >= 5.0 => $"High ({_selectedRate}%) - Rs. {FormattedTotal}",
+        >= 2.5 => $"Medium ({_selectedRate}%) - Rs. {FormattedTotal}",
+        _ => $"Low ({_selectedRate}%) - Rs. {FormattedTotal}"
+    };
+
+    private string RiskLevelClass => _selectedRate switch
+    {
+        >= 5.0 => "risk-high",
+        >= 2.5 => "risk-medium",
+        _ => "risk-low"
+    };
+}
+
+<style>
+    .page-container {
+        padding: 2.5rem 4rem;
+        min-height: calc(100vh - 64px);
+        background-color: var(--bg-dark);
+        background-image: 
+            radial-gradient(at 0% 0%, rgba(0, 191, 165, 0.06) 0px, transparent 50%),
+            radial-gradient(at 100% 0%, rgba(0, 191, 165, 0.04) 0px, transparent 50%);
+    }
+
+    .calc-grid-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .glass-header {
+        background: rgba(8, 22, 38, 0.7);
+        backdrop-filter: blur(10px);
+        padding: 2.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(11, 255, 255, 0.1);
+        margin-bottom: 2.5rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .brand-cyan-glow::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #0BFFFF, transparent);
+    }
+
+    .glass-header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        color: #0BFFFF;
+        text-shadow: 0 0 20px rgba(11, 255, 255, 0.3);
+    }
+
+    .calc-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 2rem;
+    }
+
+    .feature-card, .results-card {
+        background: rgba(15, 30, 53, 0.6);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--border-soft);
+        padding: 2.5rem;
+        border-radius: 24px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .feature-card:hover {
+        border-color: rgba(0, 178, 170, 0.25);
+        transform: translateY(-4px);
+    }
+
+    .calculation-form {
+        margin-top: 1.5rem;
+    }
+
+    .input-group label {
+        display: block;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.5rem;
+    }
+
+    .dark-input {
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid var(--border-soft);
+        color: white;
+        padding: 0.85rem 1rem;
+        border-radius: 12px;
+        outline: none;
+        font-size: 1.1rem;
+        transition: border-color 0.2s;
+    }
+
+    .dark-input:focus {
+        border-color: var(--accent);
+    }
+
+    select.dark-input option {
+        background: var(--bg-dark);
+        color: white;
+    }
+
+    .total-premium {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .total-premium .label {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+        opacity: 0.8;
+    }
+
+    .total-premium .rate-badge {
+        display: block;
+        font-size: 1.15rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 1rem;
+        opacity: 0.95;
+    }
+
+    .total-premium .value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    /* Risk Specific Styles */
+    .risk-low .total-premium {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid #22c55e;
+    }
+    .risk-low .risk-label, .risk-low .label { color: #4ade80; }
+    
+    .risk-medium .total-premium {
+        background: rgba(245, 158, 11, 0.1);
+        border: 1px solid #f59e0b;
+    }
+    .risk-medium .risk-label, .risk-medium .label { color: #fbbf24; }
+
+    .risk-high .total-premium {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid #ef4444;
+    }
+    .risk-high .risk-label, .risk-high .label { color: #f87171; }
+
+    .info-box {
+        padding: 1.25rem 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .info-box.risk-low {
+        background: rgba(34, 197, 94, 0.15);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+
+    .info-box.risk-medium {
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .info-box.risk-high {
+        background: rgba(239, 68, 68, 0.15);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .disclaimer {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.4);
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    .mt-4 { margin-top: 1rem; }
+
+    @@media (max-width: 900px) {
+        .calc-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

@@ -1,55 +1,68 @@
-# SLIC Flood Management System
+# 🌊 SLIC Flood Management System
 
-An intelligent flood risk assessment application for **Sri Lanka Insurance Corporation (SLIC)**, built with **.NET 8 Blazor**. This system helps users assess flood risks for specific locations across Sri Lanka, report property damage for insurance claims, and locate emergency shelters using real-time weather data and geospatial analytics.
-
-## 🚀 Key Features
-
-### 🌟 Interactive Splash Screen
-- **Minimalist Design**: Sleek dark theme (`#111827`) matching the application branding.
-- **SLIC Branding**: Official "SLIC General" logo integration.
-
-### 🌍 Location Intelligence
-- **Cascading Selection**: Select Province -> District -> Town hierarchy.
-- **Smart Navigation**: Map automatically zooms and pans to the selected region.
-
-### 🤖 AI & Machine Learning Integration
-- **Generative Assessment**: Connects to **Google Gemini API** to write custom, human-readable flood risk reports.
-- **Predictive ML Model**: Uses **ML.NET Random Forest** algorithms to predict risk severity and affected population using historical flood datasets.
-
-### 🛡️ Risk Assessment
-- **Advanced Analytics**: Uses "Point-in-Polygon" algorithms to determine flood risk.
-- **Visual Mapping**: Interactive Leaflet map with animated, color-coded risk overlays (Pulse / Blast Radius animation).
-- **Risk Levels**: High, Medium, Low.
-
-### 📝 Insurance Claims & Damage Reporting
-- **Report Damage**: Seamlessly report flood damage for properties directly to SLIC.
-- **Evidence Collection**: Attach photographic evidence for fast claims processing.
-
-### 🏥 Emergency Shelter Directory
-- **Shelter Locator**: Find the nearest emergency shelters based on your location.
-- **Live Occupancy**: Displays shelter capacity and real-time occupancy.
-- **Map Integration**: Shelters are visually marked on the interactive Leaflet map.
-
-### 🌦️ Real-Time Weather
-- **Live Integration**: Connects to [Open-Meteo API](https://open-meteo.com/).
-- **Current Conditions**: Displays Temperature (°C), Rainfall (mm), and Weather forecasts.
+Welcome to the **SLIC Flood Management System**, a state-of-the-art risk assessment and emergency response platform. Developed for the **Sri Lanka Insurance Corporation (SLIC)**, this application leverages real-time data, geospatial intelligence, and machine learning to protect lives and property across Sri Lanka.
 
 ---
 
-## 🛠️ Technology Stack
+## ✨ Core Features
 
-- **Framework**: [.NET 8 Blazor Web App (Interactive Server)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
-- **Language**: C#
-- **Map Library**: [Leaflet.js](https://leafletjs.com/) with OpenStreetMap tiles
-- **Machine Learning**: ML.NET (Random Forest Classification/Regression)
-- **AI Engine**: Google Gemini API (1.5 Flash)
-- **Styling**: Tailwind CSS / Custom CSS Variables
-- **Data**: GeoJSON for risk zones, JSON for location data, CSV for historical training sets
+### 🌎 Smart Location Intelligence
+- **Cascading Selection**: Choose Province → District → Divisional Secretariat with a seamless, responsive UI.
+- **Geoapify Integration**: Precise geocoding tailored for Sri Lankan addresses.
+- **Dynamic Mapping**: Interactive Leaflet.js maps with automated zooming and region highlighting.
+
+- **Enhanced Historical Reporting**: Detailed risk assessment based on 20+ years of historical data and localized impact analysis.
+  - **Affected Population**: Estimated impact for the current season.
+  - **Risk Severity**: AI-classified "HIGH," "MEDIUM," or "LOW" risk ratings based on 20+ years of historical data.
+
+### 🛡️ Interactive Risk Mapping
+- **Heatmap Overlays**: Pulse and "Blast Radius" animations visualize risk zones in real-time.
+- **Point-in-Polygon Engine**: Accurate risk detection using GeoJSON boundaries for Sri Lankan administrative divisions.
+
+### 🏥 Emergency Shelter Management
+- **Live Shelter Directory**: Locate the nearest safe zones instantly.
+- **Capacity Tracking**: Real-time occupancy data to ensure shelters aren't overwhelmed.
+
+### 🌦️ Real-Time Weather Insights
+- **Open-Meteo Integration**: Live temperature, rainfall (mm), and forecast updates to predict immediate flood threats.
 
 ---
 
-## 🏁 Getting Started
+## 🏗️ Technical Stack
 
+- **Frontend/Backend**: [.NET 8 Blazor Web App (Interactive Server Mode)](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor)
+- **Machine Learning**: Python (Scikit-learn, Random Forest), joblib for model serialization.
+- **Mapping**: [Leaflet.js](https://leafletjs.com/) with OpenStreetMap.
+- **Data APIs**: 
+  - **Geoapify**: For geocoding and location search.
+  - **Open-Meteo**: For real-time meteorological data.
+
+---
+
+## 🧠 Machine Learning Pipeline
+
+Our predictive engine is trained on the **DesInventar (Sri Lanka)** historical flood dataset (1970–Present).
+
+### Training the Models
+If you wish to re-train the models with the latest `dataset/DI_report.xls`:
+1. Ensure you have the Python 3.10+ environment set up.
+2. Run the training script:
+   ```powershell
+   # Activate virtual environment
+   .venv\Scripts\activate
+   # Run the trainer
+   python train_models.py
+   ```
+3. **Artifacts Generated**:
+   - `ml_models/rf_reg_affected.pkl`: Regression model for impact prediction.
+   - `ml_models/rf_clf_severity.pkl`: Classification model for risk levels.
+   - `wwwroot/data/ml_predictions.json`: Pre-processed predictions for the Blazor UI.
+
+---
+
+## 🚀 Getting Started
+
+<<<<<<< HEAD
 ### 📦 Prerequisites
 - **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)**: This is the ONLY software required to run this project. Download the installer for your operating system (Windows, macOS, or Linux) and install it.
 - **Git** (Optional): If you want to clone via command line instead of downloading the source code ZIP.
@@ -100,26 +113,46 @@ If you want to share this application with someone else and they **do not** have
 2. It will compress the application and the entire `.NET` engine into a standalone package.
 3. Open the newly created **`Dist`** folder. Inside, you will see folders for Windows, Mac, and Linux.
 4. Simply copy the `FloodApp.exe` file (from the Windows folder) to any other Windows computer and double-click it to run your server locally! No installations string required.
+=======
+### Prerequisites
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [Python 3.10+](https://www.python.org/downloads/) (for ML training)
+- **API Keys**: Add your `GEOAPIFY_API_KEY` to the `.env` file in the root directory.
+
+### Quick Run
+1. **Restore & Build**:
+   ```powershell
+   dotnet restore
+   ```
+2. **Launch Application**:
+   ```powershell
+   dotnet run --urls "http://localhost:5200"
+   ```
+3. **Internal Network Access**:
+   Access the system via your LAN at `http://[YOUR_IP]:5200`.
+>>>>>>> main
 
 ---
 
 ## 📂 Project Structure
 
-| Folder | Description |
-|--------|-------------|
-| **Pages** | Routable Razor components (`Landing`, `LocationSelection`, `RiskLocation`) |
-| **Components** | Reusable UI widgets (`WeatherWidget`, `RiskMapView`, `LocationForm`) |
-| **Services** | Business logic (`RiskService`, `WeatherService`, `LocationService`) |
-| **Models** | C# data definitions (`Province`, `RiskResult`, `WeatherResult`) |
-| **wwwroot** | Static assets (CSS, JS, Logos, GeoJSON data) |
+| Folder | Purpose |
+|--------|---------|
+| **Pages** | Core UI routes (`Landing`, `RiskLocation`, `PremiumCalc`) |
+| **Components** | UI widgets like `WeatherWidget`, `RiskMapView`, and `LocationForm` |
+| **Services** | Backend logic for `RiskAssessment`, `WeatherService`, and `MLService` |
+| **dataset** | Raw historical flood data (DesInventar) |
+| **ml_models** | Serialized AI models (.pkl) |
+| **wwwroot** | Static assets, GeoJSON maps, and pre-computed ML results |
 
 ---
 
-## 📜 Credits
+## 📜 Credits & Data Sources
 
-- **Weather Data**: Open-Meteo API (Free for non-commercial use)
-- **Mapping**: OpenStreetMap & Leaflet
-- **Development**: Powered by .NET 8 Blazor
+- **Weather Data**: Open-Meteo API
+- **Geocoding**: Geoapify API
+- **Historical Records**: DesInventar Disaster Information Management System
+- **Framework**: Developed with passion using .NET 8 Blazor
 
 ---
-*Developed for Sri Lanka Insurance Corporation (SLIC)*
+*Developed for the Sri Lanka Insurance Corporation (SLIC)*
