@@ -17,10 +17,11 @@ if (File.Exists(envPath))
     }
 }
 
-// Add services to the container.
+// ── Blazor ───────────────────────────────────────────────────────────────────
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+// ── Application Services ─────────────────────────────────────────────────────
 builder.Services.AddSingleton<LocationService>();
 builder.Services.AddSingleton<AdminService>();
 builder.Services.AddSingleton<HistoricalFloodEventService>();
@@ -33,27 +34,50 @@ builder.Services.AddHttpClient();
 builder.Services.AddScoped<WeatherService>();
 builder.Services.AddSingleton<HistoricalDataService>();
 builder.Services.AddSingleton<MLPredictionService>();
-
 builder.Services.AddHttpClient<GeocodingService>();
 
+// ── OpenAPI / Swagger ─────────────────────────────────────────────────────────
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new()
+    {
+        Title       = "SLIC Flood Management API",
+        Version     = "v1",
+        Description =
+            "REST API for the Sri Lanka Insurance Corporation (SLIC) Flood Management System. " +
+            "Provides flood risk assessment, ML-based predictions, historical event data, " +
+            "geocoding services, and insurance claim management.",
+        Contact = new() { Name = "SLIC Flood Management Team" }
+    });
+});
 
+// ─────────────────────────────────────────────────────────────────────────────
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// ── HTTP Pipeline ─────────────────────────────────────────────────────────────
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// Swagger UI is available in all environments for this project
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SLIC Flood Management API v1");
+    c.RoutePrefix = "api-docs"; // accessible at /api-docs
+});
 
+app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
+// ── API Endpoints ─────────────────────────────────────────────────────────────
 app.MapFloodCheckEndpoints();
 
+// ── Blazor Pages ─────────────────────────────────────────────────────────────
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
